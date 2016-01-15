@@ -27,6 +27,7 @@ static NSString *appID = @"5227913";
     
     [self.vkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://oauth.vk.com/authorize?client_id=%@&display=mobile&redirect_uri=https://oauth.vk.com/blank.html&scope=friends,audio&response_type=token&v=5.42",appID]]]];
     [self.view addSubview:self.vkWebView];
+    NSLog(@"Some test");
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
