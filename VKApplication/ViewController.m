@@ -8,7 +8,11 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+static NSString *appID = @"5227913";
+
+@interface ViewController ()<UIWebViewDelegate>
+
+@property UIWebView *vkWebView;
 
 @end
 
@@ -16,12 +20,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.vkWebView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.vkWebView.delegate = self;
+    self.vkWebView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.vkWebView setBackgroundColor:[UIColor clearColor]];
+    
+    [self.vkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://oauth.vk.com/authorize?client_id=%@&display=mobile&redirect_uri=https://oauth.vk.com/blank.html&scope=friends,audio&response_type=token&v=5.42",appID]]]];
+    [self.view addSubview:self.vkWebView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSLog(@"%@", self.vkWebView.request.URL.absoluteString);
 }
+
 
 @end
