@@ -10,34 +10,19 @@
 #import <AFNetworking/AFNetworking.h>
 #import <MBProgressHUD.h>
 
+extern const struct APIPaths
+{
+    __unsafe_unretained NSString *login;
+} APIPaths;
+
+
 @interface VKAPI : NSObject
 
 + (instancetype)sharedInstance;
 
-- (void)setParameters:(NSDictionary *)dictionary;
+- (void)POSTConnectionWithURLString:(NSString *)urlString parameters:(NSDictionary *)parameters classMapping:(__unsafe_unretained Class)classMapping showProgressOnView:(UIView *)view response:(void (^)(NSURLSessionDataTask *operation, id responseObject))response fail:(void (^)(NSURLSessionDataTask *operation, NSError *error))failure;
 
-- (void)setURLString:(NSString *)urlString;
-
-- (void)setView:(UIView *)view;
-
-- (void)setClass:(Class)theClass;
-
-- (void)setResponseBlock:(void (^)(NSURLSessionDataTask *, id))responseBlock;
-
-- (void)setFailBlock:(void (^)(NSURLSessionDataTask *, NSError *))failBlock;
-
-- (void)requestSerializer;
-
-- (void)connectionStartPOST;
-- (void)connectionStartGET;
-- (void)connectionStartPUT;
-
-
-- (void)POSTConnectionWithURLString:(NSString *)urlString parameters:(NSDictionary *)parameters classMapping:(__unsafe_unretained Class)classMapping showProgressOnView:(UIView *)view serializer:(BOOL)serializer response:(void (^)(NSURLSessionDataTask *operation, id responseObject))response fail:(void (^)(NSURLSessionDataTask *operation, NSError *error))failure;
-
-- (void)GETConnectionWithURLString:(NSString *)urlString classMapping:(__unsafe_unretained Class)classMapping showProgressOnView:(UIView *)view serializer:(BOOL)serializer response:(void (^)(NSURLSessionDataTask *operation, id responseObject))response fail:(void (^)(NSURLSessionDataTask *operation, NSError *error))failure;
-
-- (void)PUTConnectionWithURLString:(NSString *)urlString classMapping:(__unsafe_unretained Class)classMapping showProgressOnView:(UIView *)view serializer:(BOOL)serializer response:(void (^)(NSURLSessionDataTask *operation, id responseObject))response fail:(void (^)(NSURLSessionDataTask *operation, NSError *error))failure;
+- (void)GETConnectionWithURLString:(NSString *)urlString classMapping:(__unsafe_unretained Class)classMapping showProgressOnView:(UIView *)view response:(void (^)(NSURLSessionDataTask *operation, id responseObject))response fail:(void (^)(NSURLSessionDataTask *operation, NSError *error))failure;
 
 
 @end

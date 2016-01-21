@@ -8,6 +8,10 @@
 
 #import "VKAPI.h"
 
+const struct APIPaths APIPaths = {
+    .login = @"/login"
+};
+
 
 @implementation VKAPI{
     NSDictionary *_parameters;
@@ -68,11 +72,10 @@
 }
 
 - (id)fillObjectResponseWithDictionary:(NSDictionary *)dictionary {
-//    id obj = [_class alloc];
-//    if ([obj respondsToSelector:@selector(initClassWithDictionary:)]) {
-//        obj = [obj initClassWithDictionary:dictionary];
-//    }
-    id obj;
+    id obj = [_class alloc];
+    if ([obj respondsToSelector:@selector(initClassWithDictionary:)]) {
+        obj = [obj initClassWithDictionary:dictionary];
+    }
     return obj;
 }
 
@@ -90,12 +93,6 @@
     
     [self showProgressOnView:view];
 }
-//- (void)requestSerializer {
-//    _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-//    [_manager.requestSerializer setValue:[SPAuthorization userID] forHTTPHeaderField:@"userId"];
-//    [_manager.requestSerializer setValue:[SPAuthorization sessionHash] forHTTPHeaderField:@"usersessionhash"];
-//}
-
 
 - (void)connectionStartPOST {
     [_manager POST:_urlString parameters:_parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -106,6 +103,7 @@
         _failBlock(task, error);
         
     }];
+    
 }
 
 - (void)connectionStartGET {
@@ -119,44 +117,17 @@
     }];
 }
 
-- (void)connectionStartPUT {
-    [_manager PUT:_urlString parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [self hiddenProgressOnView:_view];
-        _responseBlock(task, _class ? [self fillObjectResponseWithDictionary:responseObject] : responseObject);
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self hiddenProgressOnView:_view];
-        _failBlock(task, error);
-    }];
-    
-}
-- (void)POSTConnectionWithURLString:(NSString *)urlString parameters:(NSDictionary *)parameters classMapping:(__unsafe_unretained Class)classMapping showProgressOnView:(UIView *)view serializer:(BOOL)serializer response:(void (^)(NSURLSessionDataTask *, id))response fail:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+- (void)POSTConnectionWithURLString:(NSString *)urlString parameters:(NSDictionary *)parameters classMapping:(__unsafe_unretained Class)classMapping showProgressOnView:(UIView *)view response:(void (^)(NSURLSessionDataTask *, id))response fail:(void (^)(NSURLSessionDataTask *, NSError *))failure {
     [self fillManagerURLString:urlString parameters:parameters classMapping:classMapping showProgressOnView:view response:response fail:failure constructingBodyWithBlock:nil];
-    
-//    if (serializer) {
-//        [self requestSerializer];
-//    }
     
     [self connectionStartPOST];
 }
-- (void)GETConnectionWithURLString:(NSString *)urlString classMapping:(__unsafe_unretained Class)classMapping showProgressOnView:(UIView *)view serializer:(BOOL)serializer response:(void (^)(NSURLSessionDataTask *, id))response fail:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+- (void)GETConnectionWithURLString:(NSString *)urlString classMapping:(__unsafe_unretained Class)classMapping showProgressOnView:(UIView *)view  response:(void (^)(NSURLSessionDataTask *, id))response fail:(void (^)(NSURLSessionDataTask *, NSError *))failure {
     
     [self fillManagerURLString:urlString parameters:nil classMapping:classMapping showProgressOnView:view response:response fail:failure constructingBodyWithBlock:nil];
     
-//    if (serializer) {
-//        [self requestSerializer];
-//    }
     [self connectionStartGET];
 }
 
-- (void)PUTConnectionWithURLString:(NSString *)urlString classMapping:(__unsafe_unretained Class)classMapping showProgressOnView:(UIView *)view serializer:(BOOL)serializer response:(void (^)(NSURLSessionDataTask *, id))response fail:(void (^)(NSURLSessionDataTask *, NSError *))failure {
-    
-    [self fillManagerURLString:urlString parameters:nil classMapping:classMapping showProgressOnView:view response:response fail:failure constructingBodyWithBlock:nil];
-    
-//    if (serializer) {
-//        [self requestSerializer];
-//    }
-    [self connectionStartPUT];
-}
 
 @end

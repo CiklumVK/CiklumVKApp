@@ -1,0 +1,26 @@
+//
+//  Helper.pch
+//  VKApplication
+//
+//  Created by Vasyl Vasylchenko on 15.01.16.
+//  Copyright © 2016 Vasyl Vasylchenko. All rights reserved.
+//
+
+#import "NSObject+SPExtension.h"
+#import <AFNetworking/AFNetworking.h>
+#import <MBProgressHUD.h>
+#import "VKAPI.h"
+#import "LogIn.h"
+
+static NSString *appID = @"5227913";
+static NSString *friendsGetPath = @"https://api.vk.com/method/friends.get?fields=online,photo_100&v=5.44&access_token=";
+
+
+
+#ifndef Helper_pch
+#define Helper_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* Helper_pch */
