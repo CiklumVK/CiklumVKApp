@@ -8,6 +8,10 @@
 
 #import "NSFileManager+Directories.h"
 
-@implementation NSFileManager_Directories
+@implementation NSFileManager (Directories)
+
++ (NSURL *)applicationDocumentDirectory {
+    return [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask].lastObject;
+}
 
 @end

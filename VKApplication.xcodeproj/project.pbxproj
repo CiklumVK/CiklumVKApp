@@ -28,6 +28,8 @@
 		7F0BA49F1C4AB253006DC89F /* FriendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BA49E1C4AB253006DC89F /* FriendsModel.m */; };
 		7F0BA4A21C4AB3EA006DC89F /* FriendsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BA4A11C4AB3EA006DC89F /* FriendsObject.m */; };
 		7F0BA4A51C4AE32D006DC89F /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BA4A41C4AE32D006DC89F /* NSString+MD5.m */; };
+		FA28FA981C5911F500FE8D02 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = FA28FA971C5911F500FE8D02 /* CoreDataStack.m */; };
+		FA28FA9B1C59124C00FE8D02 /* NSFileManager+Directories.m in Sources */ = {isa = PBXBuildFile; fileRef = FA28FA9A1C59124C00FE8D02 /* NSFileManager+Directories.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,10 @@
 		7F0BA4A11C4AB3EA006DC89F /* FriendsObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsObject.m; sourceTree = "<group>"; };
 		7F0BA4A31C4AE32D006DC89F /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		7F0BA4A41C4AE32D006DC89F /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		FA28FA961C5911F500FE8D02 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
+		FA28FA971C5911F500FE8D02 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
+		FA28FA991C59124C00FE8D02 /* NSFileManager+Directories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Directories.h"; sourceTree = "<group>"; };
+		FA28FA9A1C59124C00FE8D02 /* NSFileManager+Directories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Directories.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +235,8 @@
 				7F0BA49E1C4AB253006DC89F /* FriendsModel.m */,
 				7F0BA4A01C4AB3EA006DC89F /* FriendsObject.h */,
 				7F0BA4A11C4AB3EA006DC89F /* FriendsObject.m */,
+				FA28FA961C5911F500FE8D02 /* CoreDataStack.h */,
+				FA28FA971C5911F500FE8D02 /* CoreDataStack.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -242,6 +250,8 @@
 				7F08D9451C494B7C0099E85F /* NSString+Extension.m */,
 				7F0BA4A31C4AE32D006DC89F /* NSString+MD5.h */,
 				7F0BA4A41C4AE32D006DC89F /* NSString+MD5.m */,
+				FA28FA991C59124C00FE8D02 /* NSFileManager+Directories.h */,
+				FA28FA9A1C59124C00FE8D02 /* NSFileManager+Directories.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -452,10 +462,12 @@
 				7F0BA4981C4AAB85006DC89F /* CustomCell.m in Sources */,
 				7F08D9041C4936800099E85F /* AppDelegate.m in Sources */,
 				7F08D9431C494AA60099E85F /* NSObject+SPExtension.m in Sources */,
+				FA28FA981C5911F500FE8D02 /* CoreDataStack.m in Sources */,
 				7F0BA49F1C4AB253006DC89F /* FriendsModel.m in Sources */,
 				7F0BA4A51C4AE32D006DC89F /* NSString+MD5.m in Sources */,
 				7F08D9491C495A950099E85F /* FriendsVC.m in Sources */,
 				7F08D9011C4936800099E85F /* main.m in Sources */,
+				FA28FA9B1C59124C00FE8D02 /* NSFileManager+Directories.m in Sources */,
 				7F08D93E1C4948BA0099E85F /* LogIn.m in Sources */,
 				7F08D9371C4937570099E85F /* VKAPI.m in Sources */,
 				7F08D90D1C4936800099E85F /* VKApplication.xcdatamodeld in Sources */,

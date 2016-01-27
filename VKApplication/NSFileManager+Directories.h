@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSFileManager_Directories : NSObject
+@interface NSFileManager (Directories)
+
++ (NSURL *)applicationDocumentDirectory;
 
 @end
