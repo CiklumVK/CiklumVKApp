@@ -28,7 +28,6 @@
 		7F0BA49F1C4AB253006DC89F /* FriendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BA49E1C4AB253006DC89F /* FriendsModel.m */; };
 		7F0BA4A21C4AB3EA006DC89F /* FriendsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BA4A11C4AB3EA006DC89F /* FriendsObject.m */; };
 		7F0BA4A51C4AE32D006DC89F /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BA4A41C4AE32D006DC89F /* NSString+MD5.m */; };
-<<<<<<< HEAD
 		7F63F6671C5662CD008FAA6C /* LogInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63F6661C5662CD008FAA6C /* LogInVC.m */; };
 		7F63F6701C56A320008FAA6C /* FriendEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63F66D1C56A320008FAA6C /* FriendEntity+CoreDataProperties.m */; };
 		7F63F6711C56A320008FAA6C /* FriendEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63F66F1C56A320008FAA6C /* FriendEntity.m */; };
@@ -39,10 +38,8 @@
 		7FF0507E1C523E1B0090D984 /* VKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF0507D1C523E1B0090D984 /* VKAPI.m */; };
 		7FF050811C523E830090D984 /* DataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF050801C523E830090D984 /* DataProvider.m */; };
 		7FF050CD1C53A3C10090D984 /* UIImageView+VKACash.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF050CC1C53A3C10090D984 /* UIImageView+VKACash.m */; };
-=======
 		FA28FA981C5911F500FE8D02 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = FA28FA971C5911F500FE8D02 /* CoreDataStack.m */; };
 		FA28FA9B1C59124C00FE8D02 /* NSFileManager+Directories.m in Sources */ = {isa = PBXBuildFile; fileRef = FA28FA9A1C59124C00FE8D02 /* NSFileManager+Directories.m */; };
->>>>>>> origin/master
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,7 +102,6 @@
 		7F0BA4A11C4AB3EA006DC89F /* FriendsObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsObject.m; sourceTree = "<group>"; };
 		7F0BA4A31C4AE32D006DC89F /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		7F0BA4A41C4AE32D006DC89F /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		7F63F6651C5662CD008FAA6C /* LogInVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInVC.h; sourceTree = "<group>"; };
 		7F63F6661C5662CD008FAA6C /* LogInVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInVC.m; sourceTree = "<group>"; };
 		7F63F66C1C56A320008FAA6C /* FriendEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FriendEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -126,12 +122,10 @@
 		7FF050801C523E830090D984 /* DataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProvider.m; sourceTree = "<group>"; };
 		7FF050CB1C53A3C10090D984 /* UIImageView+VKACash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+VKACash.h"; path = "Model/Categories/VKACash/UIImageView+VKACash.h"; sourceTree = "<group>"; };
 		7FF050CC1C53A3C10090D984 /* UIImageView+VKACash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+VKACash.m"; path = "Model/Categories/VKACash/UIImageView+VKACash.m"; sourceTree = "<group>"; };
-=======
 		FA28FA961C5911F500FE8D02 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		FA28FA971C5911F500FE8D02 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
 		FA28FA991C59124C00FE8D02 /* NSFileManager+Directories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Directories.h"; sourceTree = "<group>"; };
 		FA28FA9A1C59124C00FE8D02 /* NSFileManager+Directories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Directories.m"; sourceTree = "<group>"; };
->>>>>>> origin/master
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,15 +272,12 @@
 				7F0BA49E1C4AB253006DC89F /* FriendsModel.m */,
 				7F0BA4A01C4AB3EA006DC89F /* FriendsObject.h */,
 				7F0BA4A11C4AB3EA006DC89F /* FriendsObject.m */,
-<<<<<<< HEAD
 				7F63F6751C5A620A008FAA6C /* ProfileInfo.h */,
 				7F63F6761C5A620B008FAA6C /* ProfileInfo.m */,
 				7F63F7411C5CDFEE008FAA6C /* MappingModel.h */,
 				7F63F7421C5CDFEE008FAA6C /* MappingModel.m */,
-=======
 				FA28FA961C5911F500FE8D02 /* CoreDataStack.h */,
 				FA28FA971C5911F500FE8D02 /* CoreDataStack.m */,
->>>>>>> origin/master
 			);
 			name = Model;
 			sourceTree = "<group>";
