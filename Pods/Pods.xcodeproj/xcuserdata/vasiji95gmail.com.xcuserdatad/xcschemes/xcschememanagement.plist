@@ -24,20 +24,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>WYPopoverController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>620FEFD4AFE254B02AA5D5111E9ACEE5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8146594CFC7E08EF0A079A8C864560EB</key>
+		<key>2EE184938AB2B6BC1E9B1E43E7DEEB6E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B93CB6A2CBDC02DF5FDAE59B873C5A3C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F031CEA5362529B12F947201F95BD01C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

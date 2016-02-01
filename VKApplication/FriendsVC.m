@@ -18,6 +18,8 @@
 
 @implementation FriendsVC
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpNavigationBar];

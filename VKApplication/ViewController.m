@@ -9,28 +9,20 @@
 #import "ViewController.h"
 #import "LogIn.h"
 #import "FriendsVC.h"
+#import "LogInVC.h"
 
 
 @interface ViewController ()
-
-@property LogIn * logIn;
 
 @end
 
 
 @implementation ViewController
 
-- (void)viewDidLoad{
-    [super viewDidLoad];
-    [self doThat];
-}
+- (IBAction)logInAction:(id)sender {
+    LogInVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"LogInVC"];
+    [self.navigationController pushViewController:vc animated:nil];
 
-- (void)doThat{
-    self.logIn = [LogIn sharedAuthorization];
-    [self.logIn doLogIn:self.view complite:^{
-        FriendsVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FriendsVC"];
-        [self.navigationController pushViewController:vc animated:nil];
-    }];
 }
 
 @end

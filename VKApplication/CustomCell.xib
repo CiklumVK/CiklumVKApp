@@ -21,7 +21,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gt-7K-WUL">
                         <rect key="frame" x="66" y="19" width="222" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onlinePicture" translatesAutoresizingMaskIntoConstraints="NO" id="4tR-Hr-z2o">
@@ -38,9 +38,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="imageOutlet" destination="WlN-c6-OxV" id="v4Q-w8-1In"/>
-                <outlet property="nameLabelOutlet" destination="0Gt-7K-WUL" id="iFy-yk-a1j"/>
-                <outlet property="onlinePictureOutlet" destination="4tR-Hr-z2o" id="sgz-ZP-2cy"/>
+                <outlet property="avatarImage" destination="WlN-c6-OxV" id="szf-e4-Hqv"/>
+                <outlet property="nameLabel" destination="0Gt-7K-WUL" id="Lbf-ZX-js8"/>
+                <outlet property="onlinePicture" destination="4tR-Hr-z2o" id="CSD-C3-wWm"/>
             </connections>
             <point key="canvasLocation" x="483" y="323"/>
         </tableViewCell>

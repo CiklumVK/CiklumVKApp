@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSString *accessToken;
 @property (strong, nonatomic) NSString *userID;
 
+
 - (void)doLogIn:(UIView *)view complite:(void (^)())complite;
 
 + (instancetype)sharedAuthorization;

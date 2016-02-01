@@ -14,5 +14,6 @@
 + (NSString*)stringBetweenString:(NSString*)start
                        andString:(NSString*)end
                      innerString:(NSString*)str;
++ (NSString *)encodeLink:(NSString *)searchText;
 
 @end

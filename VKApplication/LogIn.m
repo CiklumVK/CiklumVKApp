@@ -8,13 +8,17 @@
 
 #import "LogIn.h"
 #import "NSString+Extension.h"
+#import "LogInModel.h"
+#import "LogInVC.h"
 
 static LogIn *authorization = nil;
 
 
 @interface LogIn () <UIWebViewDelegate>
 
-@property UIWebView * vkWebView;
+@property UIWebView *vkWebView;
+@property LogInModel *loginModel;
+@property NSMutableDictionary *dictionaryOfLogIn;
 
 @end
 
@@ -22,7 +26,13 @@ static LogIn *authorization = nil;
 
 @implementation LogIn{
     void (^_compl)();
+}
 
+- (instancetype)init{
+    self = [super init];
+    self.dictionaryOfLogIn = @{}.mutableCopy;
+    self.loginModel = [LogInModel new];
+    return self;
 }
 
 + (instancetype)sharedAuthorization{
@@ -42,7 +52,6 @@ static LogIn *authorization = nil;
     if ([[NSUserDefaults standardUserDefaults]valueForKey:@"accessToken"]){
         _compl();
     }else{
-
     self.vkWebView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.vkWebView.delegate = self;
     self.vkWebView.contentMode = UIViewContentModeScaleAspectFit;
@@ -61,41 +70,23 @@ static LogIn *authorization = nil;
         
         NSArray *userAr = [[[[webView request] URL] absoluteString] componentsSeparatedByString:@"&user_id="];
         authorization.userID = [userAr lastObject];
-
-        if(authorization.accessToken){
+        
+        [self.dictionaryOfLogIn setValue:authorization.accessToken forKey:@"accessToken"];
+        [self.dictionaryOfLogIn setValue:authorization.userID forKey:@"userID"];
+        self.loginModel = [[LogInModel alloc] initWithDictionary:self.dictionaryOfLogIn];
+        
+        if([[NSUserDefaults standardUserDefaults]valueForKey:@"accessToken"]){
             [self.vkWebView removeFromSuperview];
-            [self saveInUserDefaults];
             _compl();
         }}
 }
 
 + (NSString *)userID{
-    return [[NSUserDefaults standardUserDefaults]valueForKey:@"userID"];
+    return authorization.loginModel.userID;
 }
 
 + (NSString *)accessToken{
-    return [[NSUserDefaults standardUserDefaults]valueForKey:@"accessToken"];
-}
-
-- (void)saveInUserDefaults{
-    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-    
-    [userDef setObject:authorization.userID forKey:@"userID"];
-    [userDef setObject:authorization.accessToken forKey:@"accessToken"];
-    
-    [userDef synchronize];
-}
-
-+ (instancetype)initWithDefault{
-    NSString * userIDString = [[NSUserDefaults standardUserDefaults] stringForKey:@"userID"];
-    NSString * sessionHashString = [[NSUserDefaults standardUserDefaults] stringForKey:@"accesToken"];
-    
-    if (userIDString) {
-        [LogIn sharedAuthorization];
-        authorization.userID = userIDString;
-        authorization.accessToken = sessionHashString;
-    }
-    return authorization;
+    return authorization.loginModel.accessToken;
 }
 
 

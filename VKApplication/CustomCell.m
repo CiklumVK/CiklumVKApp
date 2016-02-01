@@ -8,16 +8,17 @@
 
 #import "CustomCell.h"
 #import "FriendsModel.h"
-#import "NSString+MD5.h"
+#import "CoreDataStack.h"
+#import "FriendEntity+CoreDataProperties.h"
 
 
-@interface CustomCell (){
-    FriendsModel *friendsModel;
-}
+@interface CustomCell ()
+@property (nonatomic) FriendsModel *friendsModel;
+@property (nonatomic) UIImage *imageFromData;
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLabelOutlet;
-@property (weak, nonatomic) IBOutlet UIImageView *imageOutlet;
-@property (weak, nonatomic) IBOutlet UIImageView *onlinePictureOutlet;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
+@property (weak, nonatomic) IBOutlet UIImageView *onlinePicture;
 
 
 @end
@@ -25,32 +26,27 @@
 
 @implementation CustomCell
 
--(void)fillWithObject:(id)object atIndex:(NSIndexPath *)indexPath{
-    friendsModel = object;
- 
-    self.imageOutlet.layer.masksToBounds = YES;
-    self.imageOutlet.layer.cornerRadius = 25;
-    
-    self.onlinePictureOutlet.alpha = [friendsModel.online boolValue];
-    self.nameLabelOutlet.text = [NSString stringWithFormat:@"%@ %@", friendsModel.firstName, friendsModel.lastName];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        NSString *md5 = [NSString MD5StringWithString:friendsModel.photoPath];
-        
-        NSMutableString *path = [NSString applicationDocumentsDirectory];
-        [path appendFormat:@"/%@.png", md5];
-        
-        NSData *data = [NSData dataWithContentsOfFile:path];
-        
-        if (!data){
-            data = [NSData dataWithContentsOfURL:[NSURL URLWithString:friendsModel.photoPath]];
-            [data writeToFile:path atomically:YES];
-        }
-        UIImage *img = [UIImage imageWithData:data];
-        
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            self.imageOutlet.image = img;
-        });
-    });
+- (void)fillWithObject:(id)object atIndex:(NSIndexPath *)indexPath{
+//    CoreDataStack *coreDataStack = [CoreDataStack new];
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription
+//                                   entityForName:@"FriendEntity" inManagedObjectContext:[coreDataStack managedObjectContext]];
+//    [fetchRequest setEntity:entity];
+//    NSArray *fetchedObjects = [coreDataStack fetchedResult];
+//    for (NSManagedObject *info in fetchedObjects) {
+//        NSLog(@"lastName: %@", [info valueForKey:@"lastName"]);
+//    }
+    self.friendsModel = [FriendsModel new];
+    self.friendsModel = object;
+    self.onlinePicture.alpha = [self.friendsModel.onlineValue boolValue];
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.friendsModel.firstName, self.friendsModel.lastName];
+    [self.avatarImage setImageWitURLString:self.friendsModel.photoPath];
 }
 
+- (void)awakeFromNib{
+    
+    self.avatarImage.layer.masksToBounds = YES;
+    self.avatarImage.layer.cornerRadius = 25;
+
+}
 @end

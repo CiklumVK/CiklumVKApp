@@ -1,28 +1,16 @@
 //
 //  VKAPI.h
-//  VKApp
+//  VKApplication
 //
-//  Created by Vasyl Vasylchenko on 15.01.16.
+//  Created by Vasyl Vasylchenko on 22.01.16.
 //  Copyright © 2016 Vasyl Vasylchenko. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <AFNetworking/AFNetworking.h>
-#import <MBProgressHUD.h>
 
-extern const struct APIPaths
-{
-    __unsafe_unretained NSString *login;
-} APIPaths;
+@interface VKAPI : NSObject 
 
-
-@interface VKAPI : NSObject
-
-+ (instancetype)sharedInstance;
-
-- (void)POSTConnectionWithURLString:(NSString *)urlString parameters:(NSDictionary *)parameters classMapping:(__unsafe_unretained Class)classMapping showProgressOnView:(UIView *)view response:(void (^)(NSURLSessionDataTask *operation, id responseObject))response fail:(void (^)(NSURLSessionDataTask *operation, NSError *error))failure;
-
-- (void)GETConnectionWithURLString:(NSString *)urlString classMapping:(__unsafe_unretained Class)classMapping showProgressOnView:(UIView *)view response:(void (^)(NSURLSessionDataTask *operation, id responseObject))response fail:(void (^)(NSURLSessionDataTask *operation, NSError *error))failure;
-
+- (void)getFriendListWithResponse:(void (^)(id responseObject))response fail:(void (^)(NSError *error))failure;
+- (void)makeSearchWithText:(NSString *)searchText response:(void (^)(id responseObject))response fail:(void (^)(NSError *error))failure;
 
 @end

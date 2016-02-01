@@ -9,12 +9,16 @@
 #import "FriendsTableDataSource.h"
 #import "CustomCell.h"
 #import "FriendsObject.h"
+#import "NSString+Extension.h"
+#import "VKAPI.h"
 
-@interface FriendsTableDataSource()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>{
-    FriendsObject *frindsObject;
-    UITableView *theTableView;
-    NSMutableDictionary *friendsDictionary;
-}
+@interface FriendsTableDataSource()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+
+@property FriendsObject *frindsObject;
+@property VKAPI *vkApi;
+@property UITableView *theTableView;
+@property NSMutableDictionary *friendsDictionary;
+@property NSMutableArray *oldFriends;
 
 @end
 
@@ -25,40 +29,47 @@
 
 - (instancetype)initWithTableView:(UITableView *)tableView withSearchBar:(UISearchBar *)searchBar{
     self = [super init];
-    friendsDictionary = @{}.mutableCopy;
-    [self loadFriendList:tableView];
+    self.friendsDictionary = @{}.mutableCopy;
+    self.theTableView = [UITableView new];
+    self.frindsObject = [FriendsObject new];
+    self.vkApi = [VKAPI new];
     [self configureTableView:tableView];
+    [self loadFriendList];
     [self configureSearchBar:searchBar];
-
+    
     return self;
 }
 
-- (void)loadFriendList:(UITableView *)tableView{
-    
-    [[VKAPI sharedInstance]GETConnectionWithURLString:[NSString stringWithFormat:@"%@%@",friendsGetPath, [LogIn accessToken]] classMapping:[FriendsObject class] showProgressOnView:nil response:^(NSURLSessionDataTask *operation, id responseObject) {
-        frindsObject = responseObject;
-        [friendsDictionary setValue:frindsObject.arrayOfFriends forKey:@"Friends"];
-        [tableView reloadData];
-    } fail:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"%@", error.description);
-    } ];
-
+- (void)configureSearchBar:(UISearchBar *)searchBar{
+    searchBar.delegate = self;
 }
 
 - (void)configureTableView:(UITableView *)tableView{
     tableView.delegate = self;
     tableView.dataSource = self;
     [tableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"FriendCell"];
-    theTableView = tableView;
+    self.theTableView = tableView;
+}
+
+- (void)loadFriendList{
+    [self.vkApi getFriendListWithResponse:^(id responseObject) {
+        self.frindsObject = responseObject;
+        [self.friendsDictionary setValue:self.frindsObject.arrayOfFriends forKey:@"Friends"];
+        self.oldFriends = [self.frindsObject.arrayOfFriends mutableCopy];
+        [self.theTableView reloadData];
+    } fail:^(NSError *error) {
+       NSLog(@"%@", error);
+    }];
+    
 }
 
 #pragma mark - tableView
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [friendsDictionary count];
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return [self.friendsDictionary count];
 }
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [[friendsDictionary allKeys] objectAtIndex:section];
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [[self.friendsDictionary allKeys] objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -77,29 +88,33 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 30;
+}
 
 #pragma mark - searchBar
 
-- (void)doSearch:(NSString*)searchText{
-    NSString *link = [NSString stringWithFormat:@"https://api.vk.com/method/users.search?q=%@&sort=0&fields=photo_100,online,is_friend&v=5.8&access_token=%@",searchText, [LogIn accessToken]];
-    NSString *encoded = [link stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet];
-    
-    [[VKAPI sharedInstance]GETConnectionWithURLString:encoded classMapping:[frindsObject class] showProgressOnView:nil response:^(NSURLSessionDataTask *operation, id responseObject) {
-        frindsObject = responseObject;
-        [friendsDictionary setValue:frindsObject.arrayOfFriends forKey:@"Global search"];
-        [theTableView reloadData];
-    } fail:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"%@", error.description);
+- (void)doSearch:(NSString *)searchText{
+    [self.vkApi makeSearchWithText:searchText response:^(id responseObject) {
+        self.frindsObject = responseObject;
+        NSArray *sortedArray = [self.oldFriends filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"firstName contains %@", searchText]];
+        [self.friendsDictionary setValue:self.frindsObject.arrayOfFriends forKey:@"Global search"];
+        [self.friendsDictionary setValue:sortedArray forKey:@"Friends"];
+        [self.theTableView reloadData];
+    } fail:^(NSError *error) {
+        NSLog(@"%@", error);
     }];
-    
-}
 
-- (void)configureSearchBar:(UISearchBar *)searchBar{
-    searchBar.delegate = self;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    [self doSearch:searchText];
+    if (searchText.length==0) {
+        [self.friendsDictionary setValue:self.oldFriends forKey:@"Friends"];
+        [self.friendsDictionary removeObjectForKey:@"Global search"];
+        [self.theTableView reloadData];
+    } else {
+        [self doSearch:searchText];
+    }
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -109,11 +124,14 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     searchBar.text = nil;
     [searchBar resignFirstResponder];
+    [self.friendsDictionary setValue:self.oldFriends forKey:@"Friends"];
+    [self.friendsDictionary removeObjectForKey:@"Global search"];
+    [self.theTableView reloadData];
 }
 
 - (NSArray *)arrayWithSection:(NSInteger)section{
-    NSString * str = [friendsDictionary allKeys][section];
-    NSArray * a = [friendsDictionary valueForKey:str];
+    NSString * str = [self.friendsDictionary allKeys][section];
+    NSArray * a = [self.friendsDictionary valueForKey:str];
     return a;
 }
 

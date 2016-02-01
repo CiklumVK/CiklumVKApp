@@ -8,16 +8,22 @@
 
 #import "FriendsObject.h"
 
+@interface FriendsObject ()
+
+@property FriendsModel *friendsModel;
+
+@end
+
 @implementation FriendsObject
 
 -(instancetype)initClassWithDictionary:(NSDictionary *)dictionary{
     self = [super init];
     _arrayOfFriends = @[].mutableCopy;
-    
+    if (dictionary[@"response"][@"items"]){
     for (NSDictionary *d in dictionary[@"response"][@"items"]){
-        FriendsModel *f = [[FriendsModel alloc]initClassWithDictionary:d];
-        [_arrayOfFriends addObject:f];
-    }
+        self.friendsModel = [[FriendsModel alloc]initClassWithDictionary:d];
+        [_arrayOfFriends addObject:self.friendsModel];
+    }}
     return self;
 }
 

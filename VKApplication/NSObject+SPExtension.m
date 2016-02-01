@@ -56,8 +56,6 @@
     NSLog(@"%@", propertyValues);
     
     return propertyValues;
-    
-    return nil;
 }
 
 @end

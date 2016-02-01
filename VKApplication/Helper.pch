@@ -9,11 +9,16 @@
 #import "NSObject+SPExtension.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MBProgressHUD.h>
-#import "VKAPI.h"
+#import "NetworkManager.h"
 #import "LogIn.h"
 
+// category
+
+#import "NSString+MD5.h"
+#import "UIImageView+VKACash.h"
+
 static NSString *appID = @"5227913";
-static NSString *friendsGetPath = @"https://api.vk.com/method/friends.get?fields=online,photo_100&v=5.44&access_token=";
+static NSString *friendsGetPath = @"https://api.vk.com/method/friends.get?fields=online,photo_100,sex,bdate&v=5.44&access_token=";
 
 
 

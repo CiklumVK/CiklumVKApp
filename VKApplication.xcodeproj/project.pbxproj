@@ -17,7 +17,7 @@
 		7F08D9121C4936800099E85F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F08D9101C4936800099E85F /* LaunchScreen.storyboard */; };
 		7F08D91D1C4936800099E85F /* VKApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D91C1C4936800099E85F /* VKApplicationTests.m */; };
 		7F08D9281C4936800099E85F /* VKApplicationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D9271C4936800099E85F /* VKApplicationUITests.m */; };
-		7F08D9371C4937570099E85F /* VKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D9361C4937570099E85F /* VKAPI.m */; };
+		7F08D9371C4937570099E85F /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D9361C4937570099E85F /* NetworkManager.m */; };
 		7F08D93E1C4948BA0099E85F /* LogIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D93D1C4948BA0099E85F /* LogIn.m */; };
 		7F08D9431C494AA60099E85F /* NSObject+SPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D9421C494AA60099E85F /* NSObject+SPExtension.m */; };
 		7F08D9461C494B7C0099E85F /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D9451C494B7C0099E85F /* NSString+Extension.m */; };
@@ -28,6 +28,16 @@
 		7F0BA49F1C4AB253006DC89F /* FriendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BA49E1C4AB253006DC89F /* FriendsModel.m */; };
 		7F0BA4A21C4AB3EA006DC89F /* FriendsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BA4A11C4AB3EA006DC89F /* FriendsObject.m */; };
 		7F0BA4A51C4AE32D006DC89F /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BA4A41C4AE32D006DC89F /* NSString+MD5.m */; };
+		7F63F6671C5662CD008FAA6C /* LogInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63F6661C5662CD008FAA6C /* LogInVC.m */; };
+		7F63F6701C56A320008FAA6C /* FriendEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63F66D1C56A320008FAA6C /* FriendEntity+CoreDataProperties.m */; };
+		7F63F6711C56A320008FAA6C /* FriendEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63F66F1C56A320008FAA6C /* FriendEntity.m */; };
+		7F63F6741C56A375008FAA6C /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63F6731C56A375008FAA6C /* CoreDataStack.m */; };
+		7F63F6771C5A620B008FAA6C /* ProfileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63F6761C5A620B008FAA6C /* ProfileInfo.m */; };
+		7F63F7431C5CDFEE008FAA6C /* MappingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63F7421C5CDFEE008FAA6C /* MappingModel.m */; };
+		7FF0507B1C515F490090D984 /* LogInModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF0507A1C515F490090D984 /* LogInModel.m */; };
+		7FF0507E1C523E1B0090D984 /* VKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF0507D1C523E1B0090D984 /* VKAPI.m */; };
+		7FF050811C523E830090D984 /* DataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF050801C523E830090D984 /* DataProvider.m */; };
+		7FF050CD1C53A3C10090D984 /* UIImageView+VKACash.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF050CC1C53A3C10090D984 /* UIImageView+VKACash.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +78,8 @@
 		7F08D9231C4936800099E85F /* VKApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VKApplicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F08D9271C4936800099E85F /* VKApplicationUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VKApplicationUITests.m; sourceTree = "<group>"; };
 		7F08D9291C4936800099E85F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7F08D9351C4937570099E85F /* VKAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKAPI.h; sourceTree = "<group>"; };
-		7F08D9361C4937570099E85F /* VKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKAPI.m; sourceTree = "<group>"; };
+		7F08D9351C4937570099E85F /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		7F08D9361C4937570099E85F /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		7F08D93C1C4948BA0099E85F /* LogIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogIn.h; sourceTree = "<group>"; };
 		7F08D93D1C4948BA0099E85F /* LogIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogIn.m; sourceTree = "<group>"; };
 		7F08D9401C4949AB0099E85F /* Helper.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.pch; sourceTree = "<group>"; };
@@ -90,6 +100,26 @@
 		7F0BA4A11C4AB3EA006DC89F /* FriendsObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsObject.m; sourceTree = "<group>"; };
 		7F0BA4A31C4AE32D006DC89F /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		7F0BA4A41C4AE32D006DC89F /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		7F63F6651C5662CD008FAA6C /* LogInVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInVC.h; sourceTree = "<group>"; };
+		7F63F6661C5662CD008FAA6C /* LogInVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInVC.m; sourceTree = "<group>"; };
+		7F63F66C1C56A320008FAA6C /* FriendEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FriendEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		7F63F66D1C56A320008FAA6C /* FriendEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FriendEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		7F63F66E1C56A320008FAA6C /* FriendEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendEntity.h; sourceTree = "<group>"; };
+		7F63F66F1C56A320008FAA6C /* FriendEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendEntity.m; sourceTree = "<group>"; };
+		7F63F6721C56A375008FAA6C /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
+		7F63F6731C56A375008FAA6C /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
+		7F63F6751C5A620A008FAA6C /* ProfileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileInfo.h; sourceTree = "<group>"; };
+		7F63F6761C5A620B008FAA6C /* ProfileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileInfo.m; sourceTree = "<group>"; };
+		7F63F7411C5CDFEE008FAA6C /* MappingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingModel.h; sourceTree = "<group>"; };
+		7F63F7421C5CDFEE008FAA6C /* MappingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MappingModel.m; sourceTree = "<group>"; };
+		7FF050791C515F490090D984 /* LogInModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInModel.h; sourceTree = "<group>"; };
+		7FF0507A1C515F490090D984 /* LogInModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInModel.m; sourceTree = "<group>"; };
+		7FF0507C1C523E1B0090D984 /* VKAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKAPI.h; sourceTree = "<group>"; };
+		7FF0507D1C523E1B0090D984 /* VKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKAPI.m; sourceTree = "<group>"; };
+		7FF0507F1C523E830090D984 /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
+		7FF050801C523E830090D984 /* DataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProvider.m; sourceTree = "<group>"; };
+		7FF050CB1C53A3C10090D984 /* UIImageView+VKACash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+VKACash.h"; path = "Model/Categories/VKACash/UIImageView+VKACash.h"; sourceTree = "<group>"; };
+		7FF050CC1C53A3C10090D984 /* UIImageView+VKACash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+VKACash.m"; path = "Model/Categories/VKACash/UIImageView+VKACash.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +190,6 @@
 				7F08D90E1C4936800099E85F /* Assets.xcassets */,
 				7F08D9101C4936800099E85F /* LaunchScreen.storyboard */,
 				7F08D9131C4936800099E85F /* Info.plist */,
-				7F08D90B1C4936800099E85F /* VKApplication.xcdatamodeld */,
 				7F08D8FF1C4936800099E85F /* Supporting Files */,
 			);
 			path = VKApplication;
@@ -199,6 +228,8 @@
 				7F08D9061C4936800099E85F /* ViewController.m */,
 				7F08D9471C495A950099E85F /* FriendsVC.h */,
 				7F08D9481C495A950099E85F /* FriendsVC.m */,
+				7F63F6651C5662CD008FAA6C /* LogInVC.h */,
+				7F63F6661C5662CD008FAA6C /* LogInVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -219,16 +250,26 @@
 				7F08D93B1C4948420099E85F /* Categories */,
 				7F08D9021C4936800099E85F /* AppDelegate.h */,
 				7F08D9031C4936800099E85F /* AppDelegate.m */,
-				7F08D9351C4937570099E85F /* VKAPI.h */,
-				7F08D9361C4937570099E85F /* VKAPI.m */,
+				7F08D9351C4937570099E85F /* NetworkManager.h */,
+				7F08D9361C4937570099E85F /* NetworkManager.m */,
+				7FF0507C1C523E1B0090D984 /* VKAPI.h */,
+				7FF0507D1C523E1B0090D984 /* VKAPI.m */,
+				7FF0507F1C523E830090D984 /* DataProvider.h */,
+				7FF050801C523E830090D984 /* DataProvider.m */,
 				7F08D93C1C4948BA0099E85F /* LogIn.h */,
 				7F08D93D1C4948BA0099E85F /* LogIn.m */,
+				7FF050791C515F490090D984 /* LogInModel.h */,
+				7FF0507A1C515F490090D984 /* LogInModel.m */,
 				7F0BA4931C4AA857006DC89F /* FriendsTableDataSource.h */,
 				7F0BA4941C4AA857006DC89F /* FriendsTableDataSource.m */,
 				7F0BA49D1C4AB253006DC89F /* FriendsModel.h */,
 				7F0BA49E1C4AB253006DC89F /* FriendsModel.m */,
 				7F0BA4A01C4AB3EA006DC89F /* FriendsObject.h */,
 				7F0BA4A11C4AB3EA006DC89F /* FriendsObject.m */,
+				7F63F6751C5A620A008FAA6C /* ProfileInfo.h */,
+				7F63F6761C5A620B008FAA6C /* ProfileInfo.m */,
+				7F63F7411C5CDFEE008FAA6C /* MappingModel.h */,
+				7F63F7421C5CDFEE008FAA6C /* MappingModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -236,6 +277,7 @@
 		7F08D93B1C4948420099E85F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				7FF050CE1C53A3C90090D984 /* UIImageView+VKACash */,
 				7F08D9411C494AA60099E85F /* NSObject+SPExtension.h */,
 				7F08D9421C494AA60099E85F /* NSObject+SPExtension.m */,
 				7F08D9441C494B7C0099E85F /* NSString+Extension.h */,
@@ -249,9 +291,33 @@
 		7F08D93F1C4949930099E85F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				7F63F6681C56A2F0008FAA6C /* CoreData */,
 				7F08D9401C4949AB0099E85F /* Helper.pch */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		7F63F6681C56A2F0008FAA6C /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				7F08D90B1C4936800099E85F /* VKApplication.xcdatamodeld */,
+				7F63F66C1C56A320008FAA6C /* FriendEntity+CoreDataProperties.h */,
+				7F63F66D1C56A320008FAA6C /* FriendEntity+CoreDataProperties.m */,
+				7F63F66E1C56A320008FAA6C /* FriendEntity.h */,
+				7F63F66F1C56A320008FAA6C /* FriendEntity.m */,
+				7F63F6721C56A375008FAA6C /* CoreDataStack.h */,
+				7F63F6731C56A375008FAA6C /* CoreDataStack.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		7FF050CE1C53A3C90090D984 /* UIImageView+VKACash */ = {
+			isa = PBXGroup;
+			children = (
+				7FF050CB1C53A3C10090D984 /* UIImageView+VKACash.h */,
+				7FF050CC1C53A3C10090D984 /* UIImageView+VKACash.m */,
+			);
+			name = "UIImageView+VKACash";
 			sourceTree = "<group>";
 		};
 		9FCE2524F0E51F71E5332672 /* Frameworks */ = {
@@ -447,8 +513,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F63F6701C56A320008FAA6C /* FriendEntity+CoreDataProperties.m in Sources */,
 				7F08D9071C4936800099E85F /* ViewController.m in Sources */,
+				7FF050811C523E830090D984 /* DataProvider.m in Sources */,
+				7FF0507B1C515F490090D984 /* LogInModel.m in Sources */,
 				7F0BA4951C4AA857006DC89F /* FriendsTableDataSource.m in Sources */,
+				7F63F6741C56A375008FAA6C /* CoreDataStack.m in Sources */,
 				7F0BA4981C4AAB85006DC89F /* CustomCell.m in Sources */,
 				7F08D9041C4936800099E85F /* AppDelegate.m in Sources */,
 				7F08D9431C494AA60099E85F /* NSObject+SPExtension.m in Sources */,
@@ -457,9 +527,15 @@
 				7F08D9491C495A950099E85F /* FriendsVC.m in Sources */,
 				7F08D9011C4936800099E85F /* main.m in Sources */,
 				7F08D93E1C4948BA0099E85F /* LogIn.m in Sources */,
-				7F08D9371C4937570099E85F /* VKAPI.m in Sources */,
+				7FF050CD1C53A3C10090D984 /* UIImageView+VKACash.m in Sources */,
+				7F08D9371C4937570099E85F /* NetworkManager.m in Sources */,
+				7F63F6771C5A620B008FAA6C /* ProfileInfo.m in Sources */,
+				7F63F6711C56A320008FAA6C /* FriendEntity.m in Sources */,
+				7F63F6671C5662CD008FAA6C /* LogInVC.m in Sources */,
 				7F08D90D1C4936800099E85F /* VKApplication.xcdatamodeld in Sources */,
+				7FF0507E1C523E1B0090D984 /* VKAPI.m in Sources */,
 				7F08D9461C494B7C0099E85F /* NSString+Extension.m in Sources */,
+				7F63F7431C5CDFEE008FAA6C /* MappingModel.m in Sources */,
 				7F0BA4A21C4AB3EA006DC89F /* FriendsObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

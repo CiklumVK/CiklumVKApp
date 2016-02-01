@@ -27,5 +27,11 @@
     return nil;
 }
 
++ (NSString *)encodeLink:(NSString *)searchText{
+    NSString *link = [NSString stringWithFormat:@"https://api.vk.com/method/users.search?q=%@&sort=0&fields=photo_100,online,is_friend&v=5.8&access_token=%@",searchText, [LogIn accessToken]];
+    NSString *encoded = [link stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet];
+    
+    return encoded;
+}
 
 @end

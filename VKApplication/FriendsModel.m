@@ -7,20 +7,34 @@
 //
 
 #import "FriendsModel.h"
+#import "CoreDataStack.h"
+#import "FriendEntity+CoreDataProperties.h"
 
-@implementation FriendsModel
+@implementation FriendsModel 
 
-- (NSDictionary *)dictionaryInstructionManager {
-    return @{@"first_name" : @"firstName",
-             @"id" : @"userID",
-             @"user_id" : @"userID",
-             @"online" : @"online",
-             @"last_name" : @"lastName",
-             @"photo_100" : @"photoPath"};
-}
-
-- (instancetype)initClassWithDictionary:(NSDictionary *)dictionary {
-    self = [super loadClassWithDictionary:dictionary InstructionDictionary:[self dictionaryInstructionManager]];
+- (instancetype)initClassWithDictionary:(NSDictionary *)dictionary{
+    MappingModel *m = [MappingModel new];
+    NSDictionary *d = @{@"first_name" : @"firstName",
+                        @"id" : @"userID",
+                        @"user_id" : @"userID",
+                        @"online" : @"onlineValue",
+                        @"last_name" : @"lastName",
+                        @"photo_100" : @"photoPath"};
+    m = [self loadClassWithDictionary:dictionary dictionaryInstructionManager:d];
+//    CoreDataStack *coreDataStack = [CoreDataStack new];
+//    NSManagedObjectContext *context = [coreDataStack managedObjectContext] ;
+//    
+//    NSEntityDescription* entity = [NSEntityDescription entityForName:@"FriendEntity" inManagedObjectContext:context];
+//    FriendEntity *friend = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+//    if ([coreDataStack coreDataHasEntriesForEntityName:@"FriendEntity"]){
+//        friend.fristName = self.firstName;
+//        friend.userID = self.userID;
+//        friend.lastName = self.lastName;
+//        friend.photoPath = self.photoPath;
+//        friend.onlineValue = self.online;
+//        
+//        [coreDataStack saveContext];
+//    }
     return self;
 }
 
