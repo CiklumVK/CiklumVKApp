@@ -14,6 +14,7 @@
 
 @end
 
+
 @implementation FriendsObject
 
 -(instancetype)initClassWithDictionary:(NSDictionary *)dictionary{
