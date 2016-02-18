@@ -6,10 +6,14 @@ inhibit_all_warnings!
 
 target 'VKApplication' do
 
+
+
 pod ‘VK-ios-sdk’
 pod 'MBProgressHUD'
-pod 'AFNetworking' 
 pod 'WYPopoverController’
+pod 'AFNetworking/NSURLConnection', '>= 0'
+pod 'Overcoat'
+pod 'SDWebImage', '~>3.7'
 
 end
 

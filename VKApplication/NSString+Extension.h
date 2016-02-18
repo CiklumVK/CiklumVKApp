@@ -15,5 +15,6 @@
                        andString:(NSString*)end
                      innerString:(NSString*)str;
 + (NSString *)encodeLink:(NSString *)searchText;
++ (NSString *)dateStandartFormatByUnixTime:(double)unixTime;
 
 @end

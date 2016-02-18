@@ -2,13 +2,12 @@
 //  CoreDataStack.h
 //  VKApplication
 //
-//  Created by Vasyl Vasylchenko on 25.01.16.
+//  Created by Vasyl Vasylchenko on 17.02.16.
 //  Copyright © 2016 Vasyl Vasylchenko. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
 
 @interface CoreDataStack : NSObject
 

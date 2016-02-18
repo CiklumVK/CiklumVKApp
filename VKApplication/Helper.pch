@@ -6,19 +6,42 @@
 //  Copyright © 2016 Vasyl Vasylchenko. All rights reserved.
 //
 
-#import "NSObject+SPExtension.h"
-#import <AFNetworking/AFNetworking.h>
+
+
+
+
+
+
+
+
+
 #import <MBProgressHUD.h>
-#import "NetworkManager.h"
 #import "LogIn.h"
+#import <Overcoat/Overcoat.h>
+#import <Mantle/Mantle.h>
 
-// category
 
-#import "NSString+MD5.h"
-#import "UIImageView+VKACash.h"
+extern const struct APIPaths
+{
+    __unsafe_unretained NSString *friendGetListPath;
+    __unsafe_unretained NSString *serverPath;
+    __unsafe_unretained NSString *searchPeoplePath;
+    __unsafe_unretained NSString *userInfo;
+    __unsafe_unretained NSString *wallPosts;
+
+} APIPaths;
+
 
 static NSString *appID = @"5227913";
-static NSString *friendsGetPath = @"https://api.vk.com/method/friends.get?fields=online,photo_100,sex,bdate&v=5.44&access_token=";
+
+static NSString *imageFormatSmall = @"imageFormatSmall";
+static NSString *imageFormatMedium = @"imageFormatMedium";
+static NSString *imageFormatBig = @"imageFormatBig";
+static NSString *imageFormatThumbnails = @"imageFormatThumbnails";
+
+
+
+
 
 
 

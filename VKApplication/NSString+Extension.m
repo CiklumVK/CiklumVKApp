@@ -34,4 +34,16 @@
     return encoded;
 }
 
++ (NSString *)dateStandartFormatByUnixTime:(double)unixTime{
+    double unixTimeStamp = unixTime;
+    NSTimeInterval _interval=unixTimeStamp;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
+    NSDateFormatter *formatter= [[NSDateFormatter alloc] init];
+    [formatter setLocale:[NSLocale currentLocale]];
+    [formatter setDateFormat:@"dd.MM.yyyy"];
+    NSString *dateString = [formatter stringFromDate:date];
+
+    return dateString;
+}
+
 @end

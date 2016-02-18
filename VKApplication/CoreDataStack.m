@@ -56,8 +56,8 @@
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
+        
     }
-    
     return _persistentStoreCoordinator;
 }
 
@@ -77,6 +77,8 @@
     return _managedObjectContext;
 }
 
+
+
 #pragma mark - Core Data Saving support
 
 - (void)saveContext {
@@ -92,29 +94,4 @@
     }
 }
 
-//- (NSArray*)fetchedResult{
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entity = [NSEntityDescription
-//                                   entityForName:@"FriendEntity" inManagedObjectContext:[self managedObjectContext]];
-//    [fetchRequest setEntity:entity];
-//    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-//    return fetchedObjects;
-//}
-//- (BOOL)coreDataHasEntriesForEntityName:(NSString *)entityName {
-//    NSFetchRequest *request = [NSFetchRequest new];
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
-//    request.predicate = [NSPredicate predicateWithFormat:@"fristName = nil"];
-//    [request setEntity:entity];
-//    [request setFetchLimit:1];
-//    NSError *error = nil;
-//    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
-//    if (!results) {
-//        NSLog(@"Fetch error: %@", error);
-//        abort();
-//    }
-//    if ([results count] == 0) {
-//        return NO;
-//    }
-//    return YES;
-//}
 @end

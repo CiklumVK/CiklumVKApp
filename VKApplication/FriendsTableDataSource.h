@@ -8,9 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol FriendsTableDataSourceDelegate <NSObject>
+
+- (void)didSelectObject:(id)object atIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
+
+
 @interface FriendsTableDataSource : NSObject
 
-- (instancetype)initWithTableView:(UITableView *)tableView withSearchBar:(UISearchBar *)searchBar;
+@property (nonatomic, weak) id <FriendsTableDataSourceDelegate> delegate;
+
+@property NSNumber *userID;
+- (instancetype)initWithTableView:(UITableView *)tableView withSearchBar:(UISearchBar *)searchBar andUserID:(NSNumber *)userID;
 
 
 @end

@@ -7,13 +7,14 @@
 //
 
 #import "CustomCell.h"
-#import "FriendsModel.h"
+#import "CoreDataStack.h"
 #import "CoreDataStack.h"
 #import "FriendEntity+CoreDataProperties.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 
 
 @interface CustomCell ()
-@property (nonatomic) FriendsModel *friendsModel;
 @property (nonatomic) UIImage *imageFromData;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -27,20 +28,11 @@
 @implementation CustomCell
 
 - (void)fillWithObject:(id)object atIndex:(NSIndexPath *)indexPath{
-//    CoreDataStack *coreDataStack = [CoreDataStack new];
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entity = [NSEntityDescription
-//                                   entityForName:@"FriendEntity" inManagedObjectContext:[coreDataStack managedObjectContext]];
-//    [fetchRequest setEntity:entity];
-//    NSArray *fetchedObjects = [coreDataStack fetchedResult];
-//    for (NSManagedObject *info in fetchedObjects) {
-//        NSLog(@"lastName: %@", [info valueForKey:@"lastName"]);
-//    }
-    self.friendsModel = [FriendsModel new];
-    self.friendsModel = object;
-    self.onlinePicture.alpha = [self.friendsModel.onlineValue boolValue];
-    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.friendsModel.firstName, self.friendsModel.lastName];
-    [self.avatarImage setImageWitURLString:self.friendsModel.photoPath];
+    
+    self.onlinePicture.alpha = [[object valueForKey:@"onlineValue"] boolValue];
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [object valueForKey:@"firstName"], [object valueForKey:@"lastName"]];
+    [self.avatarImage sd_setImageWithURL:[NSURL URLWithString:[object valueForKey:@"photo100"]]];
+    
 }
 
 - (void)awakeFromNib{

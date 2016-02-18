@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+  
    // [self.mappingManager registerMappingClass:[User class ] atURL:/users
     return YES;
 }

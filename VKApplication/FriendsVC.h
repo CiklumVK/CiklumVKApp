@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface FriendsVC : UIViewController
+
+@property (strong) NSNumber *userID;
+
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBarOutlet;
 @property (weak, nonatomic) IBOutlet UITableView *theTable;
 

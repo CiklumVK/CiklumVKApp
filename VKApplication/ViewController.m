@@ -21,7 +21,7 @@
 
 - (IBAction)logInAction:(id)sender {
     LogInVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"LogInVC"];
-    [self.navigationController pushViewController:vc animated:nil];
+    [self.navigationController pushViewController:vc animated:NO];
 
 }
 

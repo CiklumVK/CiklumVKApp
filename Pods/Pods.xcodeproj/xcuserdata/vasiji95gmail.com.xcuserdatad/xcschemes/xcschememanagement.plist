@@ -14,7 +14,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Mantle.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Overcoat.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-VKApplication.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,22 +47,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2EE184938AB2B6BC1E9B1E43E7DEEB6E</key>
+		<key>068A4623AE98C4F46C579DDE6FE9DDD1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>928353533005A4198EBDA5B700D37B64</key>
+		<key>3763B336526090F4C4DC370C2F3202C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B93CB6A2CBDC02DF5FDAE59B873C5A3C</key>
+		<key>3E0401E9579BD58520D8FC56D2D6F268</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F031CEA5362529B12F947201F95BD01C</key>
+		<key>426BC4549A625B5E1E4200D5261A98BF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC6C88B03CA799E35ABBFCABB0A756C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE9EBD479772D8A464512A9EE363A8D9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA294BE72036F58883FA3D08609D6BE0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

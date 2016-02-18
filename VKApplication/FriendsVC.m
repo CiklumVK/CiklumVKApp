@@ -8,8 +8,10 @@
 
 #import "FriendsVC.h"
 #import "FriendsTableDataSource.h"
+#import "WallVC.h"
+#import "NewPostVC.h"
 
-@interface FriendsVC ()
+@interface FriendsVC ()<FriendsTableDataSourceDelegate>
 
 @property (nonatomic, strong) FriendsTableDataSource *dataSource;
 
@@ -22,20 +24,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setUpNavigationBar];
     [self loadTableViewWithSearchBar];
 }
 
 - (void)loadTableViewWithSearchBar{
-    self.dataSource = [[FriendsTableDataSource alloc] initWithTableView:self.theTable withSearchBar:self.searchBarOutlet];
+    [self.theTable setContentInset:UIEdgeInsetsMake(-64,0,0,0)];
+    self.dataSource = [[FriendsTableDataSource alloc] initWithTableView:self.theTable withSearchBar:self.searchBarOutlet andUserID:self.userID];
+    self.dataSource.delegate = self;
 }
 
-- (void)setUpNavigationBar{
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.title = @"Друзья";
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor grayColor]];
-    [self.theTable setContentInset:UIEdgeInsetsMake(0,0,0,0)];
+- (void)didSelectObject:(id)object atIndexPath:(NSIndexPath *)indexPath{
+    WallVC *wallVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WallVC"];
+    wallVC.userID = [object valueForKey:@"userId"];
+    [self.navigationController pushViewController:wallVC animated:YES];
 }
 
 @end

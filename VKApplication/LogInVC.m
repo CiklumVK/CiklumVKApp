@@ -30,7 +30,7 @@
     self.logIn = [LogIn sharedAuthorization];
     [self.logIn doLogIn:self.view complite:^{
         FriendsVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FriendsVC"];
-        [self.navigationController pushViewController:vc animated:nil];
+        [self.navigationController pushViewController:vc animated:NO];
     }];
 }
 
