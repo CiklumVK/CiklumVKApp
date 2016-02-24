@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		172883F0982A8F1262B6EB8C /* libPods-VKApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15060D033512D58913E43455 /* libPods-VKApplication.a */; };
+		7F05A2E81C774C4300393CCA /* AvatarImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F05A2E71C774C4300393CCA /* AvatarImagePicker.m */; };
+		7F05A33A1C7943DA00393CCA /* PhotoUploadServerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F05A3391C7943D900393CCA /* PhotoUploadServerModel.m */; };
+		7F05A33D1C7948A500393CCA /* AvatarImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F05A33C1C7948A500393CCA /* AvatarImageProvider.m */; };
 		7F08D9011C4936800099E85F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D9001C4936800099E85F /* main.m */; };
 		7F08D9041C4936800099E85F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D9031C4936800099E85F /* AppDelegate.m */; };
 		7F08D9071C4936800099E85F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D9061C4936800099E85F /* ViewController.m */; };
@@ -20,15 +23,13 @@
 		7F08D9461C494B7C0099E85F /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D9451C494B7C0099E85F /* NSString+Extension.m */; };
 		7F08D9491C495A950099E85F /* FriendsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D9481C495A950099E85F /* FriendsVC.m */; };
 		7F0BA4951C4AA857006DC89F /* FriendsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BA4941C4AA857006DC89F /* FriendsTableDataSource.m */; };
-		7F0BA4981C4AAB85006DC89F /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BA4971C4AAB85006DC89F /* CustomCell.m */; };
-		7F0BA49C1C4AAC1E006DC89F /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0BA49B1C4AAC1E006DC89F /* CustomCell.xib */; };
+		7F0BA4981C4AAB85006DC89F /* FriendCellCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BA4971C4AAB85006DC89F /* FriendCellCustom.m */; };
+		7F0BA49C1C4AAC1E006DC89F /* FriendCellCustom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0BA49B1C4AAC1E006DC89F /* FriendCellCustom.xib */; };
 		7F1194EB1C70F2680034D880 /* NewPostProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1194EA1C70F2680034D880 /* NewPostProvider.m */; };
 		7F1194F41C7396A30034D880 /* MainNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1194F31C7396A30034D880 /* MainNavigationVC.m */; };
 		7F1194F91C747F090034D880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F1194F81C747F090034D880 /* Main.storyboard */; };
 		7F16E8751C74E9E10042CD52 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F16E8741C74E9E10042CD52 /* CoreDataStack.m */; };
 		7F63F6671C5662CD008FAA6C /* LogInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63F6661C5662CD008FAA6C /* LogInVC.m */; };
-		7F63F6701C56A320008FAA6C /* FriendEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63F66D1C56A320008FAA6C /* FriendEntity+CoreDataProperties.m */; };
-		7F63F6711C56A320008FAA6C /* FriendEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63F66F1C56A320008FAA6C /* FriendEntity.m */; };
 		7F72382F1C690E4B007A28F7 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F72382E1C690E4B007A28F7 /* UserInfoModel.m */; };
 		7F7238331C69F524007A28F7 /* WallPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7238321C69F524007A28F7 /* WallPostModel.m */; };
 		7FEB8AA91C5FDD7100D14752 /* VKClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEB8AA81C5FDD7100D14752 /* VKClient.m */; };
@@ -42,6 +43,11 @@
 		7FF7768B1C64B57E009D16F0 /* WallTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF7768A1C64B57E009D16F0 /* WallTableDataSource.m */; };
 		7FF776921C64B896009D16F0 /* FriendInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF776901C64B896009D16F0 /* FriendInfoCell.m */; };
 		7FF776931C64B896009D16F0 /* FriendInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FF776911C64B896009D16F0 /* FriendInfoCell.xib */; };
+		7FFD7F1B1C7C6AD0007A0C43 /* PopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7F1A1C7C6ACF007A0C43 /* PopoverController.m */; };
+		7FFD7F1E1C7C8BB4007A0C43 /* PopoverControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7F1D1C7C8BB4007A0C43 /* PopoverControllerDataSource.m */; };
+		7FFD7F211C7CB017007A0C43 /* PhotoSaveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7F201C7CB016007A0C43 /* PhotoSaveModel.m */; };
+		7FFD7F261C7D9F10007A0C43 /* FriendEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7F231C7D9F10007A0C43 /* FriendEntity+CoreDataProperties.m */; };
+		7FFD7F271C7D9F10007A0C43 /* FriendEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7F251C7D9F10007A0C43 /* FriendEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +71,12 @@
 		0621801282E14834D971D391 /* Pods-VKApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKApplication.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKApplication/Pods-VKApplication.debug.xcconfig"; sourceTree = "<group>"; };
 		0D1280007CB96637FD6DE030 /* Pods-VKApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKApplication.release.xcconfig"; path = "Pods/Target Support Files/Pods-VKApplication/Pods-VKApplication.release.xcconfig"; sourceTree = "<group>"; };
 		15060D033512D58913E43455 /* libPods-VKApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VKApplication.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F05A2E61C774C4300393CCA /* AvatarImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarImagePicker.h; sourceTree = "<group>"; };
+		7F05A2E71C774C4300393CCA /* AvatarImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarImagePicker.m; sourceTree = "<group>"; };
+		7F05A3381C7943D900393CCA /* PhotoUploadServerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoUploadServerModel.h; sourceTree = "<group>"; };
+		7F05A3391C7943D900393CCA /* PhotoUploadServerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoUploadServerModel.m; sourceTree = "<group>"; };
+		7F05A33B1C7948A500393CCA /* AvatarImageProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarImageProvider.h; sourceTree = "<group>"; };
+		7F05A33C1C7948A500393CCA /* AvatarImageProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarImageProvider.m; sourceTree = "<group>"; };
 		7F08D8FC1C4936800099E85F /* VKApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F08D9001C4936800099E85F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7F08D9021C4936800099E85F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -90,9 +102,9 @@
 		7F08D9481C495A950099E85F /* FriendsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsVC.m; sourceTree = "<group>"; };
 		7F0BA4931C4AA857006DC89F /* FriendsTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableDataSource.h; sourceTree = "<group>"; };
 		7F0BA4941C4AA857006DC89F /* FriendsTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableDataSource.m; sourceTree = "<group>"; };
-		7F0BA4961C4AAB85006DC89F /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
-		7F0BA4971C4AAB85006DC89F /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
-		7F0BA49B1C4AAC1E006DC89F /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
+		7F0BA4961C4AAB85006DC89F /* FriendCellCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCellCustom.h; sourceTree = "<group>"; };
+		7F0BA4971C4AAB85006DC89F /* FriendCellCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCellCustom.m; sourceTree = "<group>"; };
+		7F0BA49B1C4AAC1E006DC89F /* FriendCellCustom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendCellCustom.xib; sourceTree = "<group>"; };
 		7F1194E91C70F2680034D880 /* NewPostProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPostProvider.h; sourceTree = "<group>"; };
 		7F1194EA1C70F2680034D880 /* NewPostProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPostProvider.m; sourceTree = "<group>"; };
 		7F1194F21C7396A30034D880 /* MainNavigationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationVC.h; sourceTree = "<group>"; };
@@ -102,10 +114,6 @@
 		7F16E8741C74E9E10042CD52 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
 		7F63F6651C5662CD008FAA6C /* LogInVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInVC.h; sourceTree = "<group>"; };
 		7F63F6661C5662CD008FAA6C /* LogInVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInVC.m; sourceTree = "<group>"; };
-		7F63F66C1C56A320008FAA6C /* FriendEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FriendEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
-		7F63F66D1C56A320008FAA6C /* FriendEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FriendEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
-		7F63F66E1C56A320008FAA6C /* FriendEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendEntity.h; sourceTree = "<group>"; };
-		7F63F66F1C56A320008FAA6C /* FriendEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendEntity.m; sourceTree = "<group>"; };
 		7F72382D1C690E4A007A28F7 /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		7F72382E1C690E4B007A28F7 /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		7F7238311C69F524007A28F7 /* WallPostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallPostModel.h; sourceTree = "<group>"; };
@@ -130,6 +138,16 @@
 		7FF7768F1C64B896009D16F0 /* FriendInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendInfoCell.h; sourceTree = "<group>"; };
 		7FF776901C64B896009D16F0 /* FriendInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendInfoCell.m; sourceTree = "<group>"; };
 		7FF776911C64B896009D16F0 /* FriendInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendInfoCell.xib; sourceTree = "<group>"; };
+		7FFD7F191C7C6ACF007A0C43 /* PopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverController.h; sourceTree = "<group>"; };
+		7FFD7F1A1C7C6ACF007A0C43 /* PopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverController.m; sourceTree = "<group>"; };
+		7FFD7F1C1C7C8BB4007A0C43 /* PopoverControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverControllerDataSource.h; sourceTree = "<group>"; };
+		7FFD7F1D1C7C8BB4007A0C43 /* PopoverControllerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverControllerDataSource.m; sourceTree = "<group>"; };
+		7FFD7F1F1C7CB016007A0C43 /* PhotoSaveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSaveModel.h; sourceTree = "<group>"; };
+		7FFD7F201C7CB016007A0C43 /* PhotoSaveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSaveModel.m; sourceTree = "<group>"; };
+		7FFD7F221C7D9F0F007A0C43 /* FriendEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FriendEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		7FFD7F231C7D9F10007A0C43 /* FriendEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FriendEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		7FFD7F241C7D9F10007A0C43 /* FriendEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendEntity.h; sourceTree = "<group>"; };
+		7FFD7F251C7D9F10007A0C43 /* FriendEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +263,10 @@
 				7FF776871C64AD5B009D16F0 /* WallVC.m */,
 				7FEFDE731C6DDB9D009A1006 /* NewPostVC.h */,
 				7FEFDE741C6DDB9D009A1006 /* NewPostVC.m */,
+				7F05A2E61C774C4300393CCA /* AvatarImagePicker.h */,
+				7F05A2E71C774C4300393CCA /* AvatarImagePicker.m */,
+				7FFD7F191C7C6ACF007A0C43 /* PopoverController.h */,
+				7FFD7F1A1C7C6ACF007A0C43 /* PopoverController.m */,
 				7F1194F81C747F090034D880 /* Main.storyboard */,
 			);
 			name = Controller;
@@ -253,9 +275,9 @@
 		7F08D9391C4948250099E85F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7F0BA4961C4AAB85006DC89F /* CustomCell.h */,
-				7F0BA4971C4AAB85006DC89F /* CustomCell.m */,
-				7F0BA49B1C4AAC1E006DC89F /* CustomCell.xib */,
+				7F0BA4961C4AAB85006DC89F /* FriendCellCustom.h */,
+				7F0BA4971C4AAB85006DC89F /* FriendCellCustom.m */,
+				7F0BA49B1C4AAC1E006DC89F /* FriendCellCustom.xib */,
 				7FF776811C6397D3009D16F0 /* WallCell.h */,
 				7FF776821C6397D3009D16F0 /* WallCell.m */,
 				7FF776831C6397D3009D16F0 /* WallCell.xib */,
@@ -285,6 +307,10 @@
 				7FF7768A1C64B57E009D16F0 /* WallTableDataSource.m */,
 				7F1194E91C70F2680034D880 /* NewPostProvider.h */,
 				7F1194EA1C70F2680034D880 /* NewPostProvider.m */,
+				7F05A33B1C7948A500393CCA /* AvatarImageProvider.h */,
+				7F05A33C1C7948A500393CCA /* AvatarImageProvider.m */,
+				7FFD7F1C1C7C8BB4007A0C43 /* PopoverControllerDataSource.h */,
+				7FFD7F1D1C7C8BB4007A0C43 /* PopoverControllerDataSource.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -311,10 +337,10 @@
 			isa = PBXGroup;
 			children = (
 				7F08D90B1C4936800099E85F /* VKApplication.xcdatamodeld */,
-				7F63F66C1C56A320008FAA6C /* FriendEntity+CoreDataProperties.h */,
-				7F63F66D1C56A320008FAA6C /* FriendEntity+CoreDataProperties.m */,
-				7F63F66E1C56A320008FAA6C /* FriendEntity.h */,
-				7F63F66F1C56A320008FAA6C /* FriendEntity.m */,
+				7FFD7F221C7D9F0F007A0C43 /* FriendEntity+CoreDataProperties.h */,
+				7FFD7F231C7D9F10007A0C43 /* FriendEntity+CoreDataProperties.m */,
+				7FFD7F241C7D9F10007A0C43 /* FriendEntity.h */,
+				7FFD7F251C7D9F10007A0C43 /* FriendEntity.m */,
 				7F16E8731C74E9E10042CD52 /* CoreDataStack.h */,
 				7F16E8741C74E9E10042CD52 /* CoreDataStack.m */,
 			);
@@ -332,6 +358,10 @@
 				7F72382E1C690E4B007A28F7 /* UserInfoModel.m */,
 				7F7238311C69F524007A28F7 /* WallPostModel.h */,
 				7F7238321C69F524007A28F7 /* WallPostModel.m */,
+				7F05A3381C7943D900393CCA /* PhotoUploadServerModel.h */,
+				7F05A3391C7943D900393CCA /* PhotoUploadServerModel.m */,
+				7FFD7F1F1C7CB016007A0C43 /* PhotoSaveModel.h */,
+				7FFD7F201C7CB016007A0C43 /* PhotoSaveModel.m */,
 			);
 			name = MTLModels;
 			sourceTree = "<group>";
@@ -458,7 +488,7 @@
 				7F08D90F1C4936800099E85F /* Assets.xcassets in Resources */,
 				7F1194F91C747F090034D880 /* Main.storyboard in Resources */,
 				7FF776851C6397D3009D16F0 /* WallCell.xib in Resources */,
-				7F0BA49C1C4AAC1E006DC89F /* CustomCell.xib in Resources */,
+				7F0BA49C1C4AAC1E006DC89F /* FriendCellCustom.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,16 +561,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F63F6701C56A320008FAA6C /* FriendEntity+CoreDataProperties.m in Sources */,
 				7F08D9071C4936800099E85F /* ViewController.m in Sources */,
 				7FF0507B1C515F490090D984 /* LogInModel.m in Sources */,
 				7F0BA4951C4AA857006DC89F /* FriendsTableDataSource.m in Sources */,
 				7F16E8751C74E9E10042CD52 /* CoreDataStack.m in Sources */,
-				7F0BA4981C4AAB85006DC89F /* CustomCell.m in Sources */,
+				7F0BA4981C4AAB85006DC89F /* FriendCellCustom.m in Sources */,
+				7F05A33A1C7943DA00393CCA /* PhotoUploadServerModel.m in Sources */,
+				7FFD7F1B1C7C6AD0007A0C43 /* PopoverController.m in Sources */,
 				7F08D9041C4936800099E85F /* AppDelegate.m in Sources */,
 				7FEFDE751C6DDB9D009A1006 /* NewPostVC.m in Sources */,
 				7FF776801C635DD0009D16F0 /* MTLJSONAdapterWithoutNil.m in Sources */,
 				7F08D9491C495A950099E85F /* FriendsVC.m in Sources */,
+				7F05A2E81C774C4300393CCA /* AvatarImagePicker.m in Sources */,
 				7F72382F1C690E4B007A28F7 /* UserInfoModel.m in Sources */,
 				7FEB8AAC1C60AC7A00D14752 /* VKFriendsModel.m in Sources */,
 				7FF776881C64AD5B009D16F0 /* WallVC.m in Sources */,
@@ -548,14 +580,18 @@
 				7F08D9011C4936800099E85F /* main.m in Sources */,
 				7FF776921C64B896009D16F0 /* FriendInfoCell.m in Sources */,
 				7F1194F41C7396A30034D880 /* MainNavigationVC.m in Sources */,
+				7F05A33D1C7948A500393CCA /* AvatarImageProvider.m in Sources */,
+				7FFD7F211C7CB017007A0C43 /* PhotoSaveModel.m in Sources */,
+				7FFD7F261C7D9F10007A0C43 /* FriendEntity+CoreDataProperties.m in Sources */,
 				7F7238331C69F524007A28F7 /* WallPostModel.m in Sources */,
 				7F08D93E1C4948BA0099E85F /* LogIn.m in Sources */,
 				7FF7768B1C64B57E009D16F0 /* WallTableDataSource.m in Sources */,
-				7F63F6711C56A320008FAA6C /* FriendEntity.m in Sources */,
+				7FFD7F1E1C7C8BB4007A0C43 /* PopoverControllerDataSource.m in Sources */,
 				7F1194EB1C70F2680034D880 /* NewPostProvider.m in Sources */,
 				7F63F6671C5662CD008FAA6C /* LogInVC.m in Sources */,
 				7F08D90D1C4936800099E85F /* VKApplication.xcdatamodeld in Sources */,
 				7F08D9461C494B7C0099E85F /* NSString+Extension.m in Sources */,
+				7FFD7F271C7D9F10007A0C43 /* FriendEntity.m in Sources */,
 				7FF776841C6397D3009D16F0 /* WallCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

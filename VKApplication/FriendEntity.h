@@ -2,7 +2,7 @@
 //  FriendEntity.h
 //  VKApplication
 //
-//  Created by Vasyl Vasylchenko on 25.01.16.
+//  Created by Vasyl Vasylchenko on 24.02.16.
 //  Copyright © 2016 Vasyl Vasylchenko. All rights reserved.
 //
 

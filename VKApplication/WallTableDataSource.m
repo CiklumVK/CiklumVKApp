@@ -15,7 +15,7 @@
 #import "WallPostModel.h"
 #import "WallCell.h"
 
-@interface WallTableDataSource()<UITableViewDataSource, UITableViewDelegate>
+@interface WallTableDataSource()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate>
 @property (weak) UITableView *theTableView;
 @property VKClient *vkClient;
 @property NSArray *infoArray;
@@ -36,10 +36,11 @@
         self.userProfileArray = @[].mutableCopy;
         self.userID = userID;
         [self setUpTableView:tableView];
-        [self loadUserInfo];
+        [self loadUserInfo:nil];
     }
     return self;
 }
+
 - (void)setUpTableView:(UITableView *)tableView{
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -49,10 +50,11 @@
 
 }
 
-- (void)loadUserInfo{
+- (void)loadUserInfo:(UIRefreshControl *)refreshControl {
     [self.vkClient getUserInfoByUserID:self.userID withResponse:^(NSArray *responseObject) {
         NSArray *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[UserInfoModel class] fromJSONArray:responseObject error:nil];
         self.infoArray = responsedArray;
+        [self.theTableView reloadData];
     }];
     
     [self.vkClient getWallPostsByUserID:self.userID withResponseOfWallPost:^(NSArray *respnseWall) {
@@ -61,10 +63,12 @@
         self.wallPostsArray = [responsedArray mutableCopy];
         self.userProfileArray = [userArray mutableCopy];
         [self.theTableView reloadData];
+        if (refreshControl){
+            [refreshControl endRefreshing];
+        }
     } userInfo:^(NSArray *responseUser) {
 
     }];
-
 }
 
 - (IBAction)sendButtonPressed:(id)sender{
@@ -72,13 +76,26 @@
         [self.delegate didSelectSend:self.userID];
     }
 }
+
 - (IBAction)friendsButtonPressed:(id)sender{
     if ([self.delegate respondsToSelector:@selector(didSelectFriends:)]) {
         [self.delegate didSelectFriends:self.userID];
     }
 
 }
+
 #pragma mark - TableView
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSInteger a = [LogIn userID].integerValue;
+    NSInteger b = self.userID.integerValue;
+    if (indexPath.section == 0 && a == b){
+        if ([self.delegate respondsToSelector:@selector(didSelectFirstRow) ]){
+            [self.delegate didSelectFirstRow];
+        }
+    }
+}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -86,7 +103,7 @@
     UIView *view=[[UIView alloc]init];
     UIButton *addButton=[UIButton buttonWithType:UIButtonTypeSystem];
     [addButton setTitle:@"написать" forState:UIControlStateNormal];
-    addButton.frame=CGRectMake(220, -10, 100, 30);
+    addButton.frame=CGRectMake(220, -10, [UIScreen mainScreen].bounds.size.width-200, 30);
     [addButton addTarget:self action:@selector(sendButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
     UIButton *friendsButton=[UIButton buttonWithType:UIButtonTypeSystem];
@@ -140,19 +157,23 @@
         WallCell *cell2 = [self.theTableView dequeueReusableCellWithIdentifier:@"WallCell"forIndexPath:indexPath];
         if (self.wallPostsArray.count>0 && cell2){
             WallPostModel *obj = self.wallPostsArray[indexPath.row];
-            __block id user = nil;
-            [self.userProfileArray enumerateObjectsUsingBlock:^(UserInfoModel * _Nonnull userObject, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([obj.senderID isEqualToNumber:userObject.userID]) {
-                    user = userObject;
-                }
-            }];
             [cell2 fillWithObject:self.wallPostsArray[indexPath.row] atIndex:indexPath];
-            [cell2 fillWithObject:user atIndex:indexPath];
+            [cell2 fillWithObject:[self userByArray:self.userProfileArray andWallPost:obj] atIndex:indexPath];
         }else{
             [cell2 fillWithObject:@"no posts" atIndex:indexPath];
         }
             return cell2;
     }
+}
+
+- (id)userByArray:(NSMutableArray *)userArray andWallPost:(WallPostModel *)wallPost{
+    __block id user = nil;
+    [userArray enumerateObjectsUsingBlock:^(UserInfoModel * _Nonnull userObject, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([wallPost.senderID isEqualToNumber:userObject.userID]) {
+            user = userObject;
+        }
+    }];
+    return user;
 }
 
 @end

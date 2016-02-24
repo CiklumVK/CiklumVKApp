@@ -7,21 +7,25 @@
 //
 
 #import "FriendsTableDataSource.h"
-#import "CustomCell.h"
+#import "FriendCellCustom.h"
 #import "NSString+Extension.h"
-#import "VKAPI.h"
 #import "VKClient.h"
 #import "VKFriendsModel.h"
 #import "MTLJSONAdapterWithoutNil.h"
 #import "CoreDataStack.h"
 #import "FriendEntity.h"
+#import "PopoverControllerDataSource.h"
 
-@interface FriendsTableDataSource()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface FriendsTableDataSource()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,PopoverControllerDelegate>
 
 @property UITableView *theTableView;
 @property NSMutableDictionary *friendsDictionary;
-@property NSMutableArray *oldFriends;
+@property (strong) NSMutableArray *oldFriends;
+@property (strong) CoreDataStack *coreDataStack;
 @property VKClient *vkClient;
+
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
 @end
 
 
@@ -33,12 +37,14 @@
     self = [super init];
     self.userID = userID;
     self.friendsDictionary = @{}.mutableCopy;
+    self.oldFriends = @[].mutableCopy;
+    self.coreDataStack = [CoreDataStack new];
     self.theTableView = [UITableView new];
     self.vkClient = [VKClient new];
     [self configureTableView:tableView];
-    [self loadFriendList];
+    [self loadFriendList:nil];
     [self configureSearchBar:searchBar];
-    
+//    self.popoverDataSource.delegate = self;
     return self;
 }
 
@@ -49,23 +55,26 @@
 - (void)configureTableView:(UITableView *)tableView{
     tableView.delegate = self;
     tableView.dataSource = self;
-    [tableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"FriendCell"];
+    [tableView registerNib:[UINib nibWithNibName:@"FriendCellCustom" bundle:nil] forCellReuseIdentifier:@"FriendCell"];
     self.theTableView = tableView;
 }
 
-- (void)loadFriendList{
-
+- (void)loadFriendList:(UIRefreshControl *)refreshControl{
+    if ([self connected]){
+        [self deleteEntity];
     [self.vkClient getFriendsListbyUesrID:self.userID withhResponse:^(NSArray *responseObject) {
         NSArray<VKFriendsModel *> *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[VKFriendsModel class] fromJSONArray:responseObject error:nil];
-        
-        [self.friendsDictionary setValue:responsedArray forKey:@"Friends"];
-        self.oldFriends = [responsedArray mutableCopy];
+        [self saveMYfriendsByResponsedArray:responsedArray];
+        NSMutableArray *array = [[self fetchedArray] mutableCopy];
+        [self.friendsDictionary setValue:array forKey:@"Friends"];
+        self.oldFriends = array;
         [self.theTableView reloadData];
-
-    }];
-        
-    
-    
+        [refreshControl endRefreshing];
+    }];}else{
+        NSMutableArray *array = [[self fetchedArray] mutableCopy];
+        [self.friendsDictionary setValue:array forKey:@"Friends"];
+        self.oldFriends = array;
+    }
 }
 
 #pragma mark - tableView
@@ -73,6 +82,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return [self.friendsDictionary count];
 }
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return [[self.friendsDictionary allKeys] objectAtIndex:section];
 }
@@ -82,21 +92,24 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CustomCell * cell = [tableView dequeueReusableCellWithIdentifier:@"FriendCell" forIndexPath:indexPath];
+    FriendCellCustom * cell = [tableView dequeueReusableCellWithIdentifier:@"FriendCell" forIndexPath:indexPath];
     [cell fillWithObject:[self arrayWithSection:indexPath.section][indexPath.row] atIndex:indexPath];
     return cell;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([self connected]){
     if ([self.delegate respondsToSelector:@selector(didSelectObject:atIndexPath:)]) {
         [self.delegate didSelectObject:[self arrayWithSection:indexPath.section][indexPath.row] atIndexPath:indexPath];
-    }
+    }}
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 30;
 }
 
@@ -107,7 +120,7 @@
 - (void)doSearch:(NSString *)searchText{
     [self.vkClient makeSearchWithText:searchText response:^(NSArray *responseObject) {
         NSArray *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[VKFriendsModel class] fromJSONArray:responseObject error:nil];
-        NSArray *sortedArray = [self.oldFriends filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"firstName contains %@", searchText]];
+        NSArray *sortedArray = [self.oldFriends filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"fristName contains %@", searchText]];
         [self.friendsDictionary setValue:responsedArray forKey:@"Global search"];
         [self.friendsDictionary setValue:sortedArray forKey:@"Friends"];
         [self.theTableView reloadData];
@@ -143,47 +156,60 @@
     return a;
 }
 
+# pragma mark - Sort by
+
+- (void)didSelectSortBy:(id)object atIndexPath:(NSIndexPath *)indexPath inPopOver:(WYPopoverController *)popoverController{
+    [popoverController dismissPopoverAnimated:YES completion:^{
+        if (indexPath.row == 0){
+            NSArray *sortedArray = [self.oldFriends filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"sexFriend contains %@", @"1"]];
+            [self.friendsDictionary setValue:sortedArray forKey:@"Friends"];
+            [self.theTableView reloadData];
+        }
+        NSLog(@"delegate");
+
+    }];
+}
+
 # pragma mark - CoreData
 
 - (NSArray *)fetchedArray{
-    CoreDataStack *stack = [CoreDataStack new];
-    NSManagedObjectContext *context= [stack managedObjectContext];
+    NSManagedObjectContext *context= [self.coreDataStack managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendEntity"
                                               inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    NSArray *fetchedObjects = [self.coreDataStack.persistentStoreCoordinator executeRequest:fetchRequest withContext:context error:&error];
 
-    NSLog(@"%@ " , fetchedObjects );
+    NSLog(@"called fetched array");
     return fetchedObjects;
 }
 
 - (void)saveMYfriendsByResponsedArray:(NSArray *)responsedArray{
     
     for (VKFriendsModel *obj in responsedArray){
-        CoreDataStack *coreDataStack = [CoreDataStack new];
-
-    FriendEntity *friend = [NSEntityDescription insertNewObjectForEntityForName:@"FriendEntity" inManagedObjectContext:[coreDataStack managedObjectContext]];
-    [friend setValue:obj.firstName forKey:@"fristName"];
-//    friend.lastName = obj.lastName;
-//    friend.userID = [NSString stringWithFormat:@"%@",obj.userId ];
-//    friend.onlineValue = [NSString stringWithFormat:@"%@",obj.onlineValue];
-//    friend.photoPath = obj.photo100;
-    
-        NSError *error = nil;
-        if ([[coreDataStack managedObjectContext] save:&error] == NO) {
-            NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
-        }    }
+        
+        FriendEntity *friend = (FriendEntity *)[NSEntityDescription insertNewObjectForEntityForName:@"FriendEntity" inManagedObjectContext:[self.coreDataStack managedObjectContext]];
+        
+        friend.fristName = obj.firstName;
+        friend.lastName = obj.lastName;
+        friend.userID = [NSString stringWithFormat:@"%@",obj.userId ];
+        friend.onlineValue = [NSString stringWithFormat:@"%@",obj.onlineValue];
+        friend.photoPath = obj.photo100;
+        friend.sexFriend = [NSString stringWithFormat:@"%@",obj.sexFriend ];
+        
+        [self.coreDataStack saveContext];
+    }
 }
 
 - (void)deleteEntity{
-    CoreDataStack *coreDataStack = [CoreDataStack new];
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"FriendEntity"];
     NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
-    
-    [coreDataStack.persistentStoreCoordinator executeRequest:delete withContext:coreDataStack.managedObjectContext error:nil];
-
+    NSError *error;
+    [self.coreDataStack.persistentStoreCoordinator executeRequest:delete withContext:[self.coreDataStack managedObjectContext] error:&error];
+    if (!error){
+        NSLog(@"entity was succesfully deleted");
+    }
 }
 
 # pragma mark - Internet test

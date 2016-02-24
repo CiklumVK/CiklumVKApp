@@ -2,7 +2,7 @@
 //  FriendEntity+CoreDataProperties.m
 //  VKApplication
 //
-//  Created by Vasyl Vasylchenko on 25.01.16.
+//  Created by Vasyl Vasylchenko on 24.02.16.
 //  Copyright © 2016 Vasyl Vasylchenko. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,8 +15,9 @@
 
 @dynamic fristName;
 @dynamic lastName;
+@dynamic onlineValue;
 @dynamic photoPath;
 @dynamic userID;
-@dynamic onlineValue;
+@dynamic sexFriend;
 
 @end

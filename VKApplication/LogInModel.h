@@ -13,7 +13,7 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @property (strong, nonatomic) NSString *accessToken;
-@property (strong, nonatomic) NSString *userID;
+@property (strong, nonatomic) NSNumber *userID;
 
 
 @end

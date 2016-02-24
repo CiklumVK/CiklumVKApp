@@ -20,7 +20,7 @@
 
 + (instancetype)sharedAuthorization;
 
-+ (NSString *)userID;
++ (NSNumber *)userID;
 + (NSString *)accessToken;
 
 

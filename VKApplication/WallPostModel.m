@@ -11,6 +11,7 @@
 @implementation WallPostModel
 
 + (NSDictionary*)JSONKeyPathsByPropertyKey {
+    
     return @{@"dateOfPost":@"date",
              @"textPost":@"text",
              @"senderID":@"from_id",

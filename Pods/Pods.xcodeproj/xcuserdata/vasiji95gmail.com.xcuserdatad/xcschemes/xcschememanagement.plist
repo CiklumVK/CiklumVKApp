@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MBProgressHUD.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Mantle.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -34,11 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>VK-ios-sdk.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>WYPopoverController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,12 +37,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0524F3075AC0496B6A0287012802DDAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>068A4623AE98C4F46C579DDE6FE9DDD1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3763B336526090F4C4DC370C2F3202C7</key>
+		<key>2718527374C43D7B35958A8028FE2814</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>344204D5A9A17006876F7ED99F96CA47</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -63,26 +63,6 @@
 			<true/>
 		</dict>
 		<key>426BC4549A625B5E1E4200D5261A98BF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BC6C88B03CA799E35ABBFCABB0A756C6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CE9EBD479772D8A464512A9EE363A8D9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FA294BE72036F58883FA3D08609D6BE0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FE2F1D7B9D9FCEA148517E4657B243F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

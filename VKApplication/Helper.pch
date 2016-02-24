@@ -8,14 +8,6 @@
 
 
 
-
-
-
-
-
-
-
-#import <MBProgressHUD.h>
 #import "LogIn.h"
 #import <Overcoat/Overcoat.h>
 #import <Mantle/Mantle.h>
@@ -28,16 +20,15 @@ extern const struct APIPaths
     __unsafe_unretained NSString *searchPeoplePath;
     __unsafe_unretained NSString *userInfo;
     __unsafe_unretained NSString *wallPosts;
+    __unsafe_unretained NSString *getPhotoUploadServer;
+    __unsafe_unretained NSString *photoSavePath;
+
+
 
 } APIPaths;
 
 
-static NSString *appID = @"5227913";
-
-static NSString *imageFormatSmall = @"imageFormatSmall";
-static NSString *imageFormatMedium = @"imageFormatMedium";
-static NSString *imageFormatBig = @"imageFormatBig";
-static NSString *imageFormatThumbnails = @"imageFormatThumbnails";
+static NSString *const appID = @"5227913";
 
 
 

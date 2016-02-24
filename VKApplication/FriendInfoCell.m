@@ -7,6 +7,7 @@
 //
 
 #import "FriendInfoCell.h"
+#import "VKFriendsModel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface FriendInfoCell (){
@@ -24,10 +25,10 @@
 @implementation FriendInfoCell
 
 - (void)fillWithObject:(id)object atIndex:(NSIndexPath *)indexPath{
-    
-    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [object valueForKey:@"firstName"], [object valueForKey:@"lastName"]];
-    self.onlineLabel.hidden = ![[object valueForKey:@"onlineValue"] boolValue];
-    [self.avatarImage sd_setImageWithURL:[object valueForKey:@"photo100"]];
+    VKFriendsModel *user = object;
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
+    self.onlineLabel.hidden = ![user.onlineValue boolValue];
+    [self.avatarImage sd_setImageWithURL:[NSURL URLWithString:user.photo100]];
 }
 
 -(void)awakeFromNib{

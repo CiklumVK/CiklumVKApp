@@ -14,7 +14,8 @@
 + (NSString*)stringBetweenString:(NSString*)start
                        andString:(NSString*)end
                      innerString:(NSString*)str;
-+ (NSString *)encodeLink:(NSString *)searchText;
++ (NSString *)encodeSearchLink:(NSString *)searchText;
 + (NSString *)dateStandartFormatByUnixTime:(double)unixTime;
++ (NSString *)encodeLink:(NSString *)urlString;
 
 @end

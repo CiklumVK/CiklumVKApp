@@ -5,9 +5,10 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="onlineValue" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sexFriend" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FriendEntity" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="FriendEntity" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

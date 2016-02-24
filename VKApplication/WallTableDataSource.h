@@ -11,6 +11,8 @@
 
 - (void)didSelectSend:(id)object;
 - (void)didSelectFriends:(id)object;
+- (void)didSelectFirstRow;
+
 
 @end
 
@@ -20,5 +22,6 @@
 @property (nonatomic, weak) id <WallDelegate> delegate;
 
 - (instancetype)initWithTableView:(UITableView *)tableView withUserID:(NSNumber *)userID;
+- (void)loadUserInfo:(UIRefreshControl *)refreshControl;
 
 @end

@@ -81,7 +81,7 @@ static LogIn *authorization = nil;
         }}
 }
 
-+ (NSString *)userID{
++ (NSNumber *)userID{
     return authorization.loginModel.userID;
 }
 

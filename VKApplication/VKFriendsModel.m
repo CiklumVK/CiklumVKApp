@@ -16,7 +16,8 @@
              @"userId" : @"id",
              @"onlineValue" : @"online",
              @"lastName" : @"last_name",
-             @"photo100" : @"photo_100"};
+             @"photo100" : @"photo_100",
+             @"sexFriend":@"sex"};
 }
 
 

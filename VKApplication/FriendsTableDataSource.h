@@ -21,6 +21,9 @@
 @property (nonatomic, weak) id <FriendsTableDataSourceDelegate> delegate;
 
 @property NSNumber *userID;
+
+- (void)loadFriendList:(UIRefreshControl *)refreshControl;
+
 - (instancetype)initWithTableView:(UITableView *)tableView withSearchBar:(UISearchBar *)searchBar andUserID:(NSNumber *)userID;
 
 

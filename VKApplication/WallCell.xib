@@ -58,14 +58,24 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQe-k6-7Ue">
+                        <rect key="frame" x="288" y="8" width="24" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Rma-RV-pZC"/>
+                            <constraint firstAttribute="width" constant="24" id="zPC-6E-ndZ"/>
+                        </constraints>
+                        <state key="normal" image="detailPicture"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="LdL-9m-jci" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="3tx-84-Ayk"/>
                     <constraint firstItem="nGn-Kv-jFi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="AkX-EL-3Bh"/>
                     <constraint firstItem="nGn-Kv-jFi" firstAttribute="top" secondItem="LdL-9m-jci" secondAttribute="bottom" constant="8" id="DqX-gy-tRR"/>
+                    <constraint firstItem="QQe-k6-7Ue" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="E2n-iF-q4C"/>
                     <constraint firstItem="b0W-Dn-6Lh" firstAttribute="top" secondItem="qna-th-2Z0" secondAttribute="bottom" id="FbV-Bk-iG1"/>
                     <constraint firstItem="b0W-Dn-6Lh" firstAttribute="leading" secondItem="LdL-9m-jci" secondAttribute="trailing" constant="14" id="Ioz-3r-2wc"/>
                     <constraint firstItem="qna-th-2Z0" firstAttribute="leading" secondItem="LdL-9m-jci" secondAttribute="trailing" constant="8" id="b5o-Ac-vS3"/>
+                    <constraint firstAttribute="trailing" secondItem="QQe-k6-7Ue" secondAttribute="trailing" constant="8" id="hGp-rQ-XDo"/>
                     <constraint firstItem="LdL-9m-jci" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="i4O-MK-SSP"/>
                     <constraint firstItem="qna-th-2Z0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="vvE-qt-pba"/>
                 </constraints>
@@ -76,7 +86,10 @@
                 <outlet property="nameLabel" destination="qna-th-2Z0" id="rpy-hu-Nw6"/>
                 <outlet property="postTextLabel" destination="nGn-Kv-jFi" id="mwJ-pa-gme"/>
             </connections>
-            <point key="canvasLocation" x="80" y="382.5"/>
+            <point key="canvasLocation" x="-164" y="368.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="detailPicture" width="64" height="64"/>
+    </resources>
 </document>

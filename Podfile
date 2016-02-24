@@ -8,8 +8,6 @@ target 'VKApplication' do
 
 
 
-pod ‘VK-ios-sdk’
-pod 'MBProgressHUD'
 pod 'WYPopoverController’
 pod 'AFNetworking/NSURLConnection', '>= 0'
 pod 'Overcoat'
