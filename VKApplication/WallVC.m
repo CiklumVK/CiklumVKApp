@@ -11,11 +11,16 @@
 #import "NewPostVC.h"
 #import "FriendsVC.h"
 #import "AvatarImagePicker.h"
+#import "VKClient.h"
+#import "AlertControllerDataSource.h"
+#import "UserInfoVC.h"
+
 
 @interface WallVC () <WallDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property WallTableDataSource *dataSource;
 @property AvatarImagePicker *imagePicker;
+
 @end
 
 @implementation WallVC
@@ -27,27 +32,39 @@
 
 - (void)setUpTableView{
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(-30,0,0,0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(-50,0,0,0)];
     self.dataSource = [[WallTableDataSource alloc] initWithTableView:self.tableView withUserID:self.userID];
     self.dataSource.delegate = self;
     [self setUpaRefreshControl];
-   
+    
+}
+
+- (UIStoryboard *)currentStoryBoard{
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    return storyBoard;
 }
 
 - (void)setUpaRefreshControl{
     UIRefreshControl *refreshControl = [UIRefreshControl new];
     refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x,
-                                       30,
+                                       35,
                                        refreshControl.bounds.size.width,
                                        refreshControl.bounds.size.height);
     [refreshControl addTarget:self.dataSource action:@selector(loadUserInfo:)
              forControlEvents:UIControlEventValueChanged];
-        [self.tableView addSubview:refreshControl];
+    [self.tableView addSubview:refreshControl];
+}
+
+- (void)pushToViewController:(UIViewController *)viewController{
+    UIViewController *activeController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    if ([activeController isKindOfClass:[UINavigationController class]]) {
+        activeController = [(UINavigationController*) activeController visibleViewController];
+    }
+    [activeController.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)didSelectSend:(id)object{
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    NewPostVC *vc = [storyBoard instantiateViewControllerWithIdentifier:@"NewPostVC"];
+    NewPostVC *vc = [[self currentStoryBoard] instantiateViewControllerWithIdentifier:@"NewPostVC"];
     vc.userID = object;
     UIViewController *activeController = [UIApplication sharedApplication].keyWindow.rootViewController;
     if ([activeController isKindOfClass:[UINavigationController class]]) {
@@ -57,38 +74,35 @@
 }
 
 - (void)didSelectFriends:(id)object{
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    FriendsVC *vc = [storyBoard instantiateViewControllerWithIdentifier:@"FriendsVC"];
+    FriendsVC *vc = [[self currentStoryBoard] instantiateViewControllerWithIdentifier:@"FriendsVC"];
     vc.userID = object;
-    UIViewController *activeController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    if ([activeController isKindOfClass:[UINavigationController class]]) {
-        activeController = [(UINavigationController*) activeController visibleViewController];
-    }
-    [activeController.navigationController pushViewController:vc animated:YES];
-
+    [self pushToViewController:vc];
 }
 
--(void)didSelectFirstRow{
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
-                                                          message:nil
-                                                   preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Отменить"
-                                             style:UIAlertActionStyleCancel
-                                           handler:^(UIAlertAction *action) {
-                                           }];
+- (void)didSelectFirstRow{
     UIAlertAction *changePictureAction = [UIAlertAction actionWithTitle:@"Изменить фото профиля"
-                                           style:UIAlertActionStyleDefault
-                                         handler:^(UIAlertAction *action) {
-                                             
-                                             self.imagePicker = [[AvatarImagePicker alloc] initWithViewController:self];
-                                                    }];
-    [alertController addAction:cancelAction];
-    [alertController addAction:changePictureAction];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-
+                                                                  style:UIAlertActionStyleDefault
+                                                                handler:^(UIAlertAction *action) {
+                                                                    self.imagePicker = [[AvatarImagePicker alloc] initWithViewController:self];
+                                                                }];
+    [AlertControllerDataSource showAlertWithAction:changePictureAction byViewController:self];
 }
 
+- (void)didSelectPost:(id)post byWallOwner:(NSNumber *)ownerID{
+    UIAlertAction *deletePost = [UIAlertAction actionWithTitle:@"Удалить запись"
+                                                                  style:UIAlertActionStyleDefault
+                                                                handler:^(UIAlertAction *action) {
+                                                                    VKClient *cl = [VKClient new];
+                                                                    [cl deletePostByOwnerID:ownerID andPostID:[post valueForKey:@"postID"]];
+                                                                }];
+    [AlertControllerDataSource showAlertWithAction:deletePost byViewController:self];
+    
+}
+
+- (void)didSelectInfo:(id)info{
+    UserInfoVC *vc = [[self currentStoryBoard] instantiateViewControllerWithIdentifier:@"UserInfoVC"];
+    vc.userInfo = info;
+    [self pushToViewController:vc];
+}
 
 @end

@@ -24,8 +24,6 @@
 @property (strong) CoreDataStack *coreDataStack;
 @property VKClient *vkClient;
 
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-
 @end
 
 
@@ -44,7 +42,6 @@
     [self configureTableView:tableView];
     [self loadFriendList:nil];
     [self configureSearchBar:searchBar];
-//    self.popoverDataSource.delegate = self;
     return self;
 }
 
@@ -161,12 +158,17 @@
 - (void)didSelectSortBy:(id)object atIndexPath:(NSIndexPath *)indexPath inPopOver:(WYPopoverController *)popoverController{
     [popoverController dismissPopoverAnimated:YES completion:^{
         if (indexPath.row == 0){
+            NSArray *sortedArray = [self.oldFriends filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"sexFriend contains %@", @"2"]];
+            [self.friendsDictionary setValue:sortedArray forKey:@"Friends"];
+            [self.theTableView reloadData];
+        }else if (indexPath.row == 1){
             NSArray *sortedArray = [self.oldFriends filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"sexFriend contains %@", @"1"]];
             [self.friendsDictionary setValue:sortedArray forKey:@"Friends"];
             [self.theTableView reloadData];
+        }else{
+            [self.friendsDictionary setValue:self.oldFriends forKey:@"Friends"];
+            [self.theTableView reloadData];
         }
-        NSLog(@"delegate");
-
     }];
 }
 
@@ -181,19 +183,16 @@
     NSError *error;
     NSArray *fetchedObjects = [self.coreDataStack.persistentStoreCoordinator executeRequest:fetchRequest withContext:context error:&error];
 
-    NSLog(@"called fetched array");
     return fetchedObjects;
 }
 
 - (void)saveMYfriendsByResponsedArray:(NSArray *)responsedArray{
-    
     for (VKFriendsModel *obj in responsedArray){
         
         FriendEntity *friend = (FriendEntity *)[NSEntityDescription insertNewObjectForEntityForName:@"FriendEntity" inManagedObjectContext:[self.coreDataStack managedObjectContext]];
-        
         friend.fristName = obj.firstName;
         friend.lastName = obj.lastName;
-        friend.userID = [NSString stringWithFormat:@"%@",obj.userId ];
+        friend.userID = [NSString stringWithFormat:@"%@",obj.userID ];
         friend.onlineValue = [NSString stringWithFormat:@"%@",obj.onlineValue];
         friend.photoPath = obj.photo100;
         friend.sexFriend = [NSString stringWithFormat:@"%@",obj.sexFriend ];
@@ -207,8 +206,8 @@
     NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
     NSError *error;
     [self.coreDataStack.persistentStoreCoordinator executeRequest:delete withContext:[self.coreDataStack managedObjectContext] error:&error];
-    if (!error){
-        NSLog(@"entity was succesfully deleted");
+    if (error){
+        NSLog(@"%@", error);
     }
 }
 

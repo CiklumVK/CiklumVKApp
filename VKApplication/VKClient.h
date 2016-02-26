@@ -23,7 +23,7 @@
 
 - (void)getUserInfoByUserID:(NSNumber *)userID withResponse:(void(^)(NSArray *responseObject))responseObject;
 
-- (void)getWallPostsByUserID:(NSNumber *)userID withResponseOfWallPost:(void (^)(NSArray *respnseWall))responseWall userInfo:(void (^)(NSArray *responseUser))resposeUser;
+- (void)getWallPostsByUserID:(NSNumber *)userID withResponseOfWallPost:(void (^)(NSArray *respnseWall))responseWall;
 
 - (void)createNewPostOnWallWithMessage:(NSString *)message toUserID:(NSNumber *)userID;
 
@@ -32,5 +32,7 @@
 - (void)getServerForUpLoadPictWithResponse:(void (^)(NSDictionary *responseObject))responseObject;
 
 - (void)savePhotoByServer:(NSNumber *)serverPath withPhotoHash:(NSString *)hash withPhotoDescription:(NSString *)photoDescription withResponse:(void (^)(NSArray *responseObject))responseObject;
+
+- (void)deletePostByOwnerID:(NSNumber *)ownerID andPostID:(NSNumber *)postID;
 
 @end

@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+
+
 @protocol WallDelegate <NSObject>
 
 - (void)didSelectSend:(id)object;
 - (void)didSelectFriends:(id)object;
 - (void)didSelectFirstRow;
-
+- (void)didSelectPost:(id)post byWallOwner:(NSNumber *)ownerID;
+- (void)didSelectInfo:(id)info;
 
 @end
 

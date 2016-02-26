@@ -16,8 +16,6 @@
 
 @property (nonatomic, strong) FriendsTableDataSource *dataSource;
 
-//@property WYPopoverController *popoverController;
-
 @property PopoverController *popoverController;
 
 @end
@@ -42,7 +40,7 @@
 
 - (void)setUpNavigationBarButton{
     UIBarButtonItem *sortButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Sort"
+                                   initWithTitle:@"Фильтр"
                                    style:UIBarButtonItemStylePlain
                                    target:self
                                    action:@selector(sortByPressed:)];
@@ -65,7 +63,7 @@
 
 - (IBAction)sortByPressed:(id)sender{
     self.popoverController = [self.storyboard instantiateViewControllerWithIdentifier:@"PopoverController"];
-    self.popoverController = [[PopoverController alloc] initWithView:self.view];
+    self.popoverController = [[PopoverController alloc] initWithView:self.view andClassDelegate:self.dataSource];
 
 }
 

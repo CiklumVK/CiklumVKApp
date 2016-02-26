@@ -19,7 +19,7 @@
 
 @implementation AvatarImageProvider
 
--(instancetype)initWithImage:(UIImage *)image andServerPath:(NSString *)serverPath{
+- (instancetype)initWithImage:(UIImage *)image andServerPath:(NSString *)serverPath{
     self = [super init];
     if (self){
         self.vkClient = [VKClient new];
@@ -30,13 +30,10 @@
 
 - (void)changeAvatarByImage:(UIImage *)image andServerPath:(NSString *)serverPath{
     [self.vkClient changeAvatarByServer:serverPath withImage:image withResponse:^(NSDictionary *responseObject) {
-        NSArray <PhotoSaveModel *> *photoSaveModelArray = [MTLJSONAdapterWithoutNil modelOfClass:[PhotoSaveModel class] fromJSONDictionary:responseObject error:nil];
-        PhotoSaveModel *photo = photoSaveModelArray;
+        PhotoSaveModel *photo = [MTLJSONAdapterWithoutNil modelOfClass:[PhotoSaveModel class] fromJSONDictionary:responseObject error:nil];
         [self.vkClient savePhotoByServer:photo.serverNumber withPhotoHash:photo.photoHash withPhotoDescription:photo.photoDescription withResponse:^(NSArray *responseObject) {
             
-            NSLog(@"%@", responseObject);
         }];
-//        NSLog(@"%@", photoSaveModelArray);
     }];
 }
 

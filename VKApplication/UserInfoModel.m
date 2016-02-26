@@ -15,7 +15,9 @@
              @"lastName" : @"last_name",
              @"onlineValue" : @"online",
              @"userID" : @"id",
-             @"photo100" : @"photo_100"
+             @"photo100" : @"photo_100",
+             @"birthdayDate":@"bdate",
+             @"cityInfo":@"city"
              };
 }
 @end

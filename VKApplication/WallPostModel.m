@@ -15,7 +15,7 @@
     return @{@"dateOfPost":@"date",
              @"textPost":@"text",
              @"senderID":@"from_id",
-             @"photo130":@"attachments"
-             };
+             @"photo130":@"attachments",
+             @"postID":@"id"};
 }
 @end

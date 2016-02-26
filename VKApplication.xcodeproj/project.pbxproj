@@ -43,6 +43,9 @@
 		7FF7768B1C64B57E009D16F0 /* WallTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF7768A1C64B57E009D16F0 /* WallTableDataSource.m */; };
 		7FF776921C64B896009D16F0 /* FriendInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF776901C64B896009D16F0 /* FriendInfoCell.m */; };
 		7FF776931C64B896009D16F0 /* FriendInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FF776911C64B896009D16F0 /* FriendInfoCell.xib */; };
+		7FFD1A881C807298004AC2E2 /* AlertControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A871C807298004AC2E2 /* AlertControllerDataSource.m */; };
+		7FFD1A8B1C80B2BF004AC2E2 /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A8A1C80B2BF004AC2E2 /* UserInfoVC.m */; };
+		7FFD1A8E1C80B2F8004AC2E2 /* UserInfoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A8D1C80B2F8004AC2E2 /* UserInfoDataSource.m */; };
 		7FFD7F1B1C7C6AD0007A0C43 /* PopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7F1A1C7C6ACF007A0C43 /* PopoverController.m */; };
 		7FFD7F1E1C7C8BB4007A0C43 /* PopoverControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7F1D1C7C8BB4007A0C43 /* PopoverControllerDataSource.m */; };
 		7FFD7F211C7CB017007A0C43 /* PhotoSaveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7F201C7CB016007A0C43 /* PhotoSaveModel.m */; };
@@ -138,6 +141,12 @@
 		7FF7768F1C64B896009D16F0 /* FriendInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendInfoCell.h; sourceTree = "<group>"; };
 		7FF776901C64B896009D16F0 /* FriendInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendInfoCell.m; sourceTree = "<group>"; };
 		7FF776911C64B896009D16F0 /* FriendInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendInfoCell.xib; sourceTree = "<group>"; };
+		7FFD1A861C807298004AC2E2 /* AlertControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertControllerDataSource.h; sourceTree = "<group>"; };
+		7FFD1A871C807298004AC2E2 /* AlertControllerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertControllerDataSource.m; sourceTree = "<group>"; };
+		7FFD1A891C80B2BF004AC2E2 /* UserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
+		7FFD1A8A1C80B2BF004AC2E2 /* UserInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoVC.m; sourceTree = "<group>"; };
+		7FFD1A8C1C80B2F8004AC2E2 /* UserInfoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoDataSource.h; sourceTree = "<group>"; };
+		7FFD1A8D1C80B2F8004AC2E2 /* UserInfoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoDataSource.m; sourceTree = "<group>"; };
 		7FFD7F191C7C6ACF007A0C43 /* PopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverController.h; sourceTree = "<group>"; };
 		7FFD7F1A1C7C6ACF007A0C43 /* PopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverController.m; sourceTree = "<group>"; };
 		7FFD7F1C1C7C8BB4007A0C43 /* PopoverControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverControllerDataSource.h; sourceTree = "<group>"; };
@@ -267,6 +276,8 @@
 				7F05A2E71C774C4300393CCA /* AvatarImagePicker.m */,
 				7FFD7F191C7C6ACF007A0C43 /* PopoverController.h */,
 				7FFD7F1A1C7C6ACF007A0C43 /* PopoverController.m */,
+				7FFD1A891C80B2BF004AC2E2 /* UserInfoVC.h */,
+				7FFD1A8A1C80B2BF004AC2E2 /* UserInfoVC.m */,
 				7F1194F81C747F090034D880 /* Main.storyboard */,
 			);
 			name = Controller;
@@ -291,6 +302,7 @@
 		7F08D93A1C49482C0099E85F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7F4A22681C7F5E37008E075D /* DataSources */,
 				7F7238301C690E55007A28F7 /* MTLModels */,
 				7F08D93B1C4948420099E85F /* Categories */,
 				7F08D9021C4936800099E85F /* AppDelegate.h */,
@@ -301,16 +313,10 @@
 				7F08D93D1C4948BA0099E85F /* LogIn.m */,
 				7FF050791C515F490090D984 /* LogInModel.h */,
 				7FF0507A1C515F490090D984 /* LogInModel.m */,
-				7F0BA4931C4AA857006DC89F /* FriendsTableDataSource.h */,
-				7F0BA4941C4AA857006DC89F /* FriendsTableDataSource.m */,
-				7FF776891C64B57E009D16F0 /* WallTableDataSource.h */,
-				7FF7768A1C64B57E009D16F0 /* WallTableDataSource.m */,
 				7F1194E91C70F2680034D880 /* NewPostProvider.h */,
 				7F1194EA1C70F2680034D880 /* NewPostProvider.m */,
 				7F05A33B1C7948A500393CCA /* AvatarImageProvider.h */,
 				7F05A33C1C7948A500393CCA /* AvatarImageProvider.m */,
-				7FFD7F1C1C7C8BB4007A0C43 /* PopoverControllerDataSource.h */,
-				7FFD7F1D1C7C8BB4007A0C43 /* PopoverControllerDataSource.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -331,6 +337,23 @@
 				7F08D9401C4949AB0099E85F /* Helper.pch */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		7F4A22681C7F5E37008E075D /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				7F0BA4931C4AA857006DC89F /* FriendsTableDataSource.h */,
+				7F0BA4941C4AA857006DC89F /* FriendsTableDataSource.m */,
+				7FF776891C64B57E009D16F0 /* WallTableDataSource.h */,
+				7FF7768A1C64B57E009D16F0 /* WallTableDataSource.m */,
+				7FFD7F1C1C7C8BB4007A0C43 /* PopoverControllerDataSource.h */,
+				7FFD7F1D1C7C8BB4007A0C43 /* PopoverControllerDataSource.m */,
+				7FFD1A861C807298004AC2E2 /* AlertControllerDataSource.h */,
+				7FFD1A871C807298004AC2E2 /* AlertControllerDataSource.m */,
+				7FFD1A8C1C80B2F8004AC2E2 /* UserInfoDataSource.h */,
+				7FFD1A8D1C80B2F8004AC2E2 /* UserInfoDataSource.m */,
+			);
+			name = DataSources;
 			sourceTree = "<group>";
 		};
 		7F63F6681C56A2F0008FAA6C /* CoreData */ = {
@@ -562,6 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F08D9071C4936800099E85F /* ViewController.m in Sources */,
+				7FFD1A8B1C80B2BF004AC2E2 /* UserInfoVC.m in Sources */,
 				7FF0507B1C515F490090D984 /* LogInModel.m in Sources */,
 				7F0BA4951C4AA857006DC89F /* FriendsTableDataSource.m in Sources */,
 				7F16E8751C74E9E10042CD52 /* CoreDataStack.m in Sources */,
@@ -586,11 +610,13 @@
 				7F7238331C69F524007A28F7 /* WallPostModel.m in Sources */,
 				7F08D93E1C4948BA0099E85F /* LogIn.m in Sources */,
 				7FF7768B1C64B57E009D16F0 /* WallTableDataSource.m in Sources */,
+				7FFD1A881C807298004AC2E2 /* AlertControllerDataSource.m in Sources */,
 				7FFD7F1E1C7C8BB4007A0C43 /* PopoverControllerDataSource.m in Sources */,
 				7F1194EB1C70F2680034D880 /* NewPostProvider.m in Sources */,
 				7F63F6671C5662CD008FAA6C /* LogInVC.m in Sources */,
 				7F08D90D1C4936800099E85F /* VKApplication.xcdatamodeld in Sources */,
 				7F08D9461C494B7C0099E85F /* NSString+Extension.m in Sources */,
+				7FFD1A8E1C80B2F8004AC2E2 /* UserInfoDataSource.m in Sources */,
 				7FFD7F271C7D9F10007A0C43 /* FriendEntity.m in Sources */,
 				7FF776841C6397D3009D16F0 /* WallCell.m in Sources */,
 			);

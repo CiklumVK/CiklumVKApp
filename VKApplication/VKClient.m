@@ -21,7 +21,8 @@ const struct APIPaths APIPaths= {
     .userInfo = @"https://api.vk.com/method/users.get?",
     .wallPosts = @"https://api.vk.com/method/wall.get?",
     .getPhotoUploadServer =  @"https://api.vk.com/method/photos.getOwnerPhotoUploadServer?",
-    .photoSavePath = @"https://api.vk.com/method/photos.saveOwnerPhoto?"
+    .photoSavePath = @"https://api.vk.com/method/photos.saveOwnerPhoto?",
+    .wallDeletePost = @"https://api.vk.com/method/wall.delete?"
 };
 
 
@@ -39,6 +40,7 @@ const struct APIPaths APIPaths= {
              APIPaths.wallPosts:[WallPostModel class],
              APIPaths.getPhotoUploadServer:[PhotoUploadServerModel class]};
 }
+
 - (void)getFriendsListbyUesrID:(NSNumber *)userID withhResponse:(void (^)(NSArray*))responseObject{
     VKClient *client = [[VKClient alloc] initWithBaseURL:[NSURL URLWithString:APIPaths.friendGetListPath]];
     
@@ -60,13 +62,13 @@ const struct APIPaths APIPaths= {
 - (void)getUserInfoByUserID:(NSNumber *)userID withResponse:(void(^)(NSArray *))responseObject{
     VKClient *client = [[VKClient alloc] initWithBaseURL:[NSURL URLWithString:APIPaths.userInfo]];
     
-    [client GET:[NSString stringWithFormat:@"%@fields=online,photo_100&user_ids=%@&v=5.8&access_token=%@",APIPaths.userInfo,userID, [LogIn accessToken]] parameters:nil completion:^(OVCResponse * _Nullable response, NSError * _Nullable error) {
+    [client GET:[NSString stringWithFormat:@"%@fields=online,photo_100,bdate,city&user_ids=%@&v=5.8&access_token=%@",APIPaths.userInfo,userID, [LogIn accessToken]] parameters:nil completion:^(OVCResponse * _Nullable response, NSError * _Nullable error) {
         NSArray *results = response.result[@"response"];
         responseObject(results);
     }];
 }
 
-- (void)getWallPostsByUserID:(NSNumber *)userID withResponseOfWallPost:(void (^)(NSArray *))responseWall userInfo:(void (^)(NSArray *))resposeUser{
+- (void)getWallPostsByUserID:(NSNumber *)userID withResponseOfWallPost:(void (^)(NSArray *))responseWall{
     VKClient *wallClient = [[VKClient alloc] initWithBaseURL:[NSURL URLWithString:APIPaths.wallPosts]];
     int count = 100;
     
@@ -103,12 +105,20 @@ const struct APIPaths APIPaths= {
         responseObject(result);
     }];
 }
+
 - (void)savePhotoByServer:(NSNumber *)serverPath withPhotoHash:(NSString *)hash withPhotoDescription:(NSString *)photoDescription withResponse:(void (^)(NSArray *))responseObject{
     VKClient *client = [VKClient new];
     
     [client POST:[NSString stringWithFormat:@"%@server=%@&hash=%@&photo=%@&access_token=%@", APIPaths.photoSavePath,serverPath,hash, photoDescription, [LogIn accessToken]] parameters:nil completion:^(OVCResponse * _Nullable response, NSError * _Nullable error) {
         NSArray *result = response.result;
         responseObject(result);
+    }];
+}
+
+- (void)deletePostByOwnerID:(NSNumber *)ownerID andPostID:(NSNumber *)postID{
+    VKClient *client = [VKClient new];
+    
+    [client GET:[NSString stringWithFormat:@"%@owner_id=%@&post_id=%@&access_token=%@", APIPaths.wallDeletePost, ownerID, postID, [LogIn accessToken]] parameters:nil completion:^(OVCResponse * _Nullable response, NSError * _Nullable error) {
     }];
     
 }

@@ -18,9 +18,10 @@
 
 @implementation PopoverControllerDataSource
 
--(instancetype)initWithTableView:(UITableView *)tableView byPopOver:(WYPopoverController *)popoverController{
+- (instancetype)initWithTableView:(UITableView *)tableView byPopOver:(WYPopoverController *)popoverController andClassDelegate:(id)aClass{
     self = [super init];
     if (self){
+        self.friendsTableDataSource = aClass;
         [self setUpTableView:tableView];
         self.popoverController = popoverController;
     }
@@ -36,20 +37,18 @@
 #pragma mark - TableView
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return  2;
+    return  3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-    self.arrayOfSortWays = @[@"Show only men",@"Show only woman"];
+    self.arrayOfSortWays = @[@"Показать только мужчин",@"Показать только женщин",@"Сбросить"];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", self.arrayOfSortWays[indexPath.row]];
-    
     return  cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.friendsTableDataSource = [FriendsTableDataSource new];
-//    self.delegate = self.friendsTableDataSource;
+    self.delegate = self.friendsTableDataSource;
     if ([self.delegate respondsToSelector:@selector(didSelectSortBy:atIndexPath:inPopOver:)]){
         [self.delegate didSelectSortBy:self.arrayOfSortWays[indexPath.row] atIndexPath:indexPath inPopOver:self.popoverController];
     }
@@ -57,14 +56,13 @@
 
 #pragma mark - PopOverController
 
-- (BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)controller
-{
+- (BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)controller{
     return YES;
 }
 
-- (void)popoverControllerDidDismissPopover:(WYPopoverController *)controller
-{
+- (void)popoverControllerDidDismissPopover:(WYPopoverController *)controller{
     self.popoverController.delegate = nil;
     self.popoverController = nil;
 }
+
 @end

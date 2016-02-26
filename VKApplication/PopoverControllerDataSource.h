@@ -23,6 +23,6 @@
 @property (nonatomic, weak) id <PopoverControllerDelegate> delegate;
 
 
--(instancetype)initWithTableView:(UITableView *)tableView byPopOver:(WYPopoverController *)popoverController;
+- (instancetype)initWithTableView:(UITableView *)tableView byPopOver:(WYPopoverController *)popoverController andClassDelegate:(id)aClass;
 
 @end

@@ -15,5 +15,9 @@
 @property (copy, nonatomic) NSString *photo100;
 @property (copy, nonatomic) NSNumber *onlineValue;
 @property (copy, nonatomic) NSNumber *userID;
+@property (copy, nonatomic) NSString *birthdayDate;
+@property (copy, nonatomic) NSDictionary *cityInfo;
+
+
 
 @end

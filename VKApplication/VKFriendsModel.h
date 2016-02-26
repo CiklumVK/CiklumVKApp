@@ -11,7 +11,7 @@
 @interface VKFriendsModel : MTLModel <MTLJSONSerializing>
 
 @property (copy, nonatomic) NSString *firstName;
-@property (copy, nonatomic) NSNumber *userId;
+@property (copy, nonatomic) NSNumber *userID;
 @property (copy, nonatomic) NSString *lastName;
 @property (copy, nonatomic) NSNumber *onlineValue;
 @property (copy, nonatomic) NSString *photo100;

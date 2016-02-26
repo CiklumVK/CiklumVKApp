@@ -11,6 +11,6 @@
 
 @interface PopoverController : UIViewController
 
-- (instancetype)initWithView:(UIView *)view;
+- (instancetype)initWithView:(UIView *)view andClassDelegate:(id)aClass;
 
 @end

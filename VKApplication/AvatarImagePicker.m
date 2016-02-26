@@ -20,10 +20,6 @@
 
 @implementation AvatarImagePicker
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
 - (instancetype)initWithViewController:(UIViewController *)vc{
     self = [super init];
     if (self){
@@ -41,7 +37,6 @@
         [vc presentViewController:self animated:YES completion:nil];
         
     }];
-
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo{

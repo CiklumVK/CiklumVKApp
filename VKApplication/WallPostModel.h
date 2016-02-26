@@ -14,5 +14,7 @@
 @property (copy, nonatomic) NSNumber *dateOfPost;
 @property (copy, nonatomic) NSNumber *senderID;
 @property (copy, nonatomic) NSMutableArray *photo130;
+@property (copy, nonatomic) NSNumber *postID;
+
 
 @end
