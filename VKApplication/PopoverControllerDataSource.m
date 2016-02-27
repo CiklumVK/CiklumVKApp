@@ -23,6 +23,7 @@
     if (self){
         self.friendsTableDataSource = aClass;
         [self setUpTableView:tableView];
+        self.arrayOfSortWays = @[@"Показать только мужчин",@"Показать только женщин",@"Сбросить"];
         self.popoverController = popoverController;
     }
     return  self;
@@ -42,7 +43,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-    self.arrayOfSortWays = @[@"Показать только мужчин",@"Показать только женщин",@"Сбросить"];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", self.arrayOfSortWays[indexPath.row]];
     return  cell;
 }

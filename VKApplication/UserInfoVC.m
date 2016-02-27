@@ -6,10 +6,13 @@
 //  Copyright © 2016 Vasyl Vasylchenko. All rights reserved.
 //
 
+
 #import "UserInfoVC.h"
 #import "UserInfoDataSource.h"
 
+
 @interface UserInfoVC ()
+
 @property UserInfoDataSource *dataSource;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -17,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bDateLabel;
 
 @end
+
 
 @implementation UserInfoVC
 

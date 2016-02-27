@@ -25,12 +25,6 @@ const struct APIPaths APIPaths= {
     .wallDeletePost = @"https://api.vk.com/method/wall.delete?"
 };
 
-
-
-@interface VKClient ()
-
-@end
-
 @implementation VKClient
 
 + (NSDictionary *)modelClassesByResourcePath {

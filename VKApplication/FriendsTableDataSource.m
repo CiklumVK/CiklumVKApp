@@ -222,5 +222,14 @@
         return NO;
 }
 
+- (void)s {
+    NSIndexPath *p = [self.theTableView indexPathForSelectedRow];
+    
+    id cell = [self.theTableView cellForRowAtIndexPath:p];
+    
+    [cell setFrame:CGRectMake(0, 0, 320, 900)];
+    
+//    self.theTableView s
+}
 
 @end

@@ -20,6 +20,7 @@
 @property VKClient *vkClient;
 @property NSArray *infoArray;
 @property NSMutableArray <WallPostModel *> *wallPostsArray;
+@property NSMutableArray <WallPostModel *> *allWallPostsArray;
 @property NSMutableArray <UserInfoModel *> *userProfileArray;
 
 
@@ -34,6 +35,7 @@
         self.infoArray = @[];
         self.wallPostsArray = @[].mutableCopy;
         self.userProfileArray = @[].mutableCopy;
+        self.allWallPostsArray = @[].mutableCopy;
         self.userID = userID;
         [self setUpTableView:tableView];
         [self loadUserInfo:nil];
@@ -53,18 +55,17 @@
     [self.vkClient getUserInfoByUserID:self.userID withResponse:^(NSArray *responseObject) {
         NSArray *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[UserInfoModel class] fromJSONArray:responseObject error:nil];
         self.infoArray = responsedArray;
-        [self.theTableView reloadData];
-    }];
-    
-    [self.vkClient getWallPostsByUserID:self.userID withResponseOfWallPost:^(NSArray *respnseWall) {
-        NSArray *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[WallPostModel class] fromJSONArray:[respnseWall valueForKey:@"items"] error:nil];
-        NSArray *userArray = [MTLJSONAdapterWithoutNil modelsOfClass:[UserInfoModel class] fromJSONArray:[respnseWall valueForKey:@"profiles"] error:nil];
-        self.wallPostsArray = [responsedArray mutableCopy];
-        self.userProfileArray = [userArray mutableCopy];
-        [self.theTableView reloadData];
-        if (refreshControl){
-            [refreshControl endRefreshing];
-        }
+        [self.vkClient getWallPostsByUserID:self.userID withResponseOfWallPost:^(NSArray *respnseWall) {
+            NSArray *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[WallPostModel class] fromJSONArray:[respnseWall valueForKey:@"items"] error:nil];
+            NSArray *userArray = [MTLJSONAdapterWithoutNil modelsOfClass:[UserInfoModel class] fromJSONArray:[respnseWall valueForKey:@"profiles"] error:nil];
+            self.wallPostsArray = [responsedArray mutableCopy];
+            self.allWallPostsArray = self.wallPostsArray;
+            self.userProfileArray = [userArray mutableCopy];
+            [self.theTableView reloadData];
+            if (refreshControl){
+                [refreshControl endRefreshing];
+            }
+        }];
     }];
 }
 
@@ -84,7 +85,7 @@
     if ([self.delegate respondsToSelector:@selector(didSelectInfo:)]) {
         [self.delegate didSelectInfo:self.infoArray];
     }
-
+    
 }
 
 #pragma mark - TableView
@@ -121,9 +122,9 @@
         
         NSArray *itemArray = [NSArray arrayWithObjects: @"Все записи", @"Записи владельца", nil];
         UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
-        segmentedControl.frame = CGRectMake([UIScreen mainScreen].bounds.size.width/2 - 125, 25, 250, 20);
+        segmentedControl.frame = CGRectMake([UIScreen mainScreen].bounds.size.width/2 - 125, 29, 250, 20);
         [segmentedControl addTarget:self action:@selector(sortWallPosts:) forControlEvents:UIControlEventValueChanged];
-        [segmentedControl setSelectedSegmentIndex:0];
+        //        [segmentedControl setSelectedSegmentIndex:0];
         [view addSubview:segmentedControl];
         [view addSubview:addButton];
         [view addSubview:friendsButton];
@@ -193,19 +194,22 @@
     friendsButton.frame=CGRectMake([UIScreen mainScreen].bounds.size.width - 40, 30, 30, 30);
     [friendsButton addTarget:self action:@selector(infoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:friendsButton];
-
+    
 }
 
 #pragma mark - filter
 
-
-
 - (void)sortWallPosts:(UISegmentedControl *)sender{
-//    if (sender.selectedSegmentIndex == 1){
-//        NSArray *sortedArray = [self.wallPostsArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"senderID contains %@", self.userID]];
-//        self.wallPostsArray = sortedArray.mutableCopy;
-//        [self.theTableView reloadData];
-//    }
+    if (sender.selectedSegmentIndex == 1){
+        NSNumber *a = [NSNumber numberWithInteger:self.userID.integerValue];
+        NSPredicate *p = [NSPredicate predicateWithFormat:@"senderID == %@", a];
+        NSArray *sortedArray = [self.allWallPostsArray filteredArrayUsingPredicate:p];
+        self.wallPostsArray = sortedArray.mutableCopy;
+        [self.theTableView reloadData];
+    }else{
+        self.wallPostsArray = self.allWallPostsArray;
+        [self.theTableView reloadData];
+    }
 }
 
 @end
