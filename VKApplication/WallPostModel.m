@@ -16,6 +16,7 @@
              @"textPost":@"text",
              @"senderID":@"from_id",
              @"photo130":@"attachments",
-             @"postID":@"id"};
+             @"postID":@"id",
+             @"repostObject":@"copy_history"};
 }
 @end

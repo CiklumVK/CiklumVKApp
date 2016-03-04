@@ -14,17 +14,25 @@
 #import "MTLJSONAdapterWithoutNil.h"
 #import "WallCell.h"
 #import "WallPostModel.h"
+#import "RepostPostModel.h"
+#import "GroupsModel.h"
+#import "NSObject+Extension.h"
+
 
 @interface WallTableDataSource()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate>
+
 @property (weak) UITableView *theTableView;
 @property VKClient *vkClient;
 @property NSArray *infoArray;
 @property NSMutableArray <WallPostModel *> *wallPostsArray;
 @property NSMutableArray <WallPostModel *> *allWallPostsArray;
 @property NSMutableArray <UserInfoModel *> *userProfileArray;
-
+@property NSMutableArray *repostsArray;
+@property NSMutableArray <GroupsModel *> *groupsArray;
+@property NSDictionary *dic;
 
 @end
+
 
 @implementation WallTableDataSource
 
@@ -36,6 +44,8 @@
         self.wallPostsArray = @[].mutableCopy;
         self.userProfileArray = @[].mutableCopy;
         self.allWallPostsArray = @[].mutableCopy;
+        self.repostsArray = @[].mutableCopy;
+        self.groupsArray = @[].mutableCopy;
         self.userID = userID;
         [self setUpTableView:tableView];
         [self loadUserInfo:nil];
@@ -55,18 +65,34 @@
     [self.vkClient getUserInfoByUserID:self.userID withResponse:^(NSArray *responseObject) {
         NSArray *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[UserInfoModel class] fromJSONArray:responseObject error:nil];
         self.infoArray = responsedArray;
+        
         [self.vkClient getWallPostsByUserID:self.userID withResponseOfWallPost:^(NSArray *respnseWall) {
-            NSArray *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[WallPostModel class] fromJSONArray:[respnseWall valueForKey:@"items"] error:nil];
-            NSArray *userArray = [MTLJSONAdapterWithoutNil modelsOfClass:[UserInfoModel class] fromJSONArray:[respnseWall valueForKey:@"profiles"] error:nil];
-            self.wallPostsArray = [responsedArray mutableCopy];
-            self.allWallPostsArray = self.wallPostsArray;
-            self.userProfileArray = [userArray mutableCopy];
+            [self fillArraysByResponse:respnseWall];
             [self.theTableView reloadData];
             if (refreshControl){
                 [refreshControl endRefreshing];
             }
         }];
     }];
+}
+
+
+- (void)fillArraysByResponse:(NSArray *)respnseWall{
+    NSArray *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[WallPostModel class] fromJSONArray:[respnseWall valueForKey:@"items"] error:nil];
+    NSArray *userArray = [MTLJSONAdapterWithoutNil modelsOfClass:[UserInfoModel class] fromJSONArray:[respnseWall valueForKey:@"profiles"] error:nil];
+    self.groupsArray = [MTLJSONAdapterWithoutNil modelsOfClass:[GroupsModel class] fromJSONArray:[respnseWall valueForKey:@"groups"] error:nil].mutableCopy;
+    
+    for (NSArray *repostArr in [[respnseWall valueForKey:@"items"] valueForKey:@"copy_history"]){
+        NSArray *repost = [MTLJSONAdapterWithoutNil modelsOfClass:[RepostPostModel class] fromJSONArray:repostArr error:nil];
+        if (repost){
+            [self.repostsArray addObject:repost];
+        }else{
+            [self.repostsArray addObject:@"no repost"];
+        }
+    }
+    self.wallPostsArray = [responsedArray mutableCopy];
+    self.allWallPostsArray = self.wallPostsArray;
+    self.userProfileArray = [userArray mutableCopy];
 }
 
 - (IBAction)sendButtonPressed:(id)sender{
@@ -79,16 +105,23 @@
     if ([self.delegate respondsToSelector:@selector(didSelectFriends:)]) {
         [self.delegate didSelectFriends:self.userID];
     }
-    
 }
+
 - (IBAction)infoButtonPressed:(id)sender{
     if ([self.delegate respondsToSelector:@selector(didSelectInfo:)]) {
         [self.delegate didSelectInfo:self.infoArray];
     }
-    
 }
 
 #pragma mark - TableView
+
+- (void)addInfoButtonOnCell:(FriendInfoCell *)cell{
+    UIButton *friendsButton=[UIButton buttonWithType:UIButtonTypeInfoDark];
+    friendsButton.frame=CGRectMake([UIScreen mainScreen].bounds.size.width - 40, 30, 30, 30);
+    [friendsButton addTarget:self action:@selector(infoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [cell addSubview:friendsButton];
+    
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -124,7 +157,6 @@
         UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
         segmentedControl.frame = CGRectMake([UIScreen mainScreen].bounds.size.width/2 - 125, 29, 250, 20);
         [segmentedControl addTarget:self action:@selector(sortWallPosts:) forControlEvents:UIControlEventValueChanged];
-        //        [segmentedControl setSelectedSegmentIndex:0];
         [view addSubview:segmentedControl];
         [view addSubview:addButton];
         [view addSubview:friendsButton];
@@ -142,9 +174,16 @@
     if (indexPath.section == 0 ){
         return 117;
     }else if ([[[[self.wallPostsArray[indexPath.row] valueForKey:@"photo130"]valueForKey:@"type" ] objectAtIndex:0] isEqualToString:@"photo"]){
-        return 400;
+        CGFloat height = [NSObject heightByText:[self.wallPostsArray[indexPath.row] valueForKey:@"textPost"] labelWidth:304 andFontSize:17];
+        return height+380;
+    }else if (![self.repostsArray[indexPath.row] isEqual:@"no repost"]){
+        CGFloat height = [NSObject heightByText:[self.wallPostsArray[indexPath.row] valueForKey:@"textPost"] labelWidth:304 andFontSize:17];
+        CGFloat repHeight = [NSObject heightByText:[[self.repostsArray[indexPath.row] valueForKey:@"textPost" ]objectAtIndex:0] labelWidth:304 andFontSize:17];
+
+        return height+repHeight+480;
     }else{
-        return 90;
+      CGFloat height = [NSObject heightByText:[self.wallPostsArray[indexPath.row] valueForKey:@"textPost"] labelWidth:304 andFontSize:17];
+        return height+70;
     }
 }
 
@@ -170,7 +209,10 @@
         WallCell *cell2 = [self.theTableView dequeueReusableCellWithIdentifier:@"WallCell"forIndexPath:indexPath];
         if (self.wallPostsArray.count > 0 && cell2){
             WallPostModel *obj = self.wallPostsArray[indexPath.row];
+            RepostPostModel *rep = self.repostsArray[indexPath.row];
+            NSArray *arr = [NSArray arrayWithObjects:rep,[self getOwneOfRepost:self.groupsArray withUsersArray:self.userProfileArray withRepost:rep], nil];
             [cell2 fillWithObject:obj atIndex:indexPath];
+            [cell2 fillWithObject:arr atIndex:indexPath];
             [cell2 fillWithObject:[self userByArray:self.userProfileArray andWallPost:obj] atIndex:indexPath];
         }else{
             [cell2 fillWithObject:@"no posts" atIndex:indexPath];
@@ -189,12 +231,22 @@
     return user;
 }
 
-- (void)addInfoButtonOnCell:(FriendInfoCell *)cell{
-    UIButton *friendsButton=[UIButton buttonWithType:UIButtonTypeInfoDark];
-    friendsButton.frame=CGRectMake([UIScreen mainScreen].bounds.size.width - 40, 30, 30, 30);
-    [friendsButton addTarget:self action:@selector(infoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [cell addSubview:friendsButton];
-    
+- (id)getOwneOfRepost:(NSMutableArray *)groupArray withUsersArray:(NSMutableArray *)userArray withRepost:(RepostPostModel *)repost{
+    __block id owner = nil;
+    if (![repost isEqual:@"no repost"]){
+        [groupArray enumerateObjectsUsingBlock:^(GroupsModel * _Nonnull groupObject, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([[NSNumber numberWithDouble:fabs([[[repost valueForKey:@"senderID"] objectAtIndex:0] doubleValue])] isEqualToNumber:groupObject.groupID ]) {
+                owner = groupObject;
+            }
+        }];
+        if (!owner) {
+            [userArray enumerateObjectsUsingBlock:^(UserInfoModel *_Nonnull userObj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if([[[repost valueForKey:@"senderID"] objectAtIndex:0] isEqualToNumber:userObj.userID]){
+                    owner = userObj;
+                }
+            }];
+        }}
+    return owner;
 }
 
 #pragma mark - filter

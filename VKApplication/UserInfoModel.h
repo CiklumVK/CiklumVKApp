@@ -17,7 +17,6 @@
 @property (copy, nonatomic) NSNumber *userID;
 @property (copy, nonatomic) NSString *birthdayDate;
 @property (copy, nonatomic) NSDictionary *cityInfo;
-
-
+@property (copy, nonatomic) NSNumber *sexValue;
 
 @end

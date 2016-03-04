@@ -17,7 +17,8 @@
              @"userID" : @"id",
              @"photo100" : @"photo_100",
              @"birthdayDate":@"bdate",
-             @"cityInfo":@"city"
+             @"cityInfo":@"city",
+             @"sexValue":@"sex"
              };
 }
 @end

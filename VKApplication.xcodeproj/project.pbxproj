@@ -46,6 +46,10 @@
 		7FFD1A881C807298004AC2E2 /* AlertControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A871C807298004AC2E2 /* AlertControllerDataSource.m */; };
 		7FFD1A8B1C80B2BF004AC2E2 /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A8A1C80B2BF004AC2E2 /* UserInfoVC.m */; };
 		7FFD1A8E1C80B2F8004AC2E2 /* UserInfoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A8D1C80B2F8004AC2E2 /* UserInfoDataSource.m */; };
+		7FFD1A9A1C826E8D004AC2E2 /* RepostPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A991C826E8D004AC2E2 /* RepostPostModel.m */; };
+		7FFD1A9D1C84737B004AC2E2 /* GroupsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A9C1C84737B004AC2E2 /* GroupsModel.m */; };
+		7FFD1AA31C875B17004AC2E2 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1AA21C875B17004AC2E2 /* NSObject+Extension.m */; };
+		7FFD1AA51C8879C9004AC2E2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FFD1AA41C8879C9004AC2E2 /* SystemConfiguration.framework */; };
 		7FFD7F1B1C7C6AD0007A0C43 /* PopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7F1A1C7C6ACF007A0C43 /* PopoverController.m */; };
 		7FFD7F1E1C7C8BB4007A0C43 /* PopoverControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7F1D1C7C8BB4007A0C43 /* PopoverControllerDataSource.m */; };
 		7FFD7F211C7CB017007A0C43 /* PhotoSaveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7F201C7CB016007A0C43 /* PhotoSaveModel.m */; };
@@ -147,6 +151,13 @@
 		7FFD1A8A1C80B2BF004AC2E2 /* UserInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoVC.m; sourceTree = "<group>"; };
 		7FFD1A8C1C80B2F8004AC2E2 /* UserInfoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoDataSource.h; sourceTree = "<group>"; };
 		7FFD1A8D1C80B2F8004AC2E2 /* UserInfoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoDataSource.m; sourceTree = "<group>"; };
+		7FFD1A981C826E8D004AC2E2 /* RepostPostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepostPostModel.h; sourceTree = "<group>"; };
+		7FFD1A991C826E8D004AC2E2 /* RepostPostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepostPostModel.m; sourceTree = "<group>"; };
+		7FFD1A9B1C84737B004AC2E2 /* GroupsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsModel.h; sourceTree = "<group>"; };
+		7FFD1A9C1C84737B004AC2E2 /* GroupsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsModel.m; sourceTree = "<group>"; };
+		7FFD1AA11C875B17004AC2E2 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
+		7FFD1AA21C875B17004AC2E2 /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
+		7FFD1AA41C8879C9004AC2E2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7FFD7F191C7C6ACF007A0C43 /* PopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverController.h; sourceTree = "<group>"; };
 		7FFD7F1A1C7C6ACF007A0C43 /* PopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverController.m; sourceTree = "<group>"; };
 		7FFD7F1C1C7C8BB4007A0C43 /* PopoverControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverControllerDataSource.h; sourceTree = "<group>"; };
@@ -164,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FFD1AA51C8879C9004AC2E2 /* SystemConfiguration.framework in Frameworks */,
 				172883F0982A8F1262B6EB8C /* libPods-VKApplication.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +338,8 @@
 			children = (
 				7F08D9441C494B7C0099E85F /* NSString+Extension.h */,
 				7F08D9451C494B7C0099E85F /* NSString+Extension.m */,
+				7FFD1AA11C875B17004AC2E2 /* NSObject+Extension.h */,
+				7FFD1AA21C875B17004AC2E2 /* NSObject+Extension.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -385,6 +399,10 @@
 				7F05A3391C7943D900393CCA /* PhotoUploadServerModel.m */,
 				7FFD7F1F1C7CB016007A0C43 /* PhotoSaveModel.h */,
 				7FFD7F201C7CB016007A0C43 /* PhotoSaveModel.m */,
+				7FFD1A981C826E8D004AC2E2 /* RepostPostModel.h */,
+				7FFD1A991C826E8D004AC2E2 /* RepostPostModel.m */,
+				7FFD1A9B1C84737B004AC2E2 /* GroupsModel.h */,
+				7FFD1A9C1C84737B004AC2E2 /* GroupsModel.m */,
 			);
 			name = MTLModels;
 			sourceTree = "<group>";
@@ -392,6 +410,7 @@
 		9FCE2524F0E51F71E5332672 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7FFD1AA41C8879C9004AC2E2 /* SystemConfiguration.framework */,
 				15060D033512D58913E43455 /* libPods-VKApplication.a */,
 			);
 			name = Frameworks;
@@ -601,6 +620,8 @@
 				7FEB8AAC1C60AC7A00D14752 /* VKFriendsModel.m in Sources */,
 				7FF776881C64AD5B009D16F0 /* WallVC.m in Sources */,
 				7FEB8AA91C5FDD7100D14752 /* VKClient.m in Sources */,
+				7FFD1AA31C875B17004AC2E2 /* NSObject+Extension.m in Sources */,
+				7FFD1A9D1C84737B004AC2E2 /* GroupsModel.m in Sources */,
 				7F08D9011C4936800099E85F /* main.m in Sources */,
 				7FF776921C64B896009D16F0 /* FriendInfoCell.m in Sources */,
 				7F1194F41C7396A30034D880 /* MainNavigationVC.m in Sources */,
@@ -612,6 +633,7 @@
 				7FF7768B1C64B57E009D16F0 /* WallTableDataSource.m in Sources */,
 				7FFD1A881C807298004AC2E2 /* AlertControllerDataSource.m in Sources */,
 				7FFD7F1E1C7C8BB4007A0C43 /* PopoverControllerDataSource.m in Sources */,
+				7FFD1A9A1C826E8D004AC2E2 /* RepostPostModel.m in Sources */,
 				7F1194EB1C70F2680034D880 /* NewPostProvider.m in Sources */,
 				7F63F6671C5662CD008FAA6C /* LogInVC.m in Sources */,
 				7F08D90D1C4936800099E85F /* VKApplication.xcdatamodeld in Sources */,

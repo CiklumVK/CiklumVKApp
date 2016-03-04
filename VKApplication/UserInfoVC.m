@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sexLabel;
 
 @end
 
@@ -30,7 +31,7 @@
 }
 
 - (void)fillInfo{
-    self.dataSource = [[UserInfoDataSource alloc] initWithImageView:self.avatarImageView nameLabel:self.nameLabel cityLabel:self.cityLabel birthdayLabel:self.bDateLabel byInfo:self.userInfo];
+    self.dataSource = [[UserInfoDataSource alloc] initWithImageView:self.avatarImageView nameLabel:self.nameLabel cityLabel:self.cityLabel birthdayLabel:self.bDateLabel sexLabel:self.sexLabel byInfo:self.userInfo];
 }
 
 @end

@@ -14,6 +14,7 @@
                         nameLabel:(UILabel *)nameLabel
                         cityLabel:(UILabel *)cityLabel
                     birthdayLabel:(UILabel *)birthdayLabel
+                         sexLabel:(UILabel *)sexLabel
                            byInfo:(id)info;
 
 @end

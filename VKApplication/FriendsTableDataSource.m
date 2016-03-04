@@ -16,7 +16,8 @@
 #import "FriendEntity.h"
 #import "PopoverControllerDataSource.h"
 
-@interface FriendsTableDataSource()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,PopoverControllerDelegate>
+
+@interface FriendsTableDataSource()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, PopoverControllerDelegate>
 
 @property UITableView *theTableView;
 @property NSMutableDictionary *friendsDictionary;
@@ -59,19 +60,19 @@
 - (void)loadFriendList:(UIRefreshControl *)refreshControl{
     if ([self connected]){
         [self deleteEntity];
-    [self.vkClient getFriendsListbyUesrID:self.userID withhResponse:^(NSArray *responseObject) {
-        NSArray<VKFriendsModel *> *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[VKFriendsModel class] fromJSONArray:responseObject error:nil];
-        [self saveMYfriendsByResponsedArray:responsedArray];
-        NSMutableArray *array = [[self fetchedArray] mutableCopy];
-        [self.friendsDictionary setValue:array forKey:@"Friends"];
-        self.oldFriends = array;
-        [self.theTableView reloadData];
-        [refreshControl endRefreshing];
-    }];}else{
-        NSMutableArray *array = [[self fetchedArray] mutableCopy];
-        [self.friendsDictionary setValue:array forKey:@"Friends"];
-        self.oldFriends = array;
-    }
+        [self.vkClient getFriendsListbyUesrID:self.userID withhResponse:^(NSArray *responseObject) {
+            NSArray<VKFriendsModel *> *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[VKFriendsModel class] fromJSONArray:responseObject error:nil];
+            [self saveMYfriendsByResponsedArray:responsedArray];
+            NSMutableArray *array = [[self fetchedArray] mutableCopy];
+            [self.friendsDictionary setValue:array forKey:@"Friends"];
+            self.oldFriends = array;
+            [self.theTableView reloadData];
+            [refreshControl endRefreshing];
+        }];}else{
+            NSMutableArray *array = [[self fetchedArray] mutableCopy];
+            [self.friendsDictionary setValue:array forKey:@"Friends"];
+            self.oldFriends = array;
+        }
 }
 
 #pragma mark - tableView
@@ -100,9 +101,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self connected]){
-    if ([self.delegate respondsToSelector:@selector(didSelectObject:atIndexPath:)]) {
-        [self.delegate didSelectObject:[self arrayWithSection:indexPath.section][indexPath.row] atIndexPath:indexPath];
-    }}
+        if ([self.delegate respondsToSelector:@selector(didSelectObject:atIndexPath:)]) {
+            [self.delegate didSelectObject:[self arrayWithSection:indexPath.section][indexPath.row] atIndexPath:indexPath];
+        }}
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -110,19 +111,17 @@
     return 30;
 }
 
-
-
 #pragma mark - searchBar
 
 - (void)doSearch:(NSString *)searchText{
     [self.vkClient makeSearchWithText:searchText response:^(NSArray *responseObject) {
         NSArray *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[VKFriendsModel class] fromJSONArray:responseObject error:nil];
-        NSArray *sortedArray = [self.oldFriends filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"fristName contains %@", searchText]];
+        NSArray *sortedArray = [self.oldFriends filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(fristName contains %@) OR (lastName contains %@)", searchText,searchText]];
         [self.friendsDictionary setValue:responsedArray forKey:@"Global search"];
         [self.friendsDictionary setValue:sortedArray forKey:@"Friends"];
         [self.theTableView reloadData];
     }];
-
+    
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
@@ -182,7 +181,7 @@
     [fetchRequest setEntity:entity];
     NSError *error;
     NSArray *fetchedObjects = [self.coreDataStack.persistentStoreCoordinator executeRequest:fetchRequest withContext:context error:&error];
-
+    
     return fetchedObjects;
 }
 
@@ -220,16 +219,6 @@
         return YES;
     else
         return NO;
-}
-
-- (void)s {
-    NSIndexPath *p = [self.theTableView indexPathForSelectedRow];
-    
-    id cell = [self.theTableView cellForRowAtIndexPath:p];
-    
-    [cell setFrame:CGRectMake(0, 0, 320, 900)];
-    
-//    self.theTableView s
 }
 
 @end

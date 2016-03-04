@@ -56,7 +56,7 @@ const struct APIPaths APIPaths= {
 - (void)getUserInfoByUserID:(NSNumber *)userID withResponse:(void(^)(NSArray *))responseObject{
     VKClient *client = [[VKClient alloc] initWithBaseURL:[NSURL URLWithString:APIPaths.userInfo]];
     
-    [client GET:[NSString stringWithFormat:@"%@fields=online,photo_100,bdate,city&user_ids=%@&v=5.8&access_token=%@",APIPaths.userInfo,userID, [LogIn accessToken]] parameters:nil completion:^(OVCResponse * _Nullable response, NSError * _Nullable error) {
+    [client GET:[NSString stringWithFormat:@"%@fields=online,photo_100,bdate,city,sex&user_ids=%@&v=5.8&access_token=%@",APIPaths.userInfo,userID, [LogIn accessToken]] parameters:nil completion:^(OVCResponse * _Nullable response, NSError * _Nullable error) {
         NSArray *results = response.result[@"response"];
         responseObject(results);
     }];
@@ -66,7 +66,7 @@ const struct APIPaths APIPaths= {
     VKClient *wallClient = [[VKClient alloc] initWithBaseURL:[NSURL URLWithString:APIPaths.wallPosts]];
     int count = 100;
     
-    [wallClient GET:[NSString stringWithFormat:@"%@owner_id=%@&offset=0&count=%d&extended=1&fields=first_name,last_name,photo_100,online&v=5.45&access_token=%@",APIPaths.wallPosts,userID,count, [LogIn accessToken]] parameters:nil completion:^(OVCResponse * _Nullable response, NSError * _Nullable error) {
+    [wallClient GET:[NSString stringWithFormat:@"%@owner_id=%@&offset=0&count=%d&extended=1&fields=first_name,last_name,photo_100,online,name&v=5.45&access_token=%@",APIPaths.wallPosts,userID,count, [LogIn accessToken]] parameters:nil completion:^(OVCResponse * _Nullable response, NSError * _Nullable error) {
         NSArray *results = response.result[@"response"];
         responseWall(results);
     }];

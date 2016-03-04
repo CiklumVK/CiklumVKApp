@@ -16,6 +16,7 @@
                         nameLabel:(UILabel *)nameLabel
                         cityLabel:(UILabel *)cityLabel
                     birthdayLabel:(UILabel *)birthdayLabel
+                         sexLabel:(UILabel *)sexLabel
                            byInfo:(id)info{
     self = [super init];
     if (self){
@@ -24,15 +25,24 @@
         imageView.layer.cornerRadius = 50;
         [imageView sd_setImageWithURL:[NSURL URLWithString:user.photo100 ]];
         nameLabel.text = [NSString stringWithFormat:@"%@ %@",user.firstName , user.lastName];
-        if (user.cityInfo == nil){
+        if (!user.cityInfo){
             cityLabel.text = @"не заполнено";
         }else{
-        cityLabel.text = [NSString stringWithFormat:@"%@", user.cityInfo[@"title"]];
+            cityLabel.text = [NSString stringWithFormat:@"%@", user.cityInfo[@"title"]];
         }
         if (!user.birthdayDate){
             birthdayLabel.text = @"не заполнено";
         }else{
-        birthdayLabel.text = user.birthdayDate;
+            birthdayLabel.text = user.birthdayDate;
+        }
+        if (user.sexValue){
+            if (user.sexValue.integerValue == 1){
+                sexLabel.text = @"Женский";
+            }else if (user.sexValue.integerValue == 2){
+                sexLabel.text = @"Мужской";
+            }
+        }else{
+            sexLabel.text = @"не заполнено";
         }
     }
     return self;

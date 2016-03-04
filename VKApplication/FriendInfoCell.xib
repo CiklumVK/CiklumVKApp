@@ -25,16 +25,31 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laF-u3-MjO">
                         <rect key="frame" x="116" y="37" width="47" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.37169942492307695" green="0.37169942492307695" blue="0.37169942492307695" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoz-JN-CL8">
+                        <rect key="frame" x="116" y="73" width="196" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="OcL-pH-I0d"/>
+                            <constraint firstAttribute="width" constant="196" id="wM1-dG-JRS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.37169942490000002" green="0.37169942490000002" blue="0.37169942490000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="zoz-JN-CL8" secondAttribute="trailing" constant="8" id="hKP-zw-GAo"/>
+                    <constraint firstAttribute="bottom" secondItem="zoz-JN-CL8" secondAttribute="bottom" constant="22" id="iEW-ha-QI0"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarImage" destination="xwb-Yi-TYs" id="zwc-QV-483"/>
                 <outlet property="nameLabel" destination="gQy-Ec-Ife" id="xTe-SI-An7"/>
                 <outlet property="onlineLabel" destination="laF-u3-MjO" id="enD-VI-5EO"/>
+                <outlet property="yearsAndCityLabel" destination="zoz-JN-CL8" id="GUS-hd-isF"/>
             </connections>
             <point key="canvasLocation" x="183" y="236.5"/>
         </tableViewCell>
