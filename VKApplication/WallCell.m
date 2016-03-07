@@ -10,7 +10,6 @@
 #import "NSString+Extension.h"
 #import "RepostPostModel.h"
 #import "GroupsModel.h"
-#import "NSObject+Extension.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 
@@ -27,7 +26,7 @@
 @implementation WallCell
 
 
-- (void)fillWithWallPost:(WallPostModel *)wallPost userInfo:(UserInfoModel *)user andRepost:(NSArray *)repost{
+- (void)fillWithWallPost:(WallPostModel *)wallPost userInfo:(UserInfoModel *)user andRepost:(NSArray *)repost {
     self.dateLabel.text = [NSString dateStandartFormatByUnixTime:[wallPost.dateOfPost doubleValue]];
     self.postTextLabel.text = wallPost.textPost;
     [self setImageByWallPost:wallPost];
@@ -37,7 +36,7 @@
     
 }
 
-- (void)setImageByWallPost:(WallPostModel *)wallPost{
+- (void)setImageByWallPost:(WallPostModel *)wallPost {
     
     if ([[[wallPost.photo130 valueForKey:@"type"] objectAtIndex:0] isEqualToString:@"photo"]){
         NSString *urlString = [[[wallPost.photo130 valueForKey:@"photo"] valueForKey:@"photo_604"] objectAtIndex:0];
@@ -48,14 +47,6 @@
     }
 }
 
-- (void)awakeFromNib {
-    
-    self.avatarImage.layer.masksToBounds = YES;
-    self.avatarImage.layer.cornerRadius = 25;
-    [self.postTextLabel sizeToFit];
-    
-}
-
 - (void)addRepostWithObject:(id)object {
     if ([object[0] isKindOfClass:NSString.class]){
         [self.repostView  removeFromSuperview];
@@ -63,21 +54,20 @@
         [self.repostCell removeFromSuperview];
         return;
     } else{
-        
         if (!self.repostCell) {
             self.repostCell = [[[NSBundle mainBundle] loadNibNamed:@"WallCell" owner:self options:nil] firstObject];
         }
-        
         if ([object[0] isKindOfClass:NSArray.class]){
-            
             RepostPostModel *repost = [object[0] objectAtIndex:0];
             self.repostCell.postTextLabel.text = repost.textPost;
             CGFloat textHeight = [NSObject heightByText:repost.textPost labelWidth:304 andFontSize:17];
-            [self.repostCell setFrame:CGRectMake(0, 0, 320, textHeight+370)];
             self.repostCell.dateLabel.text = [NSString dateStandartFormatByUnixTime:repost.dateOfPost.doubleValue];
             if ([[[repost.photo130 valueForKey:@"photo"] objectAtIndex:0] isKindOfClass:NSDictionary.class] && [[[repost.photo130 valueForKey:@"type"] objectAtIndex:0] isEqualToString:@"photo"]){
                 [[self theImageViewByText:repost.textPost andViev:self.repostCell] sd_setImageWithURL:[NSURL URLWithString:[[[repost.photo130 valueForKey:@"photo"] valueForKey:@"photo_604"] objectAtIndex:0]]];
+                [self.repostCell setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-17, textHeight+370)];
             }else{
+                [self.repostCell setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-17, textHeight+70)];
+                
                 [[self theImageViewByText:repost.textPost andViev:self.repostCell] removeFromSuperview];
             }
             if (object[1]&& [object[1] isKindOfClass:GroupsModel.class]){
@@ -98,7 +88,7 @@
 - (UIImageView * )theImageViewByText:(NSString *)text andViev:(WallCell *)cell {
     CGFloat textHeight = [NSObject heightByText:text labelWidth:304 andFontSize:17];
     
-    CGRect newFrame = CGRectMake(8, textHeight+70, [UIScreen mainScreen].bounds.size.width-15, 300);
+    CGRect newFrame = CGRectMake(8, textHeight+70, [UIScreen mainScreen].bounds.size.width-28, 300);
     if (!cell.imgView.superview) {
         [cell.imgView removeFromSuperview];
         cell.imgView = nil;
@@ -112,7 +102,7 @@
 
 - (void)theRepostView {
     CGFloat textHeight = [NSObject heightByText:self.postTextLabel.text labelWidth:304 andFontSize:17];
-    CGRect newFrame = CGRectMake(5, textHeight+70, [UIScreen mainScreen].bounds.size.width-15, CGRectGetHeight(self.repostCell.frame));
+    CGRect newFrame = CGRectMake(15, textHeight+70, [UIScreen mainScreen].bounds.size.width, CGRectGetHeight(self.repostCell.frame));
     if (!self.repostView.superview){
         self.repostView = [UIView new];
         [self.contentView addSubview:self.repostView];

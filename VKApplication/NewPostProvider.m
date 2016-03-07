@@ -8,7 +8,7 @@
 
 #import "NewPostProvider.h"
 #import "VKClient.h"
-@interface NewPostProvider () 
+@interface NewPostProvider ()
 
 @property VKClient *vkClent;
 @end

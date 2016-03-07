@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AlertControllerDataSource : NSObject
+@interface AlertControllerManager : NSObject
 
 + (void)showAlertWithAction:(UIAlertAction *)alertAction byViewController:(UIViewController *)viewController;
 

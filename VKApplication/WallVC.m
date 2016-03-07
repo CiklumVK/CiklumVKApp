@@ -12,7 +12,7 @@
 #import "FriendsVC.h"
 #import "AvatarImagePicker.h"
 #import "VKClient.h"
-#import "AlertControllerDataSource.h"
+#import "AlertControllerManager.h"
 #import "UserInfoVC.h"
 
 
@@ -85,7 +85,7 @@
                                                                 handler:^(UIAlertAction *action) {
                                                                     self.imagePicker = [[AvatarImagePicker alloc] initWithViewController:self];
                                                                 }];
-    [AlertControllerDataSource showAlertWithAction:changePictureAction byViewController:self];
+    [AlertControllerManager showAlertWithAction:changePictureAction byViewController:self];
 }
 
 - (void)didSelectPost:(id)post byWallOwner:(NSNumber *)ownerID{
@@ -95,7 +95,7 @@
                                                                     VKClient *cl = [VKClient new];
                                                                     [cl deletePostByOwnerID:ownerID andPostID:[post valueForKey:@"postID"]];
                                                                 }];
-    [AlertControllerDataSource showAlertWithAction:deletePost byViewController:self];
+    [AlertControllerManager showAlertWithAction:deletePost byViewController:self];
     
 }
 

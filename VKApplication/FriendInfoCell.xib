@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,35 +15,51 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xwb-Yi-TYs">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xwb-Yi-TYs" customClass="RoundedImage">
                         <rect key="frame" x="8" y="8" width="100" height="100"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToRound" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                <real key="value" value="50"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQy-Ec-Ife">
-                        <rect key="frame" x="116" y="8" width="196" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQy-Ec-Ife">
+                        <rect key="frame" x="116" y="8" width="0.0" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laF-u3-MjO">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laF-u3-MjO">
                         <rect key="frame" x="116" y="37" width="47" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Vj5-KG-MyN"/>
+                            <constraint firstAttribute="width" constant="47" id="XqQ-6q-Uel"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.37169942492307695" green="0.37169942492307695" blue="0.37169942492307695" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoz-JN-CL8">
-                        <rect key="frame" x="116" y="73" width="196" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="OcL-pH-I0d"/>
-                            <constraint firstAttribute="width" constant="196" id="wM1-dG-JRS"/>
-                        </constraints>
+                        <rect key="frame" x="116" y="73" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.37169942490000002" green="0.37169942490000002" blue="0.37169942490000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="zoz-JN-CL8" secondAttribute="trailing" constant="8" id="hKP-zw-GAo"/>
-                    <constraint firstAttribute="bottom" secondItem="zoz-JN-CL8" secondAttribute="bottom" constant="22" id="iEW-ha-QI0"/>
+                    <constraint firstItem="zoz-JN-CL8" firstAttribute="leading" secondItem="xwb-Yi-TYs" secondAttribute="trailing" constant="8" id="4SV-ua-nSS"/>
+                    <constraint firstItem="laF-u3-MjO" firstAttribute="top" secondItem="gQy-Ec-Ife" secondAttribute="bottom" constant="8" symbolic="YES" id="8ef-TL-8vG"/>
+                    <constraint firstItem="laF-u3-MjO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="116" id="9k2-am-szc"/>
+                    <constraint firstItem="laF-u3-MjO" firstAttribute="leading" secondItem="xwb-Yi-TYs" secondAttribute="trailing" constant="8" id="Eea-sr-ptC"/>
+                    <constraint firstItem="xwb-Yi-TYs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Ehl-3E-57R"/>
+                    <constraint firstItem="zoz-JN-CL8" firstAttribute="top" secondItem="laF-u3-MjO" secondAttribute="bottom" constant="15" id="GZc-2J-tTF"/>
+                    <constraint firstItem="laF-u3-MjO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="37" id="KRc-Jp-NP4"/>
+                    <constraint firstItem="laF-u3-MjO" firstAttribute="leading" secondItem="xwb-Yi-TYs" secondAttribute="trailing" constant="8" symbolic="YES" id="MoW-JZ-zbK"/>
+                    <constraint firstItem="laF-u3-MjO" firstAttribute="leading" secondItem="gQy-Ec-Ife" secondAttribute="leading" id="muB-mc-zJ2"/>
+                    <constraint firstItem="xwb-Yi-TYs" firstAttribute="top" secondItem="gQy-Ec-Ife" secondAttribute="top" id="oc8-ly-s8J"/>
+                    <constraint firstItem="xwb-Yi-TYs" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="v0W-zG-OS3"/>
+                    <constraint firstItem="xwb-Yi-TYs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="z8c-qs-OD0"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

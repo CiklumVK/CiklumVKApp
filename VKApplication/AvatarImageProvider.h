@@ -10,6 +10,6 @@
 
 @interface AvatarImageProvider : NSObject
 
--(instancetype)initWithImage:(UIImage *)image andServerPath:(NSString *)serverPath;
+- (instancetype)initWithImage:(UIImage *)image andServerPath:(NSString *)serverPath;
 
 @end

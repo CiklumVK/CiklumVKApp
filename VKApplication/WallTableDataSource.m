@@ -16,7 +16,6 @@
 #import "WallPostModel.h"
 #import "RepostPostModel.h"
 #import "GroupsModel.h"
-#import "NSObject+Extension.h"
 
 
 @interface WallTableDataSource()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate>
@@ -171,20 +170,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0 ){
-        return 117;
-    }else if ([[[[self.wallPostsArray[indexPath.row] valueForKey:@"photo130"]valueForKey:@"type" ] objectAtIndex:0] isEqualToString:@"photo"]){
-        CGFloat height = [NSObject heightByText:[self.wallPostsArray[indexPath.row] valueForKey:@"textPost"] labelWidth:304 andFontSize:17];
-        return height+380;
-    }else if (![self.repostsArray[indexPath.row] isEqual:@"no repost"]){
-        CGFloat height = [NSObject heightByText:[self.wallPostsArray[indexPath.row] valueForKey:@"textPost"] labelWidth:304 andFontSize:17];
-        CGFloat repHeight = [NSObject heightByText:[[self.repostsArray[indexPath.row] valueForKey:@"textPost" ]objectAtIndex:0] labelWidth:304 andFontSize:17];
-
-        return height+repHeight+480;
-    }else{
-      CGFloat height = [NSObject heightByText:[self.wallPostsArray[indexPath.row] valueForKey:@"textPost"] labelWidth:304 andFontSize:17];
-        return height+70;
-    }
+    return [self calculateHeightByIndexPath:indexPath];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -259,6 +245,28 @@
     }else{
         self.wallPostsArray = self.allWallPostsArray;
         [self.theTableView reloadData];
+    }
+}
+
+- (CGFloat)calculateHeightByIndexPath:(NSIndexPath *)indexPath{\
+    if (self.wallPostsArray.count){
+    CGFloat textPostHeight = [NSObject heightByText:[self.wallPostsArray[indexPath.row] valueForKey:@"textPost"] labelWidth:304 andFontSize:17];
+    if (indexPath.section == 0 ){
+        return 117;
+    }else if ([[[[self.wallPostsArray[indexPath.row] valueForKey:@"photo130"]valueForKey:@"type" ] objectAtIndex:0] isEqualToString:@"photo"]){
+        return textPostHeight+pictureHeight+topViewHeight+5;
+    }else if (![self.repostsArray[indexPath.row] isEqual:@"no repost"]){
+        CGFloat repostTextHeight = [NSObject heightByText:[[self.repostsArray[indexPath.row] valueForKey:@"textPost" ]objectAtIndex:0] labelWidth:304 andFontSize:17];
+        if (![[[self.repostsArray[indexPath.row] valueForKey:@"photo130"] objectAtIndex:0] isKindOfClass:NSNull.class] &&[[[[[self.repostsArray[indexPath.row]  valueForKey:@"photo130"]valueForKey:@"type"] objectAtIndex:0] objectAtIndex:0] isEqualToString:@"photo"]){
+            return repostTextHeight+textPostHeight+pictureHeight+topViewHeight*2+5;
+        }else{
+            return textPostHeight+repostTextHeight+topViewHeight*2+5;
+        }
+    }else{
+        return textPostHeight+topViewHeight;
+    }
+    }else{
+        return 117;
     }
 }
 

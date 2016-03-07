@@ -64,9 +64,7 @@ const struct APIPaths APIPaths= {
 
 - (void)getWallPostsByUserID:(NSNumber *)userID withResponseOfWallPost:(void (^)(NSArray *))responseWall{
     VKClient *wallClient = [[VKClient alloc] initWithBaseURL:[NSURL URLWithString:APIPaths.wallPosts]];
-    int count = 100;
-    
-    [wallClient GET:[NSString stringWithFormat:@"%@owner_id=%@&offset=0&count=%d&extended=1&fields=first_name,last_name,photo_100,online,name&v=5.45&access_token=%@",APIPaths.wallPosts,userID,count, [LogIn accessToken]] parameters:nil completion:^(OVCResponse * _Nullable response, NSError * _Nullable error) {
+    [wallClient GET:[NSString stringWithFormat:@"%@owner_id=%@&offset=0&count=100&extended=1&fields=first_name,last_name,photo_100,online,name&v=5.45&access_token=%@",APIPaths.wallPosts,userID, [LogIn accessToken]] parameters:nil completion:^(OVCResponse * _Nullable response, NSError * _Nullable error) {
         NSArray *results = response.result[@"response"];
         responseWall(results);
     }];

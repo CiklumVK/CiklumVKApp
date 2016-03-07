@@ -11,7 +11,7 @@
 #import "LogIn.h"
 #import <Overcoat/Overcoat.h>
 #import <Mantle/Mantle.h>
-
+#import "NSObject+Extension.h"
 
 extern const struct APIPaths
 {
@@ -29,7 +29,8 @@ extern const struct APIPaths
 
 static NSString *const appID = @"5227913";
 
-
+static CGFloat const pictureHeight = 300;
+static CGFloat const topViewHeight = 70;
 
 
 

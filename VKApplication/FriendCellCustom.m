@@ -42,10 +42,4 @@
         
     }
 }
-- (void)awakeFromNib{
-    
-    self.avatarImage.layer.masksToBounds = YES;
-    self.avatarImage.layer.cornerRadius = 25;
-    
-}
 @end

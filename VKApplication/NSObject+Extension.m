@@ -12,7 +12,9 @@
 
 
 + (CGFloat)heightByText:(NSString *)text labelWidth:(CGFloat)width andFontSize:(CGFloat)fontSize{
-    
+    if (!text.length){
+        return 0;
+    }
     CGRect r = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
                                   options:NSStringDrawingUsesLineFragmentOrigin
                                attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}
