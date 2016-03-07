@@ -211,11 +211,9 @@
             WallPostModel *obj = self.wallPostsArray[indexPath.row];
             RepostPostModel *rep = self.repostsArray[indexPath.row];
             NSArray *arr = [NSArray arrayWithObjects:rep,[self getOwneOfRepost:self.groupsArray withUsersArray:self.userProfileArray withRepost:rep], nil];
-            [cell2 fillWithObject:obj atIndex:indexPath];
-            [cell2 fillWithObject:arr atIndex:indexPath];
-            [cell2 fillWithObject:[self userByArray:self.userProfileArray andWallPost:obj] atIndex:indexPath];
+            [cell2 fillWithWallPost:obj userInfo:[self userByArray:self.userProfileArray andWallPost:obj] andRepost:arr];
         }else{
-            [cell2 fillWithObject:@"no posts" atIndex:indexPath];
+            cell2 = nil;
         }
         return cell2;
     }

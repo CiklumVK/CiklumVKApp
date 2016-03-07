@@ -23,7 +23,7 @@
     if (self){
         self.friendsTableDataSource = aClass;
         [self setUpTableView:tableView];
-        self.arrayOfSortWays = @[@"Показать только мужчин",@"Показать только женщин",@"Сбросить"];
+        self.arrayOfSortWays = @[@"Показать только мужчин",@"Показать только женщин",@"Показать всех"];
         self.popoverController = popoverController;
     }
     return  self;

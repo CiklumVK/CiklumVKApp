@@ -7,8 +7,6 @@
 //
 
 #import "WallCell.h"
-#import "WallPostModel.h"
-#import "UserInfoModel.h"
 #import "NSString+Extension.h"
 #import "RepostPostModel.h"
 #import "GroupsModel.h"
@@ -28,36 +26,24 @@
 
 @implementation WallCell
 
-- (void)fillWithObject:(id)object atIndex:(NSIndexPath *)indexPath {
 
-    if ([object isKindOfClass:WallPostModel.class]){
-        WallPostModel *wallPost = object;
-        self.dateLabel.text = [NSString dateStandartFormatByUnixTime:[wallPost.dateOfPost doubleValue]];
-        self.postTextLabel.text = wallPost.textPost;
-        [self setImageByWallPost:wallPost];
-        
-    }else if ([object isKindOfClass:UserInfoModel.class]){
-        UserInfoModel *user = object;
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",user.firstName , user.lastName];
-        [self.avatarImage sd_setImageWithURL:[NSURL URLWithString:user.photo100 ]];
-        
-    }else if ([object isKindOfClass:NSArray.class]){
-        [self addRepostWithObject:object];
-    }
+- (void)fillWithWallPost:(WallPostModel *)wallPost userInfo:(UserInfoModel *)user andRepost:(NSArray *)repost{
+    self.dateLabel.text = [NSString dateStandartFormatByUnixTime:[wallPost.dateOfPost doubleValue]];
+    self.postTextLabel.text = wallPost.textPost;
+    [self setImageByWallPost:wallPost];
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",user.firstName , user.lastName];
+    [self.avatarImage sd_setImageWithURL:[NSURL URLWithString:user.photo100 ]];
+    [self addRepostWithObject:repost];
+    
 }
 
 - (void)setImageByWallPost:(WallPostModel *)wallPost{
     
     if ([[[wallPost.photo130 valueForKey:@"type"] objectAtIndex:0] isEqualToString:@"photo"]){
         NSString *urlString = [[[wallPost.photo130 valueForKey:@"photo"] valueForKey:@"photo_604"] objectAtIndex:0];
-        [[self theImageView] sd_setImageWithURL:[NSURL URLWithString:urlString]];
-        UIImageView *imgview =[UIImageView new];
-        imgview.alpha = 0.05;
-        [imgview sd_setImageWithURL:[NSURL URLWithString:urlString]];
-        [self setBackgroundView:imgview];
-        
+        [[self theImageViewByText:self.postTextLabel.text andViev:self] sd_setImageWithURL:[NSURL URLWithString:urlString]];
     }else{
-        [[self theImageView] removeFromSuperview];
+        [[self theImageViewByText:self.postTextLabel.text andViev:self] removeFromSuperview];
         [self setBackgroundView:nil];
     }
 }
@@ -72,64 +58,66 @@
 
 - (void)addRepostWithObject:(id)object {
     if ([object[0] isKindOfClass:NSString.class]){
-        [self.repostView removeFromSuperview];
+        [self.repostView  removeFromSuperview];
+        self.repostView = nil;
         [self.repostCell removeFromSuperview];
         return;
-    }
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"WallCell" owner:self options:nil];
-    self.repostCell = [topLevelObjects objectAtIndex:0];
+    } else{
+        
+        if (!self.repostCell) {
+            self.repostCell = [[[NSBundle mainBundle] loadNibNamed:@"WallCell" owner:self options:nil] firstObject];
+        }
+        
+        if ([object[0] isKindOfClass:NSArray.class]){
+            
+            RepostPostModel *repost = [object[0] objectAtIndex:0];
+            self.repostCell.postTextLabel.text = repost.textPost;
+            CGFloat textHeight = [NSObject heightByText:repost.textPost labelWidth:304 andFontSize:17];
+            [self.repostCell setFrame:CGRectMake(0, 0, 320, textHeight+370)];
+            self.repostCell.dateLabel.text = [NSString dateStandartFormatByUnixTime:repost.dateOfPost.doubleValue];
+            if ([[[repost.photo130 valueForKey:@"photo"] objectAtIndex:0] isKindOfClass:NSDictionary.class] && [[[repost.photo130 valueForKey:@"type"] objectAtIndex:0] isEqualToString:@"photo"]){
+                [[self theImageViewByText:repost.textPost andViev:self.repostCell] sd_setImageWithURL:[NSURL URLWithString:[[[repost.photo130 valueForKey:@"photo"] valueForKey:@"photo_604"] objectAtIndex:0]]];
+            }else{
+                [[self theImageViewByText:repost.textPost andViev:self.repostCell] removeFromSuperview];
+            }
+            if (object[1]&& [object[1] isKindOfClass:GroupsModel.class]){
+                GroupsModel *group = object[1];
+                self.repostCell.nameLabel.text = [NSString stringWithFormat:@"➥ %@",group.nameOfGroup ];
+                [self.repostCell.avatarImage sd_setImageWithURL:[NSURL URLWithString:group.photo100]];
+            } else if (object[1]&& [object[1] isKindOfClass:UserInfoModel.class]){
+                UserInfoModel *user = object[1];
+                self.repostCell.nameLabel.text = [NSString stringWithFormat:@"➥ %@ %@",user.firstName, user.lastName];
+                [self.repostCell.avatarImage sd_setImageWithURL:[NSURL URLWithString:user.photo100]];
+            }
+            
+            [self theRepostView];
+        }}
+}
 
+
+- (UIImageView * )theImageViewByText:(NSString *)text andViev:(WallCell *)cell {
+    CGFloat textHeight = [NSObject heightByText:text labelWidth:304 andFontSize:17];
     
-    if ([object[0] isKindOfClass:NSArray.class]){
-        
-        RepostPostModel *repost = [object[0] objectAtIndex:0];
-        self.repostCell.postTextLabel.text = repost.textPost;
-        CGFloat textHeight = [NSObject heightByText:repost.textPost labelWidth:304 andFontSize:17];
-        
-        [[self.repostCell.subviews objectAtIndex:0] setFrame:CGRectMake(0, 0, 320, textHeight+400)];
-        [self.repostCell setFrame:CGRectMake(0, 0, 320, textHeight+400)];
-        self.repostCell.dateLabel.text = [NSString dateStandartFormatByUnixTime:repost.dateOfPost.doubleValue];
-        if ([[[repost.photo130 valueForKey:@"photo"] objectAtIndex:0] isKindOfClass:NSDictionary.class]){
-            [[self.repostCell theImageView] sd_setImageWithURL:[NSURL URLWithString:[[[repost.photo130 valueForKey:@"photo"] valueForKey:@"photo_604"] objectAtIndex:0]]];
-        }
-        if (object[1]&& [object[1] isKindOfClass:GroupsModel.class]){
-            GroupsModel *group = object[1];
-            self.repostCell.nameLabel.text = [NSString stringWithFormat:@"➥ %@",group.nameOfGroup ];
-            [self.repostCell.avatarImage sd_setImageWithURL:[NSURL URLWithString:group.photo100]];
-        }else if (object[1]&& [object[1] isKindOfClass:UserInfoModel.class]){
-            UserInfoModel *user = object[1];
-            self.repostCell.nameLabel.text = [NSString stringWithFormat:@"➥ %@ %@",user.firstName, user.lastName];
-            [self.repostCell.avatarImage sd_setImageWithURL:[NSURL URLWithString:user.photo100]];
-        }
-        [[self theRepostView] addSubview:self.repostCell];
+    CGRect newFrame = CGRectMake(8, textHeight+70, [UIScreen mainScreen].bounds.size.width-15, 300);
+    if (!cell.imgView.superview) {
+        [cell.imgView removeFromSuperview];
+        cell.imgView = nil;
+        cell.imgView = [UIImageView new];
+        cell.imgView.contentMode = UIViewContentModeScaleAspectFit;
+        [cell addSubview:cell.imgView];
     }
+    cell.imgView.frame = newFrame;
+    return cell.imgView;
 }
 
-
-- (UIImageView * )theImageView {
-    if (!self.imgView.superview) {
-        self.imgView = nil;
-        CGFloat textHeight = [NSObject heightByText:self.postTextLabel.text labelWidth:304 andFontSize:17];
-        if (self.postTextLabel.text.length == 0){
-            textHeight = 0;
-        }
-        self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(8, textHeight+70, [UIScreen mainScreen].bounds.size.width-15, 300)];
-        self.imgView.contentMode = UIViewContentModeScaleAspectFit ;
-        [self addSubview:self.imgView];
-    }
-    return self.imgView;
-}
-
-- (UIView *)theRepostView{
+- (void)theRepostView {
+    CGFloat textHeight = [NSObject heightByText:self.postTextLabel.text labelWidth:304 andFontSize:17];
+    CGRect newFrame = CGRectMake(5, textHeight+70, [UIScreen mainScreen].bounds.size.width-15, CGRectGetHeight(self.repostCell.frame));
     if (!self.repostView.superview){
-        self.repostView = nil;
-        CGFloat textHeight = [NSObject heightByText:self.postTextLabel.text labelWidth:304 andFontSize:17];
-        if (self.postTextLabel.text.length == 0){
-            textHeight = 0;
-        }
-        self.repostView =[[UIView alloc] initWithFrame:CGRectMake(5, textHeight+70, [UIScreen mainScreen].bounds.size.width-15, textHeight+380)];
-        [self addSubview:self.repostView];
+        self.repostView = [UIView new];
+        [self.contentView addSubview:self.repostView];
+        [self.repostView addSubview:self.repostCell];
     }
-    return self.repostView;
+    self.repostView.frame = newFrame;
 }
 @end

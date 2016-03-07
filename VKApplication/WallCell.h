@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WallPostModel.h"
+#import "UserInfoModel.h"
 
 
 @protocol StoreWall <NSObject>
 
-- (void)fillWithObject:(id)object atIndex:(NSIndexPath *)indexPath;
+//- (void)fillWithObject:(id)object atIndex:(NSIndexPath *)indexPath;
+- (void)fillWithWallPost:(WallPostModel *)wallPost userInfo:(UserInfoModel *)user andRepost:(NSArray *)repost;
 
 @end
 
