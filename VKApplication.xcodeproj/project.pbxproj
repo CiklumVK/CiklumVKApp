@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		172883F0982A8F1262B6EB8C /* libPods-VKApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15060D033512D58913E43455 /* libPods-VKApplication.a */; };
 		35B97E811C8DFA050017E80F /* RoundedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B97E801C8DFA050017E80F /* RoundedImage.m */; };
+		35B97E841C8F83E90017E80F /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B97E831C8F83E90017E80F /* CoreDataManager.m */; };
+		35B97E871C8F86360017E80F /* WallTableDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B97E861C8F86360017E80F /* WallTableDataProvider.m */; };
 		7F05A2E81C774C4300393CCA /* AvatarImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F05A2E71C774C4300393CCA /* AvatarImagePicker.m */; };
 		7F05A33A1C7943DA00393CCA /* PhotoUploadServerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F05A3391C7943D900393CCA /* PhotoUploadServerModel.m */; };
 		7F05A33D1C7948A500393CCA /* AvatarImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F05A33C1C7948A500393CCA /* AvatarImageProvider.m */; };
@@ -44,7 +46,7 @@
 		7FF7768B1C64B57E009D16F0 /* WallTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF7768A1C64B57E009D16F0 /* WallTableDataSource.m */; };
 		7FF776921C64B896009D16F0 /* FriendInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF776901C64B896009D16F0 /* FriendInfoCell.m */; };
 		7FF776931C64B896009D16F0 /* FriendInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FF776911C64B896009D16F0 /* FriendInfoCell.xib */; };
-		7FFD1A881C807298004AC2E2 /* AlertControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A871C807298004AC2E2 /* AlertControllerManager.m */; };
+		7FFD1A881C807298004AC2E2 /* AlertControllerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A871C807298004AC2E2 /* AlertControllerProvider.m */; };
 		7FFD1A8B1C80B2BF004AC2E2 /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A8A1C80B2BF004AC2E2 /* UserInfoVC.m */; };
 		7FFD1A8E1C80B2F8004AC2E2 /* UserInfoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A8D1C80B2F8004AC2E2 /* UserInfoDataSource.m */; };
 		7FFD1A9A1C826E8D004AC2E2 /* RepostPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD1A991C826E8D004AC2E2 /* RepostPostModel.m */; };
@@ -81,6 +83,10 @@
 		15060D033512D58913E43455 /* libPods-VKApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VKApplication.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B97E7F1C8DFA050017E80F /* RoundedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedImage.h; sourceTree = "<group>"; };
 		35B97E801C8DFA050017E80F /* RoundedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedImage.m; sourceTree = "<group>"; };
+		35B97E821C8F83E90017E80F /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		35B97E831C8F83E90017E80F /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		35B97E851C8F86360017E80F /* WallTableDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallTableDataProvider.h; sourceTree = "<group>"; };
+		35B97E861C8F86360017E80F /* WallTableDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallTableDataProvider.m; sourceTree = "<group>"; };
 		7F05A2E61C774C4300393CCA /* AvatarImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarImagePicker.h; sourceTree = "<group>"; };
 		7F05A2E71C774C4300393CCA /* AvatarImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarImagePicker.m; sourceTree = "<group>"; };
 		7F05A3381C7943D900393CCA /* PhotoUploadServerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoUploadServerModel.h; sourceTree = "<group>"; };
@@ -148,8 +154,8 @@
 		7FF7768F1C64B896009D16F0 /* FriendInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendInfoCell.h; sourceTree = "<group>"; };
 		7FF776901C64B896009D16F0 /* FriendInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendInfoCell.m; sourceTree = "<group>"; };
 		7FF776911C64B896009D16F0 /* FriendInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendInfoCell.xib; sourceTree = "<group>"; };
-		7FFD1A861C807298004AC2E2 /* AlertControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertControllerManager.h; sourceTree = "<group>"; };
-		7FFD1A871C807298004AC2E2 /* AlertControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertControllerManager.m; sourceTree = "<group>"; };
+		7FFD1A861C807298004AC2E2 /* AlertControllerProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertControllerProvider.h; sourceTree = "<group>"; };
+		7FFD1A871C807298004AC2E2 /* AlertControllerProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertControllerProvider.m; sourceTree = "<group>"; };
 		7FFD1A891C80B2BF004AC2E2 /* UserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
 		7FFD1A8A1C80B2BF004AC2E2 /* UserInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoVC.m; sourceTree = "<group>"; };
 		7FFD1A8C1C80B2F8004AC2E2 /* UserInfoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoDataSource.h; sourceTree = "<group>"; };
@@ -207,6 +213,21 @@
 				0D1280007CB96637FD6DE030 /* Pods-VKApplication.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		35B97E881C8F863F0017E80F /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				7F1194E91C70F2680034D880 /* NewPostProvider.h */,
+				7F1194EA1C70F2680034D880 /* NewPostProvider.m */,
+				7F05A33B1C7948A500393CCA /* AvatarImageProvider.h */,
+				7F05A33C1C7948A500393CCA /* AvatarImageProvider.m */,
+				7FFD1A861C807298004AC2E2 /* AlertControllerProvider.h */,
+				7FFD1A871C807298004AC2E2 /* AlertControllerProvider.m */,
+				35B97E851C8F86360017E80F /* WallTableDataProvider.h */,
+				35B97E861C8F86360017E80F /* WallTableDataProvider.m */,
+			);
+			name = Providers;
 			sourceTree = "<group>";
 		};
 		7F08D8F31C4936800099E85F = {
@@ -319,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				7F4A22681C7F5E37008E075D /* DataSources */,
+				35B97E881C8F863F0017E80F /* Providers */,
 				7F7238301C690E55007A28F7 /* MTLModels */,
 				7F08D93B1C4948420099E85F /* Categories */,
 				7F08D9021C4936800099E85F /* AppDelegate.h */,
@@ -329,10 +351,6 @@
 				7F08D93D1C4948BA0099E85F /* LogIn.m */,
 				7FF050791C515F490090D984 /* LogInModel.h */,
 				7FF0507A1C515F490090D984 /* LogInModel.m */,
-				7F1194E91C70F2680034D880 /* NewPostProvider.h */,
-				7F1194EA1C70F2680034D880 /* NewPostProvider.m */,
-				7F05A33B1C7948A500393CCA /* AvatarImageProvider.h */,
-				7F05A33C1C7948A500393CCA /* AvatarImageProvider.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -367,8 +385,6 @@
 				7FF7768A1C64B57E009D16F0 /* WallTableDataSource.m */,
 				7FFD7F1C1C7C8BB4007A0C43 /* PopoverControllerDataSource.h */,
 				7FFD7F1D1C7C8BB4007A0C43 /* PopoverControllerDataSource.m */,
-				7FFD1A861C807298004AC2E2 /* AlertControllerManager.h */,
-				7FFD1A871C807298004AC2E2 /* AlertControllerManager.m */,
 				7FFD1A8C1C80B2F8004AC2E2 /* UserInfoDataSource.h */,
 				7FFD1A8D1C80B2F8004AC2E2 /* UserInfoDataSource.m */,
 			);
@@ -385,6 +401,8 @@
 				7FFD7F251C7D9F10007A0C43 /* FriendEntity.m */,
 				7F16E8731C74E9E10042CD52 /* CoreDataStack.h */,
 				7F16E8741C74E9E10042CD52 /* CoreDataStack.m */,
+				35B97E821C8F83E90017E80F /* CoreDataManager.h */,
+				35B97E831C8F83E90017E80F /* CoreDataManager.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -610,6 +628,7 @@
 			files = (
 				7F08D9071C4936800099E85F /* ViewController.m in Sources */,
 				7FFD1A8B1C80B2BF004AC2E2 /* UserInfoVC.m in Sources */,
+				35B97E841C8F83E90017E80F /* CoreDataManager.m in Sources */,
 				7FF0507B1C515F490090D984 /* LogInModel.m in Sources */,
 				7F0BA4951C4AA857006DC89F /* FriendsTableDataSource.m in Sources */,
 				7F16E8751C74E9E10042CD52 /* CoreDataStack.m in Sources */,
@@ -628,6 +647,7 @@
 				7FFD1AA31C875B17004AC2E2 /* NSObject+Extension.m in Sources */,
 				7FFD1A9D1C84737B004AC2E2 /* GroupsModel.m in Sources */,
 				7F08D9011C4936800099E85F /* main.m in Sources */,
+				35B97E871C8F86360017E80F /* WallTableDataProvider.m in Sources */,
 				7FF776921C64B896009D16F0 /* FriendInfoCell.m in Sources */,
 				7F1194F41C7396A30034D880 /* MainNavigationVC.m in Sources */,
 				7F05A33D1C7948A500393CCA /* AvatarImageProvider.m in Sources */,
@@ -636,7 +656,7 @@
 				7F7238331C69F524007A28F7 /* WallPostModel.m in Sources */,
 				7F08D93E1C4948BA0099E85F /* LogIn.m in Sources */,
 				7FF7768B1C64B57E009D16F0 /* WallTableDataSource.m in Sources */,
-				7FFD1A881C807298004AC2E2 /* AlertControllerManager.m in Sources */,
+				7FFD1A881C807298004AC2E2 /* AlertControllerProvider.m in Sources */,
 				7FFD7F1E1C7C8BB4007A0C43 /* PopoverControllerDataSource.m in Sources */,
 				7FFD1A9A1C826E8D004AC2E2 /* RepostPostModel.m in Sources */,
 				35B97E811C8DFA050017E80F /* RoundedImage.m in Sources */,
@@ -780,6 +800,8 @@
 			baseConfigurationReference = 0621801282E14834D971D391 /* Pods-VKApplication.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT)/Helper.pch";
@@ -787,6 +809,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vasylvasylchenko.VKApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -795,6 +818,8 @@
 			baseConfigurationReference = 0D1280007CB96637FD6DE030 /* Pods-VKApplication.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT)/Helper.pch";
@@ -802,6 +827,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vasylvasylchenko.VKApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

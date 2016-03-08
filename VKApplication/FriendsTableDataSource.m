@@ -15,6 +15,7 @@
 #import "CoreDataStack.h"
 #import "FriendEntity.h"
 #import "PopoverControllerDataSource.h"
+#import "CoreDataManager.h"
 
 
 @interface FriendsTableDataSource()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, PopoverControllerDelegate>
@@ -59,10 +60,10 @@
 
 - (void)loadFriendList:(UIRefreshControl *)refreshControl{
     if ([self connected]){
-        [self deleteEntity];
+        [CoreDataManager deleteEntity];
         [self.vkClient getFriendsListbyUesrID:self.userID withhResponse:^(NSArray *responseObject) {
             NSArray<VKFriendsModel *> *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[VKFriendsModel class] fromJSONArray:responseObject error:nil];
-            [self saveMYfriendsByResponsedArray:responsedArray];
+            [CoreDataManager saveFriendsByResponsedArray:responsedArray];
             NSMutableArray *array = [[self fetchedArray] mutableCopy];
             [self.friendsDictionary setValue:array forKey:@"Friends"];
             self.oldFriends = array;
@@ -183,31 +184,6 @@
     NSArray *fetchedObjects = [self.coreDataStack.persistentStoreCoordinator executeRequest:fetchRequest withContext:context error:&error];
     
     return fetchedObjects;
-}
-
-- (void)saveMYfriendsByResponsedArray:(NSArray *)responsedArray{
-    for (VKFriendsModel *obj in responsedArray){
-        
-        FriendEntity *friend = (FriendEntity *)[NSEntityDescription insertNewObjectForEntityForName:@"FriendEntity" inManagedObjectContext:[self.coreDataStack managedObjectContext]];
-        friend.fristName = obj.firstName;
-        friend.lastName = obj.lastName;
-        friend.userID = [NSString stringWithFormat:@"%@",obj.userID ];
-        friend.onlineValue = [NSString stringWithFormat:@"%@",obj.onlineValue];
-        friend.photoPath = obj.photo100;
-        friend.sexFriend = [NSString stringWithFormat:@"%@",obj.sexFriend ];
-        
-        [self.coreDataStack saveContext];
-    }
-}
-
-- (void)deleteEntity{
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"FriendEntity"];
-    NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
-    NSError *error;
-    [self.coreDataStack.persistentStoreCoordinator executeRequest:delete withContext:[self.coreDataStack managedObjectContext] error:&error];
-    if (error){
-        NSLog(@"%@", error);
-    }
 }
 
 # pragma mark - Internet test

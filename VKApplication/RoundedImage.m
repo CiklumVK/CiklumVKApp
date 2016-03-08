@@ -13,6 +13,6 @@
 - (void)awakeFromNib{
     self.layer.masksToBounds = self.masksToRound;
     self.layer.cornerRadius = self.radius;
-    
 }
+
 @end

@@ -64,9 +64,9 @@
             self.repostCell.dateLabel.text = [NSString dateStandartFormatByUnixTime:repost.dateOfPost.doubleValue];
             if ([[[repost.photo130 valueForKey:@"photo"] objectAtIndex:0] isKindOfClass:NSDictionary.class] && [[[repost.photo130 valueForKey:@"type"] objectAtIndex:0] isEqualToString:@"photo"]){
                 [[self theImageViewByText:repost.textPost andViev:self.repostCell] sd_setImageWithURL:[NSURL URLWithString:[[[repost.photo130 valueForKey:@"photo"] valueForKey:@"photo_604"] objectAtIndex:0]]];
-                [self.repostCell setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-17, textHeight+370)];
+                [self.repostCell setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-17, textHeight+pictureHeight+topViewHeight)];
             }else{
-                [self.repostCell setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-17, textHeight+70)];
+                [self.repostCell setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-17, textHeight+topViewHeight)];
                 
                 [[self theImageViewByText:repost.textPost andViev:self.repostCell] removeFromSuperview];
             }
@@ -88,7 +88,7 @@
 - (UIImageView * )theImageViewByText:(NSString *)text andViev:(WallCell *)cell {
     CGFloat textHeight = [NSObject heightByText:text labelWidth:304 andFontSize:17];
     
-    CGRect newFrame = CGRectMake(8, textHeight+70, [UIScreen mainScreen].bounds.size.width-28, 300);
+    CGRect newFrame = CGRectMake(8, textHeight+topViewHeight, [UIScreen mainScreen].bounds.size.width-28, pictureHeight);
     if (!cell.imgView.superview) {
         [cell.imgView removeFromSuperview];
         cell.imgView = nil;
@@ -102,7 +102,7 @@
 
 - (void)theRepostView {
     CGFloat textHeight = [NSObject heightByText:self.postTextLabel.text labelWidth:304 andFontSize:17];
-    CGRect newFrame = CGRectMake(15, textHeight+70, [UIScreen mainScreen].bounds.size.width, CGRectGetHeight(self.repostCell.frame));
+    CGRect newFrame = CGRectMake(15, textHeight+topViewHeight, [UIScreen mainScreen].bounds.size.width, CGRectGetHeight(self.repostCell.frame));
     if (!self.repostView.superview){
         self.repostView = [UIView new];
         [self.contentView addSubview:self.repostView];

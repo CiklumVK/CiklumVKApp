@@ -10,7 +10,7 @@
 #import "VKClient.h"
 #import "AvatarImageProvider.h"
 
-@interface AvatarImagePicker ()<UIImagePickerControllerDelegate>
+@interface AvatarImagePicker () <UIImagePickerControllerDelegate>
 
 @property VKClient *vkClient;
 @property UIImage *imageFromCameraRoll;
@@ -42,12 +42,12 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo{
     
     [picker dismissViewControllerAnimated:YES completion:^{
-       [self.vkClient getServerForUpLoadPictWithResponse:^(NSDictionary *responseObject) {
-           PhotoUploadServerModel *upLoadServer = [MTLJSONAdapterWithoutNil modelOfClass:[PhotoUploadServerModel class] fromJSONDictionary:responseObject error:nil];
-           self.avatarImageProvider = [[AvatarImageProvider alloc] initWithImage:image andServerPath:upLoadServer.serverPath];
-       }];
+        [self.vkClient getServerForUpLoadPictWithResponse:^(NSDictionary *responseObject) {
+            PhotoUploadServerModel *upLoadServer = [MTLJSONAdapterWithoutNil modelOfClass:[PhotoUploadServerModel class] fromJSONDictionary:responseObject error:nil];
+            self.avatarImageProvider = [[AvatarImageProvider alloc] initWithImage:image andServerPath:upLoadServer.serverPath];
+        }];
     }];
-
+    
 }
 
 @end

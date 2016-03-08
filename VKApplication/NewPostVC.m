@@ -8,6 +8,7 @@
 
 #import "NewPostVC.h"
 #import "NewPostProvider.h"
+#import "WallVC.h"
 
 @interface NewPostVC ()
 @property (weak, nonatomic) IBOutlet UITextField *theTextField;
@@ -25,7 +26,8 @@
 }
 - (IBAction)sendButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
-         self.postProvider = [[NewPostProvider alloc] initWithTextField:self.theTextField withUserID:self.userID];
+        self.postProvider = [[NewPostProvider alloc] initWithTextField:self.theTextField withUserID:self.userID];
+        [self.wallVC setUpTableView];
     }];
 }
 

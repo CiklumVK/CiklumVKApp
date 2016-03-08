@@ -12,4 +12,6 @@
 
 @property (strong) NSNumber *userID;
 
+- (void)setUpTableView;
+
 @end

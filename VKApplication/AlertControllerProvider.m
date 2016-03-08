@@ -6,9 +6,9 @@
 //  Copyright © 2016 Vasyl Vasylchenko. All rights reserved.
 //
 
-#import "AlertControllerManager.h"
+#import "AlertControllerProvider.h"
 
-@implementation AlertControllerManager
+@implementation AlertControllerProvider
 
 + (void)showAlertWithAction:(UIAlertAction *)alertAction byViewController:(UIViewController *)viewController{
     

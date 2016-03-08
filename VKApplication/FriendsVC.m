@@ -31,7 +31,7 @@
 }
 
 - (void)loadTableViewWithSearchBar{
-
+    
     self.dataSource = [[FriendsTableDataSource alloc] initWithTableView:self.theTable withSearchBar:self.searchBarOutlet andUserID:self.userID];
     self.dataSource.delegate = self;
     [self setUpaRefreshControl];
@@ -45,7 +45,7 @@
                                    target:self
                                    action:@selector(sortByPressed:)];
     self.navigationItem.rightBarButtonItem = sortButton;
-
+    
 }
 
 - (void)setUpaRefreshControl{
@@ -64,7 +64,7 @@
 - (IBAction)sortByPressed:(id)sender{
     self.popoverController = [self.storyboard instantiateViewControllerWithIdentifier:@"PopoverController"];
     self.popoverController = [[PopoverController alloc] initWithView:self.view andClassDelegate:self.dataSource];
-
+    
 }
 
 @end

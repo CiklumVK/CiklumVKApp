@@ -12,7 +12,7 @@
 #import "FriendsVC.h"
 #import "AvatarImagePicker.h"
 #import "VKClient.h"
-#import "AlertControllerManager.h"
+#import "AlertControllerProvider.h"
 #import "UserInfoVC.h"
 
 
@@ -31,8 +31,7 @@
 }
 
 - (void)setUpTableView{
-    
-    [self.tableView setContentInset:UIEdgeInsetsMake(-50,0,0,0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(-35,0,0,0)];
     self.dataSource = [[WallTableDataSource alloc] initWithTableView:self.tableView withUserID:self.userID];
     self.dataSource.delegate = self;
     [self setUpaRefreshControl];
@@ -42,6 +41,14 @@
 - (UIStoryboard *)currentStoryBoard{
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     return storyBoard;
+}
+
+- (UIViewController *)activeController{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    if ([vc isKindOfClass:[UINavigationController class]]) {
+        vc = [(UINavigationController*) vc visibleViewController];
+    }
+    return vc;
 }
 
 - (void)setUpaRefreshControl{
@@ -56,21 +63,14 @@
 }
 
 - (void)pushToViewController:(UIViewController *)viewController{
-    UIViewController *activeController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    if ([activeController isKindOfClass:[UINavigationController class]]) {
-        activeController = [(UINavigationController*) activeController visibleViewController];
-    }
-    [activeController.navigationController pushViewController:viewController animated:YES];
+    [[self activeController].navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)didSelectSend:(id)object{
     NewPostVC *vc = [[self currentStoryBoard] instantiateViewControllerWithIdentifier:@"NewPostVC"];
     vc.userID = object;
-    UIViewController *activeController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    if ([activeController isKindOfClass:[UINavigationController class]]) {
-        activeController = [(UINavigationController*) activeController visibleViewController];
-    }
-    [activeController presentViewController:vc animated:YES completion:nil];
+    vc.wallVC = self;
+    [[self activeController] presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)didSelectFriends:(id)object{
@@ -85,17 +85,18 @@
                                                                 handler:^(UIAlertAction *action) {
                                                                     self.imagePicker = [[AvatarImagePicker alloc] initWithViewController:self];
                                                                 }];
-    [AlertControllerManager showAlertWithAction:changePictureAction byViewController:self];
+    [AlertControllerProvider showAlertWithAction:changePictureAction byViewController:self];
 }
 
 - (void)didSelectPost:(id)post byWallOwner:(NSNumber *)ownerID{
     UIAlertAction *deletePost = [UIAlertAction actionWithTitle:@"Удалить запись"
-                                                                  style:UIAlertActionStyleDefault
-                                                                handler:^(UIAlertAction *action) {
-                                                                    VKClient *cl = [VKClient new];
-                                                                    [cl deletePostByOwnerID:ownerID andPostID:[post valueForKey:@"postID"]];
-                                                                }];
-    [AlertControllerManager showAlertWithAction:deletePost byViewController:self];
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) {
+                                                           VKClient *cl = [VKClient new];
+                                                           [cl deletePostByOwnerID:ownerID andPostID:[post valueForKey:@"postID"]];
+                                                           [self setUpTableView];
+                                                       }];
+    [AlertControllerProvider showAlertWithAction:deletePost byViewController:self];
     
 }
 

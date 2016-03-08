@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class WallVC;
+
 @interface NewPostVC : UIViewController
 
 @property NSNumber *userID;
+@property WallVC *wallVC;
 
 @end

@@ -16,7 +16,7 @@
 #import "WallPostModel.h"
 #import "RepostPostModel.h"
 #import "GroupsModel.h"
-
+#import "WallTableDataProvider.h"
 
 @interface WallTableDataSource()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate>
 
@@ -112,8 +112,6 @@
     }
 }
 
-#pragma mark - TableView
-
 - (void)addInfoButtonOnCell:(FriendInfoCell *)cell{
     UIButton *friendsButton=[UIButton buttonWithType:UIButtonTypeInfoDark];
     friendsButton.frame=CGRectMake([UIScreen mainScreen].bounds.size.width - 40, 30, 30, 30);
@@ -122,29 +120,15 @@
     
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSInteger loginUserID = [LogIn userID].integerValue;
-    NSInteger currentUserID = self.userID.integerValue;
-    NSInteger senderID = [[self.wallPostsArray[indexPath.row] valueForKey:@"senderID"] integerValue];
-    
-    if (indexPath.section == 0 && loginUserID == currentUserID){
-        if ([self.delegate respondsToSelector:@selector(didSelectFirstRow) ]){
-            [self.delegate didSelectFirstRow];
-        }
-    }else if (loginUserID == senderID && indexPath.section == 1){
-        if ([self.delegate respondsToSelector:@selector(didSelectPost:byWallOwner:)])
-            [self.delegate didSelectPost:self.wallPostsArray[indexPath.row] byWallOwner:self.userID];
-    }
-}
+#pragma mark - Header for tableview
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
     if (section == 1){
         UIView *view=[[UIView alloc]init];
         UIButton *addButton=[UIButton buttonWithType:UIButtonTypeSystem];
         [addButton setTitle:@"написать" forState:UIControlStateNormal];
-        addButton.frame=CGRectMake(220, -10, [UIScreen mainScreen].bounds.size.width-200, 30);
+        addButton.frame=CGRectMake([UIScreen mainScreen].bounds.size.width - 110, -10,100, 30);
         [addButton addTarget:self action:@selector(sendButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
         UIButton *friendsButton=[UIButton buttonWithType:UIButtonTypeSystem];
@@ -165,12 +149,34 @@
     }
 }
 
+#pragma mark - TableView
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSInteger loginUserID = [LogIn userID].integerValue;
+    NSInteger currentUserID = self.userID.integerValue;
+    NSInteger senderID = [[self.wallPostsArray[indexPath.row] valueForKey:@"senderID"] integerValue];
+    
+    if (indexPath.section == 0 && loginUserID == currentUserID){
+        if ([self.delegate respondsToSelector:@selector(didSelectFirstRow) ]){
+            [self.delegate didSelectFirstRow];
+        }
+    }else if (loginUserID == senderID && indexPath.section == 1){
+        if ([self.delegate respondsToSelector:@selector(didSelectPost:byWallOwner:)])
+            [self.delegate didSelectPost:self.wallPostsArray[indexPath.row] byWallOwner:self.userID];
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 50;
+    if (section == 1){
+        return 50;
+    }else{
+        return 0;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [self calculateHeightByIndexPath:indexPath];
+    return [WallTableDataProvider calculateHeightByWallPost:self.wallPostsArray repost:self.repostsArray atIndexPath:indexPath];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -196,41 +202,13 @@
         if (self.wallPostsArray.count > 0 && cell2){
             WallPostModel *obj = self.wallPostsArray[indexPath.row];
             RepostPostModel *rep = self.repostsArray[indexPath.row];
-            NSArray *arr = [NSArray arrayWithObjects:rep,[self getOwneOfRepost:self.groupsArray withUsersArray:self.userProfileArray withRepost:rep], nil];
-            [cell2 fillWithWallPost:obj userInfo:[self userByArray:self.userProfileArray andWallPost:obj] andRepost:arr];
+            NSArray *arr = [NSArray arrayWithObjects:rep,[WallTableDataProvider getOwneOfRepost:self.groupsArray withUsersArray:self.userProfileArray withRepost:rep], nil];
+            [cell2 fillWithWallPost:obj userInfo:[WallTableDataProvider userByArray:self.userProfileArray andWallPost:obj] andRepost:arr];
         }else{
             cell2 = nil;
         }
         return cell2;
     }
-}
-
-- (id)userByArray:(NSMutableArray *)userArray andWallPost:(WallPostModel *)wallPost{
-    __block id user = nil;
-    [userArray enumerateObjectsUsingBlock:^(UserInfoModel * _Nonnull userObject, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([wallPost.senderID isEqualToNumber:userObject.userID]) {
-            user = userObject;
-        }
-    }];
-    return user;
-}
-
-- (id)getOwneOfRepost:(NSMutableArray *)groupArray withUsersArray:(NSMutableArray *)userArray withRepost:(RepostPostModel *)repost{
-    __block id owner = nil;
-    if (![repost isEqual:@"no repost"]){
-        [groupArray enumerateObjectsUsingBlock:^(GroupsModel * _Nonnull groupObject, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([[NSNumber numberWithDouble:fabs([[[repost valueForKey:@"senderID"] objectAtIndex:0] doubleValue])] isEqualToNumber:groupObject.groupID ]) {
-                owner = groupObject;
-            }
-        }];
-        if (!owner) {
-            [userArray enumerateObjectsUsingBlock:^(UserInfoModel *_Nonnull userObj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if([[[repost valueForKey:@"senderID"] objectAtIndex:0] isEqualToNumber:userObj.userID]){
-                    owner = userObj;
-                }
-            }];
-        }}
-    return owner;
 }
 
 #pragma mark - filter
@@ -245,28 +223,6 @@
     }else{
         self.wallPostsArray = self.allWallPostsArray;
         [self.theTableView reloadData];
-    }
-}
-
-- (CGFloat)calculateHeightByIndexPath:(NSIndexPath *)indexPath{\
-    if (self.wallPostsArray.count){
-    CGFloat textPostHeight = [NSObject heightByText:[self.wallPostsArray[indexPath.row] valueForKey:@"textPost"] labelWidth:304 andFontSize:17];
-    if (indexPath.section == 0 ){
-        return 117;
-    }else if ([[[[self.wallPostsArray[indexPath.row] valueForKey:@"photo130"]valueForKey:@"type" ] objectAtIndex:0] isEqualToString:@"photo"]){
-        return textPostHeight+pictureHeight+topViewHeight+5;
-    }else if (![self.repostsArray[indexPath.row] isEqual:@"no repost"]){
-        CGFloat repostTextHeight = [NSObject heightByText:[[self.repostsArray[indexPath.row] valueForKey:@"textPost" ]objectAtIndex:0] labelWidth:304 andFontSize:17];
-        if (![[[self.repostsArray[indexPath.row] valueForKey:@"photo130"] objectAtIndex:0] isKindOfClass:NSNull.class] &&[[[[[self.repostsArray[indexPath.row]  valueForKey:@"photo130"]valueForKey:@"type"] objectAtIndex:0] objectAtIndex:0] isEqualToString:@"photo"]){
-            return repostTextHeight+textPostHeight+pictureHeight+topViewHeight*2+5;
-        }else{
-            return textPostHeight+repostTextHeight+topViewHeight*2+5;
-        }
-    }else{
-        return textPostHeight+topViewHeight;
-    }
-    }else{
-        return 117;
     }
 }
 
