@@ -22,7 +22,8 @@ const struct APIPaths APIPaths= {
     .wallPosts = @"https://api.vk.com/method/wall.get?",
     .getPhotoUploadServer =  @"https://api.vk.com/method/photos.getOwnerPhotoUploadServer?",
     .photoSavePath = @"https://api.vk.com/method/photos.saveOwnerPhoto?",
-    .wallDeletePost = @"https://api.vk.com/method/wall.delete?"
+    .wallDeletePost = @"https://api.vk.com/method/wall.delete?",
+    .cancelLoginPath = @"https://oauth.vk.com/blank.html#error=access_denied&error_reason=user_denied&error_description=User%20denied%20your%20request"
 };
 
 @implementation VKClient

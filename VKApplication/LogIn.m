@@ -19,7 +19,7 @@ static LogIn *authorization = nil;
 @property UIWebView *vkWebView;
 @property LogInModel *loginModel;
 @property NSMutableDictionary *dictionaryOfLogIn;
-
+@property UIView *vkView;
 @end
 
 
@@ -49,15 +49,18 @@ static LogIn *authorization = nil;
 }
 
 - (void)doLogIn:(UIView *)view{
+    self.vkView = view;
     if ([[NSUserDefaults standardUserDefaults]valueForKey:@"accessToken"]){
         _compl();
     }else{
+        [self.vkWebView removeFromSuperview];
         self.vkWebView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         self.vkWebView.delegate = self;
         self.vkWebView.contentMode = UIViewContentModeScaleAspectFit;
         [self.vkWebView setBackgroundColor:[UIColor clearColor]];
         
         [self.vkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://oauth.vk.com/authorize?client_id=%@&display=mobile&redirect_uri=https://oauth.vk.com/blank.html&scope=friends,notify,wall,offline&response_type=token&v=5.42",appID]]]];
+        [self.vkWebView removeFromSuperview];
         [view addSubview:self.vkWebView];
     }
 }
@@ -74,11 +77,12 @@ static LogIn *authorization = nil;
         [self.dictionaryOfLogIn setValue:authorization.accessToken forKey:@"accessToken"];
         [self.dictionaryOfLogIn setValue:authorization.userID forKey:@"userID"];
         self.loginModel = [[LogInModel alloc] initWithDictionary:self.dictionaryOfLogIn];
-        
         if([[NSUserDefaults standardUserDefaults]valueForKey:@"accessToken"]){
             [self.vkWebView removeFromSuperview];
             _compl();
-        }}
+        }}else if ([self.vkWebView.request.URL.absoluteString isEqualToString:APIPaths.cancelLoginPath]){
+            [self doLogIn:self.vkView];
+        }
 }
 
 + (NSNumber *)userID{

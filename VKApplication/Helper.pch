@@ -23,6 +23,8 @@ extern const struct APIPaths
     __unsafe_unretained NSString *getPhotoUploadServer;
     __unsafe_unretained NSString *photoSavePath;
     __unsafe_unretained NSString *wallDeletePost;
+    __unsafe_unretained NSString *cancelLoginPath;
+
 
 } APIPaths;
 
