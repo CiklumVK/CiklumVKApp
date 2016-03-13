@@ -199,14 +199,10 @@
         return cell1;
     }else{
         WallCell *cell2 = [self.theTableView dequeueReusableCellWithIdentifier:@"WallCell"forIndexPath:indexPath];
-        if (self.wallPostsArray.count > 0 && cell2){
-            WallPostModel *obj = self.wallPostsArray[indexPath.row];
-            RepostPostModel *rep = self.repostsArray[indexPath.row];
-            NSArray *arr = [NSArray arrayWithObjects:rep,[WallTableDataProvider getOwneOfRepost:self.groupsArray withUsersArray:self.userProfileArray withRepost:rep], nil];
-            [cell2 fillWithWallPost:obj userInfo:[WallTableDataProvider userByArray:self.userProfileArray andWallPost:obj] andRepost:arr];
-        }else{
-            cell2 = nil;
-        }
+        WallPostModel *obj = self.wallPostsArray[indexPath.row];
+        RepostPostModel *rep = self.repostsArray[indexPath.row];
+        NSArray *arr = [NSArray arrayWithObjects:rep,[WallTableDataProvider getOwneOfRepost:self.groupsArray withUsersArray:self.userProfileArray withRepost:rep], nil];
+        [cell2 fillWithWallPost:obj userInfo:[WallTableDataProvider userByArray:self.userProfileArray andWallPost:obj] andRepost:arr];
         return cell2;
     }
 }

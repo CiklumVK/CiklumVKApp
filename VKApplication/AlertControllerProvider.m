@@ -10,7 +10,7 @@
 
 @implementation AlertControllerProvider
 
-+ (void)showAlertWithAction:(UIAlertAction *)alertAction byViewController:(UIViewController *)viewController{
++ (void)showAlertWithAction:(UIAlertAction *)alertAction byViewController:(UIViewController *)viewController {
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
                                                                              message:nil

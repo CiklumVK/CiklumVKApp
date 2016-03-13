@@ -12,7 +12,7 @@
 @interface PopoverControllerDataSource ()<UITableViewDelegate, UITableViewDataSource,WYPopoverControllerDelegate>
 
 @property NSArray *arrayOfSortWays;
-@property FriendsTableDataSource *friendsTableDataSource;
+@property FriendsTableDataSource <PopoverControllerDelegate> *friendsTableDataSource;
 @property WYPopoverController *popoverController;
 @end
 

@@ -117,7 +117,7 @@
 - (void)doSearch:(NSString *)searchText{
     [self.vkClient makeSearchWithText:searchText response:^(NSArray *responseObject) {
         NSArray *responsedArray = [MTLJSONAdapterWithoutNil modelsOfClass:[VKFriendsModel class] fromJSONArray:responseObject error:nil];
-        NSArray *sortedArray = [self.oldFriends filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(fristName contains %@) OR (lastName contains %@)", searchText,searchText]];
+        NSArray *sortedArray = [self.oldFriends filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(fristName  contains %@) OR (lastName contains %@)", searchText, searchText]];
         [self.friendsDictionary setValue:responsedArray forKey:@"Global search"];
         [self.friendsDictionary setValue:sortedArray forKey:@"Friends"];
         [self.theTableView reloadData];

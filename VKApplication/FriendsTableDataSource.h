@@ -14,8 +14,6 @@
 
 @end
 
-
-
 @interface FriendsTableDataSource : NSObject
 
 @property (nonatomic, weak) id <FriendsTableDataSourceDelegate> delegate;
